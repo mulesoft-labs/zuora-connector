@@ -37,8 +37,8 @@
     <zuora:amendaments ref="#[header:amendamentsList]"/>
 </zuora:amend>
 <!-- END_INCLUDE(zuora:amend) -->
-<!-- BEGIN_INCLUDE(zuora:account-profile-object) -->
-<zuora:account-profile-object accountId="12"/>
+<!-- BEGIN_INCLUDE(zuora:account-profile) -->
+<zuora:account-profile accountId="12"/>
 <!-- END_INCLUDE(zuora:account-profile) -->
 <!-- BEGIN_INCLUDE(zuora:get-invoice) -->
 <zuora:get-invoice invoiceId="0012..."/>
