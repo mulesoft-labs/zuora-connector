@@ -1,13 +1,21 @@
 com.zuora.api
 com.zuora.api.fault
+com.zuora.api.holders
 com.zuora.api.object
+com.zuora.api.object.holders
+com.zuora.api.object.transformers
+com.zuora.api.transformers
 org.mule.modules.zuora
 org.mule.modules.zuora.adapters
+org.mule.modules.zuora.agents
 org.mule.modules.zuora.config
 org.mule.modules.zuora.config.spring
+org.mule.modules.zuora.connectivity
+org.mule.modules.zuora.process
 org.mule.modules.zuora.processors
 org.mule.modules.zuora.transformers
 org.mule.modules.zuora.zobject
+org.mule.modules.zuora.zobject.transformers
 org.mule.modules.zuora.zuora.api
 org.mule.modules.zuora.zuora.api.internal
 

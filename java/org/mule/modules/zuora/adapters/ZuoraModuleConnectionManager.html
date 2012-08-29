@@ -207,21 +207,37 @@
     <li class="api apilevel-">
   <a href="../../../../../../java/com/zuora/api/fault/package-summary.html">com.zuora.api.fault</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/com/zuora/api/holders/package-summary.html">com.zuora.api.holders</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/com/zuora/api/object/package-summary.html">com.zuora.api.object</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/zuora/api/object/holders/package-summary.html">com.zuora.api.object.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/zuora/api/object/transformers/package-summary.html">com.zuora.api.object.transformers</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/zuora/api/transformers/package-summary.html">com.zuora.api.transformers</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/package-summary.html">org.mule.modules.zuora</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/adapters/package-summary.html">org.mule.modules.zuora.adapters</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/agents/package-summary.html">org.mule.modules.zuora.agents</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/config/package-summary.html">org.mule.modules.zuora.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/config/spring/package-summary.html">org.mule.modules.zuora.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/connectivity/package-summary.html">org.mule.modules.zuora.connectivity</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/process/package-summary.html">org.mule.modules.zuora.process</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/processors/package-summary.html">org.mule.modules.zuora.processors</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/transformers/package-summary.html">org.mule.modules.zuora.transformers</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/zobject/package-summary.html">org.mule.modules.zuora.zobject</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/zobject/transformers/package-summary.html">org.mule.modules.zuora.zobject.transformers</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/zuora/api/package-summary.html">org.mule.modules.zuora.zuora.api</a></li>
     <li class="api apilevel-">
@@ -236,9 +252,12 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleCapabilitiesAdapter.html">ZuoraModuleCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleConnectionIdentifierAdapter.html">ZuoraModuleConnectionIdentifierAdapter</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleConnectionManager.html">ZuoraModuleConnectionManager</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleConnectionManager.ConnectionKey.html">ZuoraModuleConnectionManager.ConnectionKey</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleLifecycleAdapter.html">ZuoraModuleLifecycleAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleMetadataAdapater.html">ZuoraModuleMetadataAdapater</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/adapters/ZuoraModuleProcessAdapter.html">ZuoraModuleProcessAdapter</a></li>
       </ul>
     </li>
               
@@ -392,7 +411,7 @@ Summary:
       
         Capabilities 
       
-        ConnectionManager&lt;K,&nbsp;C&gt; 
+        ConnectionManager&lt;K,&nbsp;C&nbsp;extends&nbsp;Connection&gt; 
       
         MuleContextAware 
       
@@ -1337,6 +1356,38 @@ From interface
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">getConnectionPoolingProfile</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            K</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getDefaultConnectionKey</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            RetryPolicyTemplate</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getRetryPolicyTemplate</span>()</nobr>
         
   </td></tr>
 
