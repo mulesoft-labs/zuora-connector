@@ -120,6 +120,8 @@ public class ZuoraModule {
      *
      * @param subscriptions the list of subscriptions to perform
      * @return a subscription results list, one for each subscription
+     * 
+     * @throws Exception If subscription fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -136,6 +138,8 @@ public class ZuoraModule {
      * @param zobjects the zobjects to create
      * @param type     the type of zobject passed
      * @return a list of {@link SaveResult}, one for each ZObject
+     * 
+     * @throws Exception If creation fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -153,6 +157,8 @@ public class ZuoraModule {
      *                 Zuora attribute names, unlike java beans, are CamelCase.
      * @param type     the type of zobject passed
      * @return a list of {@link SaveResult}, one for each ZObject
+     * 
+     * @throws Exception if generation fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -170,6 +176,8 @@ public class ZuoraModule {
      *                 Zuora attribute names, unlike java beans, are CamelCase.
      * @param type     the type of zobject passed
      * @return a list of {@link SaveResult}, one for each ZObject
+     * 
+     * @throws Exception If update fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -186,6 +194,8 @@ public class ZuoraModule {
      * @param type the type of ZObjects to delete
      * @param ids  the list of ids to delete
      * @return a list of {@link DeleteResult}, one for each id
+     * 
+     * @throws Exception if deletion fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -204,6 +214,7 @@ public class ZuoraModule {
      * @return a {@link ZObject} iterable. {@link ZObject} returned by this operation
      *         may be instances of either static ZObject - like Account or Amendment -,  if the object is a non-customizable Zuora entity,
      *         or {@link ZObject},  if the object is a customizable Zuora entity
+     * @throws Exception if find fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -219,7 +230,7 @@ public class ZuoraModule {
      *
      * @param productId The id of the product to retrieve a product profile for
      * @return the profile, as a String-Object Map
-     * @throws {@link ZuoraException}
+     * @throws Exception if requesting product profile fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -233,6 +244,7 @@ public class ZuoraModule {
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:get-user-info}
      *
      * @return a {@link User}
+     * @throws Exception if request fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -248,6 +260,7 @@ public class ZuoraModule {
      *
      * @param amendaments the list of amendaments to perform
      * @return a list of {@link AmendResult}, one for each amendament
+     * @throws Exception if amend fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -263,6 +276,7 @@ public class ZuoraModule {
      *
      * @param accountId The id of the account to retrieve an account profile for
      * @return the account, as a String-Object Map
+     * @throws Exception if request fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -278,6 +292,8 @@ public class ZuoraModule {
      *
      * @param invoiceId The id of the account to retrieve an account profile for
      * @return the invoice, as a String-Object Map
+     * 
+     * @throws Exception if request fails
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
@@ -286,15 +302,21 @@ public class ZuoraModule {
         return client.getInvoice(invoiceId);
     }
     
-    public void setEndpoint(String enpoint) {
-        this.endpoint = enpoint;
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
 
-    public String getEnpoint() {
+    public String getEndpoint() {
         return endpoint;
     }
 
     public void setClient(ZuoraClient<Exception> client) {
         this.client = client;
     }
+    
+    public ZuoraClient<Exception> getClient()
+    {
+        return client;
+    }
+    
 }
