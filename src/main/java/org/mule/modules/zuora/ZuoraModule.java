@@ -53,7 +53,7 @@ import com.zuora.api.object.ZObject;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name = "zuora")
+@Connector(name = "zuora", friendlyName = "Zuora")
 public class ZuoraModule {
 
     /**
