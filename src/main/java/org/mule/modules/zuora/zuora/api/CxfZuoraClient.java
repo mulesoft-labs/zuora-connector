@@ -114,7 +114,7 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
         }
 
         ZuoraService serviceLocator = new ZuoraService(getClass().getResource(
-                "/zuora-32.wsdl"));
+                "/zuora.a.43.0.wsdl"));
         this.soap = serviceLocator.getPort(Soap.class);
 
         BindingProvider bindingProvider = ((BindingProvider) this.soap);
@@ -204,10 +204,14 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
             if (result.getRecords().get(0) != null) {
                 allRecords.addAll(result.getRecords());
             }
+             /*
+            //Albin: This has been removed from latest version of the wsdl
             while (!result.isDone()) {
                 result = soap.queryMore(result.getQueryLocator());
                 allRecords.addAll(result.getRecords());
             }
+            */
+
         } catch (UnexpectedErrorFault unexpectedErrorFault) {
             if (unexpectedErrorFault.getFaultInfo().getFaultCode() == ErrorCode.INVALID_SESSION) {
                 throw new SessionTimedOutException();
