@@ -70,7 +70,7 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
         }
 
         ZuoraService serviceLocator = new ZuoraService(getClass().getResource(
-                "/zuora-32.wsdl"));
+                "/zuora.a.43.0-modified.wsdl"));
         this.soap = serviceLocator.getPort(Soap.class);
 
         BindingProvider bindingProvider = ((BindingProvider) this.soap);
@@ -160,10 +160,13 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
             if (result.getRecords().get(0) != null) {
                 allRecords.addAll(result.getRecords());
             }
+            /*
+            Albin 2012-10-29: Query more not supported in the WSDL any more.
             while (!result.isDone()) {
                 result = soap.queryMore(result.getQueryLocator());
                 allRecords.addAll(result.getRecords());
             }
+            */
         } catch (UnexpectedErrorFault unexpectedErrorFault) {
             if (unexpectedErrorFault.getFaultInfo().getFaultCode() == ErrorCode.INVALID_SESSION) {
                 throw new SessionTimedOutException();

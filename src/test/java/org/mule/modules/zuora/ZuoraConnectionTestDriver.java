@@ -41,7 +41,7 @@ public class ZuoraConnectionTestDriver
     @Test
     public void testname() throws Exception
     {
-        ZuoraService serviceLocator = new ZuoraService(getClass().getResource("/zuora-32.wsdl"));
+        ZuoraService serviceLocator = new ZuoraService(getClass().getResource("/zuora.a.43.0-modified.wsdl"));
         Soap  newConnection = serviceLocator.getPort(Soap.class);
         BindingProvider bindingProvider = ((BindingProvider) newConnection);
         bindingProvider.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "https://apisandbox.zuora.com/apps/services/a/32.0");
