@@ -269,6 +269,10 @@
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/DeleteResult.html">DeleteResult</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/DummyHeader.html">DummyHeader</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Error.html">Error</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Execute.html">Execute</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResponse.html">ExecuteResponse</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/GatewayOptionData.html">GatewayOptionData</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Generate.html">Generate</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/GenerateResponse.html">GenerateResponse</a></li>
@@ -520,6 +524,7 @@ Summary:
          &lt;element name="Errors" type="{http://api.zuora.com/}Error" maxOccurs="unbounded" minOccurs="0"/>
          &lt;element name="InvoiceDatas" type="{http://api.zuora.com/}InvoiceData" maxOccurs="unbounded" minOccurs="0"/>
          &lt;element name="InvoiceId" type="{http://api.zuora.com/}ID" minOccurs="0"/>
+         &lt;element name="PaymentId" type="{http://api.zuora.com/}ID" minOccurs="0"/>
          &lt;element name="PaymentTransactionNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          &lt;element name="Success" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
        &lt;/sequence>
@@ -645,12 +650,23 @@ Summary:
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#paymentTransactionNumber">paymentTransactionNumber</a></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#paymentId">paymentId</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#paymentTransactionNumber">paymentTransactionNumber</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           protected
           
@@ -845,6 +861,24 @@ Summary:
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getPaymentId()">getPaymentId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the paymentId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getPaymentTransactionNumber()">getPaymentTransactionNumber</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the paymentTransactionNumber property.</div>
@@ -853,7 +887,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -871,7 +905,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -884,6 +918,24 @@ Summary:
         <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setInvoiceId(java.lang.String)">setInvoiceId</a></span>(String value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the invoiceId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setPaymentId(java.lang.String)">setPaymentId</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the paymentId property.</div>
   
   </td></tr>
 
@@ -1539,6 +1591,36 @@ From class
 
 
 
+<A NAME="paymentId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        paymentId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="paymentTransactionNumber"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1845,6 +1927,44 @@ From class
 </div>
 
 
+<A NAME="getPaymentId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getPaymentId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the paymentId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="getPaymentTransactionNumber()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1947,6 +2067,49 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the invoiceId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setPaymentId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setPaymentId</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the paymentId property.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

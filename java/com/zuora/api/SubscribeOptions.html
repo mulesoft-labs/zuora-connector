@@ -269,6 +269,10 @@
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/DeleteResult.html">DeleteResult</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/DummyHeader.html">DummyHeader</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Error.html">Error</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Execute.html">Execute</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResponse.html">ExecuteResponse</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/GatewayOptionData.html">GatewayOptionData</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Generate.html">Generate</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/GenerateResponse.html">GenerateResponse</a></li>
@@ -516,6 +520,7 @@ Summary:
    &lt;complexContent>
      &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
        &lt;sequence>
+         &lt;element name="ExternalPaymentOptions" type="{http://api.zuora.com/}ExternalPaymentOptions" minOccurs="0"/>
          &lt;element name="GenerateInvoice" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
          &lt;element name="ProcessPayments" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
          &lt;element name="SubscribeInvoiceProcessingOptions" type="{http://api.zuora.com/}SubscribeInvoiceProcessingOptions" minOccurs="0"/>
@@ -597,8 +602,8 @@ Summary:
           protected
           
           
-          Boolean</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/SubscribeOptions.html#generateInvoice">generateInvoice</a></td>
+          <a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/SubscribeOptions.html#externalPaymentOptions">externalPaymentOptions</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -609,12 +614,23 @@ Summary:
           
           
           Boolean</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/SubscribeOptions.html#processPayments">processPayments</a></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/SubscribeOptions.html#generateInvoice">generateInvoice</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Boolean</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/SubscribeOptions.html#processPayments">processPayments</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           protected
           
@@ -734,6 +750,24 @@ Summary:
             
             
             
+            <a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/SubscribeOptions.html#getExternalPaymentOptions()">getExternalPaymentOptions</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the externalPaymentOptions property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             <a href="../../../../java/com/zuora/api/SubscribeInvoiceProcessingOptions.html">SubscribeInvoiceProcessingOptions</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -745,7 +779,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -763,7 +797,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -776,6 +810,24 @@ Summary:
         <span class="sympad"><a href="../../../../com/zuora/api/SubscribeOptions.html#isProcessPayments()">isProcessPayments</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the processPayments property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/SubscribeOptions.html#setExternalPaymentOptions(com.zuora.api.ExternalPaymentOptions)">setExternalPaymentOptions</a></span>(<a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a> value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the externalPaymentOptions property.</div>
   
   </td></tr>
 
@@ -1329,6 +1381,36 @@ From class
 
 
 
+<A NAME="externalPaymentOptions"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a>
+      </span>
+        externalPaymentOptions
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="generateInvoice"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1474,6 +1556,44 @@ From class
 
 
 
+<A NAME="getExternalPaymentOptions()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a>
+      </span>
+      <span class="sympad">getExternalPaymentOptions</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the externalPaymentOptions property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     <code><a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></code>
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="getSubscribeInvoiceProcessingOptions()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1582,6 +1702,49 @@ From class
      Boolean
      
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setExternalPaymentOptions(com.zuora.api.ExternalPaymentOptions)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setExternalPaymentOptions</span>
+      <span class="normal">(<a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a> value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the externalPaymentOptions property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     <code><a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></code>
+     
+</td>
+        </tr>
+      </table>
   </div>
 
     </div>

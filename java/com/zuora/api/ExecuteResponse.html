@@ -74,7 +74,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico" />
 <title>
 
-  Update
+  ExecuteResponse
 
 
 | Mule Zuora Connector
@@ -270,7 +270,7 @@
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/DummyHeader.html">DummyHeader</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Error.html">Error</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Execute.html">Execute</a></li>
-          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResponse.html">ExecuteResponse</a></li>
+          <li class="selected api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResponse.html">ExecuteResponse</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/GatewayOptionData.html">GatewayOptionData</a></li>
@@ -304,7 +304,7 @@
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/SubscribeResponse.html">SubscribeResponse</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/SubscribeResult.html">SubscribeResult</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/SubscriptionData.html">SubscriptionData</a></li>
-          <li class="selected api apilevel-"><a href="../../../../java/com/zuora/api/Update.html">Update</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Update.html">Update</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/UpdateResponse.html">UpdateResponse</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ZuoraService.html">ZuoraService</a></li>
       </ul>
@@ -443,7 +443,7 @@ Summary:
      
     
     class
-<h1>Update</h1>
+<h1>ExecuteResponse</h1>
 
 
 
@@ -495,7 +495,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.Update</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.ExecuteResponse</td>
     </tr>
     
 
@@ -520,7 +520,7 @@ Summary:
    &lt;complexContent>
      &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
        &lt;sequence>
-         &lt;element name="zObjects" type="{http://object.api.zuora.com/}zObject" maxOccurs="unbounded" minOccurs="0"/>
+         &lt;element name="result" type="{http://api.zuora.com/}ExecuteResult" maxOccurs="unbounded" minOccurs="0"/>
        &lt;/sequence>
      &lt;/restriction>
    &lt;/complexContent>
@@ -575,7 +575,7 @@ Summary:
     
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">long</td>
-        <td class="jd-linkcol"><a href="../../../../com/zuora/api/Update.html#serialVersionUID">serialVersionUID</a></td>
+        <td class="jd-linkcol"><a href="../../../../com/zuora/api/ExecuteResponse.html#serialVersionUID">serialVersionUID</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
@@ -599,8 +599,8 @@ Summary:
           protected
           
           
-          List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/Update.html#zObjects">zObjects</a></td>
+          List&lt;<a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/ExecuteResponse.html#result">result</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -688,7 +688,7 @@ Summary:
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/Update.html#Update()">Update</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResponse.html#ExecuteResponse()">ExecuteResponse</a></span>()</nobr>
         
   </td></tr>
 
@@ -714,12 +714,12 @@ Summary:
             
             
             
-            List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</nobr>
+            List&lt;<a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/Update.html#getZObjects()">getZObjects</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResponse.html#getResult()">getResult</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Gets the value of the zObjects property.</div>
+        <div class="jd-descrdiv">Gets the value of the result property.</div>
   
   </td></tr>
 
@@ -1219,7 +1219,7 @@ From class
 
 
 
-<A NAME="zObjects"></A>
+<A NAME="result"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1227,9 +1227,9 @@ From class
         protected 
          
          
-        List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;
+        List&lt;<a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a>&gt;
       </span>
-        zObjects
+        result
     </h4>
       <div class="api-level">
         
@@ -1258,7 +1258,7 @@ From class
 
 
 
-<A NAME="Update()"></A>
+<A NAME="ExecuteResponse()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1270,7 +1270,7 @@ From class
          
         
       </span>
-      <span class="sympad">Update</span>
+      <span class="sympad">ExecuteResponse</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1304,7 +1304,7 @@ From class
 
 
 
-<A NAME="getZObjects()"></A>
+<A NAME="getResult()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1314,9 +1314,9 @@ From class
          
          
          
-        List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;
+        List&lt;<a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a>&gt;
       </span>
-      <span class="sympad">getZObjects</span>
+      <span class="sympad">getResult</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1329,24 +1329,24 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the zObjects property.
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the result property.
  
  <p>
  This accessor method returns a reference to the live list,
  not a snapshot. Therefore any modification you make to the
  returned list will be present inside the JAXB object.
- This is why there is not a <CODE>set</CODE> method for the zObjects property.
+ This is why there is not a <CODE>set</CODE> method for the result property.
  
  <p>
  For example, to add a new item, do as follows:
  <pre>
-    getZObjects().add(newItem);
+    getResult().add(newItem);
  </pre>
  
  
  <p>
  Objects of the following type(s) are allowed in the list
- <code><a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a></code>
+ <code><a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a></code>
  
  
 </p></div>

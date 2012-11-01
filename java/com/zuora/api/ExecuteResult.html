@@ -74,7 +74,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico" />
 <title>
 
-  Update
+  ExecuteResult
 
 
 | Mule Zuora Connector
@@ -271,7 +271,7 @@
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Error.html">Error</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Execute.html">Execute</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResponse.html">ExecuteResponse</a></li>
-          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a></li>
+          <li class="selected api apilevel-"><a href="../../../../java/com/zuora/api/ExecuteResult.html">ExecuteResult</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ExternalPaymentOptions.html">ExternalPaymentOptions</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/GatewayOptionData.html">GatewayOptionData</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Generate.html">Generate</a></li>
@@ -304,7 +304,7 @@
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/SubscribeResponse.html">SubscribeResponse</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/SubscribeResult.html">SubscribeResult</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/SubscriptionData.html">SubscriptionData</a></li>
-          <li class="selected api apilevel-"><a href="../../../../java/com/zuora/api/Update.html">Update</a></li>
+          <li class="api apilevel-"><a href="../../../../java/com/zuora/api/Update.html">Update</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/UpdateResponse.html">UpdateResponse</a></li>
           <li class="api apilevel-"><a href="../../../../java/com/zuora/api/ZuoraService.html">ZuoraService</a></li>
       </ul>
@@ -443,7 +443,7 @@ Summary:
      
     
     class
-<h1>Update</h1>
+<h1>ExecuteResult</h1>
 
 
 
@@ -495,7 +495,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.Update</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.ExecuteResult</td>
     </tr>
     
 
@@ -511,16 +511,18 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p><p>Java class for anonymous complex type.
+<p><p>Java class for ExecuteResult complex type.
  
  <p>The following schema fragment specifies the expected content contained within this class.
  
  <pre>
- &lt;complexType>
+ &lt;complexType name="ExecuteResult">
    &lt;complexContent>
      &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
        &lt;sequence>
-         &lt;element name="zObjects" type="{http://object.api.zuora.com/}zObject" maxOccurs="unbounded" minOccurs="0"/>
+         &lt;element name="Errors" type="{http://api.zuora.com/}Error" maxOccurs="unbounded" minOccurs="0"/>
+         &lt;element name="Id" type="{http://api.zuora.com/}ID" minOccurs="0"/>
+         &lt;element name="Success" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
        &lt;/sequence>
      &lt;/restriction>
    &lt;/complexContent>
@@ -575,7 +577,7 @@ Summary:
     
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">long</td>
-        <td class="jd-linkcol"><a href="../../../../com/zuora/api/Update.html#serialVersionUID">serialVersionUID</a></td>
+        <td class="jd-linkcol"><a href="../../../../com/zuora/api/ExecuteResult.html#serialVersionUID">serialVersionUID</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
@@ -599,8 +601,30 @@ Summary:
           protected
           
           
-          List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/Update.html#zObjects">zObjects</a></td>
+          List&lt;<a href="../../../../java/com/zuora/api/Error.html">Error</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/ExecuteResult.html#errors">errors</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/ExecuteResult.html#id">id</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Boolean</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/ExecuteResult.html#success">success</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -688,7 +712,7 @@ Summary:
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/Update.html#Update()">Update</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResult.html#ExecuteResult()">ExecuteResult</a></span>()</nobr>
         
   </td></tr>
 
@@ -714,12 +738,84 @@ Summary:
             
             
             
-            List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</nobr>
+            List&lt;<a href="../../../../java/com/zuora/api/Error.html">Error</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/Update.html#getZObjects()">getZObjects</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResult.html#getErrors()">getErrors</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Gets the value of the zObjects property.</div>
+        <div class="jd-descrdiv">Gets the value of the errors property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResult.html#getId()">getId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the id property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResult.html#isSuccess()">isSuccess</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the success property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResult.html#setId(java.lang.String)">setId</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the id property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/ExecuteResult.html#setSuccess(java.lang.Boolean)">setSuccess</a></span>(Boolean value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the success property.</div>
   
   </td></tr>
 
@@ -1219,7 +1315,7 @@ From class
 
 
 
-<A NAME="zObjects"></A>
+<A NAME="errors"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1227,9 +1323,69 @@ From class
         protected 
          
          
-        List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;
+        List&lt;<a href="../../../../java/com/zuora/api/Error.html">Error</a>&gt;
       </span>
-        zObjects
+        errors
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="id"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        id
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="success"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Boolean
+      </span>
+        success
     </h4>
       <div class="api-level">
         
@@ -1258,7 +1414,7 @@ From class
 
 
 
-<A NAME="Update()"></A>
+<A NAME="ExecuteResult()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1270,7 +1426,7 @@ From class
          
         
       </span>
-      <span class="sympad">Update</span>
+      <span class="sympad">ExecuteResult</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1304,7 +1460,7 @@ From class
 
 
 
-<A NAME="getZObjects()"></A>
+<A NAME="getErrors()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1314,9 +1470,9 @@ From class
          
          
          
-        List&lt;<a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;
+        List&lt;<a href="../../../../java/com/zuora/api/Error.html">Error</a>&gt;
       </span>
-      <span class="sympad">getZObjects</span>
+      <span class="sympad">getErrors</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1329,27 +1485,189 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the zObjects property.
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the errors property.
  
  <p>
  This accessor method returns a reference to the live list,
  not a snapshot. Therefore any modification you make to the
  returned list will be present inside the JAXB object.
- This is why there is not a <CODE>set</CODE> method for the zObjects property.
+ This is why there is not a <CODE>set</CODE> method for the errors property.
  
  <p>
  For example, to add a new item, do as follows:
  <pre>
-    getZObjects().add(newItem);
+    getErrors().add(newItem);
  </pre>
  
  
  <p>
  Objects of the following type(s) are allowed in the list
- <code><a href="../../../../java/com/zuora/api/object/ZObject.html">ZObject</a></code>
+ <code><a href="../../../../java/com/zuora/api/Error.html">Error</a></code>
  
  
 </p></div>
+
+    </div>
+</div>
+
+
+<A NAME="getId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the id property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="isSuccess()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        Boolean
+      </span>
+      <span class="sympad">isSuccess</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the success property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     Boolean
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setId</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the id property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setSuccess(java.lang.Boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setSuccess</span>
+      <span class="normal">(Boolean value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the success property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     Boolean
+     
+</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>

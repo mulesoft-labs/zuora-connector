@@ -74,7 +74,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
 <title>
 
-  ProductRatePlanChargeTier
+  Import
 
 
 | Mule Zuora Connector
@@ -264,7 +264,7 @@
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/Dynamic.html">Dynamic</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/Export.html">Export</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/GatewayOption.html">GatewayOption</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/Import.html">Import</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../java/com/zuora/api/object/Import.html">Import</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/Invoice.html">Invoice</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/InvoiceAccountingDetail.html">InvoiceAccountingDetail</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/InvoiceAdjustment.html">InvoiceAdjustment</a></li>
@@ -279,7 +279,7 @@
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/Product.html">Product</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/ProductRatePlan.html">ProductRatePlan</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/ProductRatePlanCharge.html">ProductRatePlanCharge</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../java/com/zuora/api/object/ProductRatePlanChargeTier.html">ProductRatePlanChargeTier</a></li>
+          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/ProductRatePlanChargeTier.html">ProductRatePlanChargeTier</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/RatePlan.html">RatePlan</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/RatePlanCharge.html">RatePlanCharge</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/RatePlanChargeTier.html">RatePlanChargeTier</a></li>
@@ -425,7 +425,7 @@ Summary:
      
     
     class
-<h1>ProductRatePlanChargeTier</h1>
+<h1>Import</h1>
 
 
 
@@ -493,7 +493,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.object.ProductRatePlanChargeTier</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.object.Import</td>
     </tr>
     
 
@@ -509,28 +509,27 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p><p>Java class for ProductRatePlanChargeTier complex type.
+<p><p>Java class for Import complex type.
  
  <p>The following schema fragment specifies the expected content contained within this class.
  
  <pre>
- &lt;complexType name="ProductRatePlanChargeTier">
+ &lt;complexType name="Import">
    &lt;complexContent>
      &lt;extension base="{http://object.api.zuora.com/}zObject">
        &lt;sequence>
-         &lt;element name="Active" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
          &lt;element name="CreatedById" type="{http://api.zuora.com/}ID" minOccurs="0"/>
          &lt;element name="CreatedDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
-         &lt;element name="Currency" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         &lt;element name="DiscountAmount" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
-         &lt;element name="DiscountPercentage" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
-         &lt;element name="EndingUnit" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
-         &lt;element name="IsOveragePrice" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
-         &lt;element name="Price" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
-         &lt;element name="PriceFormat" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         &lt;element name="ProductRatePlanChargeId" type="{http://api.zuora.com/}ID" minOccurs="0"/>
-         &lt;element name="StartingUnit" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
-         &lt;element name="Tier" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         &lt;element name="FileContent" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+         &lt;element name="ImportedCount" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+         &lt;element name="ImportType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="Md5" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="Name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="OriginalResourceUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="ResultResourceUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="Status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="StatusReason" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="TotalCount" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          &lt;element name="UpdatedById" type="{http://api.zuora.com/}ID" minOccurs="0"/>
          &lt;element name="UpdatedDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
        &lt;/sequence>
@@ -587,7 +586,7 @@ Summary:
     
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">long</td>
-        <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#serialVersionUID">serialVersionUID</a></td>
+        <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#serialVersionUID">serialVersionUID</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
@@ -656,30 +655,30 @@ Summary:
           protected
           
           
-          Boolean</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#active">active</a></td>
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#createdById">createdById</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#createdById">createdById</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           protected
           
           
           XMLGregorianCalendar</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#createdDate">createdDate</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#createdDate">createdDate</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          byte[]</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#fileContent">fileContent</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -690,95 +689,7 @@ Summary:
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#currency">currency</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          BigDecimal</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#discountAmount">discountAmount</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          BigDecimal</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#discountPercentage">discountPercentage</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          BigDecimal</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#endingUnit">endingUnit</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          Boolean</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#isOveragePrice">isOveragePrice</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          BigDecimal</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#price">price</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#priceFormat">priceFormat</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#productRatePlanChargeId">productRatePlanChargeId</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          BigDecimal</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#startingUnit">startingUnit</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#importType">importType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -789,7 +700,7 @@ Summary:
           
           
           Integer</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#tier">tier</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#importedCount">importedCount</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -800,7 +711,7 @@ Summary:
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#updatedById">updatedById</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#md5">md5</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -810,8 +721,85 @@ Summary:
           protected
           
           
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#name">name</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#originalResourceUrl">originalResourceUrl</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#resultResourceUrl">resultResourceUrl</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#status">status</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#statusReason">statusReason</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Integer</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#totalCount">totalCount</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#updatedById">updatedById</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
           XMLGregorianCalendar</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#updatedDate">updatedDate</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Import.html#updatedDate">updatedDate</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -956,7 +944,7 @@ Summary:
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#ProductRatePlanChargeTier()">ProductRatePlanChargeTier</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#Import()">Import</a></span>()</nobr>
         
   </td></tr>
 
@@ -985,7 +973,7 @@ Summary:
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getCreatedById()">getCreatedById</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getCreatedById()">getCreatedById</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the createdById property.</div>
   
@@ -1003,7 +991,7 @@ Summary:
             XMLGregorianCalendar</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getCreatedDate()">getCreatedDate</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getCreatedDate()">getCreatedDate</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the createdDate property.</div>
   
@@ -1018,84 +1006,12 @@ Summary:
             
             
             
-            String</nobr>
+            byte[]</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getCurrency()">getCurrency</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getFileContent()">getFileContent</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Gets the value of the currency property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BigDecimal</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getDiscountAmount()">getDiscountAmount</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the discountAmount property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BigDecimal</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getDiscountPercentage()">getDiscountPercentage</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the discountPercentage property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BigDecimal</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getEndingUnit()">getEndingUnit</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the endingUnit property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BigDecimal</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getPrice()">getPrice</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the price property.</div>
+        <div class="jd-descrdiv">Gets the value of the fileContent property.</div>
   
   </td></tr>
 
@@ -1111,45 +1027,9 @@ Summary:
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getPriceFormat()">getPriceFormat</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getImportType()">getImportType</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Gets the value of the priceFormat property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getProductRatePlanChargeId()">getProductRatePlanChargeId</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the productRatePlanChargeId property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BigDecimal</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getStartingUnit()">getStartingUnit</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the startingUnit property.</div>
+        <div class="jd-descrdiv">Gets the value of the importType property.</div>
   
   </td></tr>
 
@@ -1165,9 +1045,9 @@ Summary:
             Integer</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getTier()">getTier</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getImportedCount()">getImportedCount</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Gets the value of the tier property.</div>
+        <div class="jd-descrdiv">Gets the value of the importedCount property.</div>
   
   </td></tr>
 
@@ -1183,7 +1063,133 @@ Summary:
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getUpdatedById()">getUpdatedById</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getMd5()">getMd5</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the md5 property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getName()">getName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the name property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getOriginalResourceUrl()">getOriginalResourceUrl</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the originalResourceUrl property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getResultResourceUrl()">getResultResourceUrl</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the resultResourceUrl property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getStatus()">getStatus</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the status property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getStatusReason()">getStatusReason</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the statusReason property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Integer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getTotalCount()">getTotalCount</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the totalCount property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getUpdatedById()">getUpdatedById</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the updatedById property.</div>
   
@@ -1191,7 +1197,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1201,7 +1207,7 @@ Summary:
             XMLGregorianCalendar</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#getUpdatedDate()">getUpdatedDate</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#getUpdatedDate()">getUpdatedDate</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the updatedDate property.</div>
   
@@ -1209,60 +1215,6 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#isActive()">isActive</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the active property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#isIsOveragePrice()">isIsOveragePrice</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the isOveragePrice property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setActive(java.lang.Boolean)">setActive</a></span>(Boolean value)</nobr>
-        
-        <div class="jd-descrdiv">Sets the value of the active property.</div>
-  
-  </td></tr>
-
-
-	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
@@ -1273,7 +1225,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setCreatedById(java.lang.String)">setCreatedById</a></span>(String value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setCreatedById(java.lang.String)">setCreatedById</a></span>(String value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the createdById property.</div>
   
@@ -1291,7 +1243,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setCreatedDate(javax.xml.datatype.XMLGregorianCalendar)">setCreatedDate</a></span>(XMLGregorianCalendar value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setCreatedDate(javax.xml.datatype.XMLGregorianCalendar)">setCreatedDate</a></span>(XMLGregorianCalendar value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the createdDate property.</div>
   
@@ -1309,9 +1261,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setCurrency(java.lang.String)">setCurrency</a></span>(String value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setFileContent(byte[])">setFileContent</a></span>(byte[] value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the currency property.</div>
+        <div class="jd-descrdiv">Sets the value of the fileContent property.</div>
   
   </td></tr>
 
@@ -1327,9 +1279,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setDiscountAmount(java.math.BigDecimal)">setDiscountAmount</a></span>(BigDecimal value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setImportType(java.lang.String)">setImportType</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the discountAmount property.</div>
+        <div class="jd-descrdiv">Sets the value of the importType property.</div>
   
   </td></tr>
 
@@ -1345,9 +1297,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setDiscountPercentage(java.math.BigDecimal)">setDiscountPercentage</a></span>(BigDecimal value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setImportedCount(java.lang.Integer)">setImportedCount</a></span>(Integer value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the discountPercentage property.</div>
+        <div class="jd-descrdiv">Sets the value of the importedCount property.</div>
   
   </td></tr>
 
@@ -1363,9 +1315,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setEndingUnit(java.math.BigDecimal)">setEndingUnit</a></span>(BigDecimal value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setMd5(java.lang.String)">setMd5</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the endingUnit property.</div>
+        <div class="jd-descrdiv">Sets the value of the md5 property.</div>
   
   </td></tr>
 
@@ -1381,9 +1333,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setIsOveragePrice(java.lang.Boolean)">setIsOveragePrice</a></span>(Boolean value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setName(java.lang.String)">setName</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the isOveragePrice property.</div>
+        <div class="jd-descrdiv">Sets the value of the name property.</div>
   
   </td></tr>
 
@@ -1399,9 +1351,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setPrice(java.math.BigDecimal)">setPrice</a></span>(BigDecimal value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setOriginalResourceUrl(java.lang.String)">setOriginalResourceUrl</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the price property.</div>
+        <div class="jd-descrdiv">Sets the value of the originalResourceUrl property.</div>
   
   </td></tr>
 
@@ -1417,9 +1369,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setPriceFormat(java.lang.String)">setPriceFormat</a></span>(String value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setResultResourceUrl(java.lang.String)">setResultResourceUrl</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the priceFormat property.</div>
+        <div class="jd-descrdiv">Sets the value of the resultResourceUrl property.</div>
   
   </td></tr>
 
@@ -1435,9 +1387,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setProductRatePlanChargeId(java.lang.String)">setProductRatePlanChargeId</a></span>(String value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setStatus(java.lang.String)">setStatus</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the productRatePlanChargeId property.</div>
+        <div class="jd-descrdiv">Sets the value of the status property.</div>
   
   </td></tr>
 
@@ -1453,9 +1405,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setStartingUnit(java.math.BigDecimal)">setStartingUnit</a></span>(BigDecimal value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setStatusReason(java.lang.String)">setStatusReason</a></span>(String value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the startingUnit property.</div>
+        <div class="jd-descrdiv">Sets the value of the statusReason property.</div>
   
   </td></tr>
 
@@ -1471,9 +1423,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setTier(java.lang.Integer)">setTier</a></span>(Integer value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setTotalCount(java.lang.Integer)">setTotalCount</a></span>(Integer value)</nobr>
         
-        <div class="jd-descrdiv">Sets the value of the tier property.</div>
+        <div class="jd-descrdiv">Sets the value of the totalCount property.</div>
   
   </td></tr>
 
@@ -1489,7 +1441,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setUpdatedById(java.lang.String)">setUpdatedById</a></span>(String value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setUpdatedById(java.lang.String)">setUpdatedById</a></span>(String value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the updatedById property.</div>
   
@@ -1507,7 +1459,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/ProductRatePlanChargeTier.html#setUpdatedDate(javax.xml.datatype.XMLGregorianCalendar)">setUpdatedDate</a></span>(XMLGregorianCalendar value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Import.html#setUpdatedDate(javax.xml.datatype.XMLGregorianCalendar)">setUpdatedDate</a></span>(XMLGregorianCalendar value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the updatedDate property.</div>
   
@@ -2107,36 +2059,6 @@ From class
 
 
 
-<A NAME="active"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        Boolean
-      </span>
-        active
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="createdById"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2197,7 +2119,37 @@ From class
 
 
 
-<A NAME="currency"></A>
+<A NAME="fileContent"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        byte[]
+      </span>
+        fileContent
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="importType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2207,7 +2159,7 @@ From class
          
         String
       </span>
-        currency
+        importType
     </h4>
       <div class="api-level">
         
@@ -2227,247 +2179,7 @@ From class
 
 
 
-<A NAME="discountAmount"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        BigDecimal
-      </span>
-        discountAmount
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="discountPercentage"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        BigDecimal
-      </span>
-        discountPercentage
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="endingUnit"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        BigDecimal
-      </span>
-        endingUnit
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="isOveragePrice"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        Boolean
-      </span>
-        isOveragePrice
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="price"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        BigDecimal
-      </span>
-        price
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="priceFormat"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        String
-      </span>
-        priceFormat
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="productRatePlanChargeId"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        String
-      </span>
-        productRatePlanChargeId
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="startingUnit"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        BigDecimal
-      </span>
-        startingUnit
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="tier"></A>
+<A NAME="importedCount"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2477,7 +2189,217 @@ From class
          
         Integer
       </span>
-        tier
+        importedCount
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="md5"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        md5
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="name"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        name
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="originalResourceUrl"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        originalResourceUrl
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="resultResourceUrl"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        resultResourceUrl
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="status"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        status
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="statusReason"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        statusReason
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="totalCount"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Integer
+      </span>
+        totalCount
     </h4>
       <div class="api-level">
         
@@ -2566,7 +2488,7 @@ From class
 
 
 
-<A NAME="ProductRatePlanChargeTier()"></A>
+<A NAME="Import()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2578,7 +2500,7 @@ From class
          
         
       </span>
-      <span class="sympad">ProductRatePlanChargeTier</span>
+      <span class="sympad">Import</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2688,7 +2610,7 @@ From class
 </div>
 
 
-<A NAME="getCurrency()"></A>
+<A NAME="getFileContent()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2698,9 +2620,9 @@ From class
          
          
          
-        String
+        byte[]
       </span>
-      <span class="sympad">getCurrency</span>
+      <span class="sympad">getFileContent</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2713,7 +2635,44 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the currency property.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the fileContent property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     byte[]
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getImportType()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getImportType</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the importType property.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>possible object is
@@ -2726,273 +2685,7 @@ From class
 </div>
 
 
-<A NAME="getDiscountAmount()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        BigDecimal
-      </span>
-      <span class="sympad">getDiscountAmount</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the discountAmount property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     BigDecimal
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getDiscountPercentage()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        BigDecimal
-      </span>
-      <span class="sympad">getDiscountPercentage</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the discountPercentage property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     BigDecimal
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getEndingUnit()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        BigDecimal
-      </span>
-      <span class="sympad">getEndingUnit</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the endingUnit property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     BigDecimal
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getPrice()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        BigDecimal
-      </span>
-      <span class="sympad">getPrice</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the price property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     BigDecimal
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getPriceFormat()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        String
-      </span>
-      <span class="sympad">getPriceFormat</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the priceFormat property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     String
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getProductRatePlanChargeId()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        String
-      </span>
-      <span class="sympad">getProductRatePlanChargeId</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the productRatePlanChargeId property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     String
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getStartingUnit()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        BigDecimal
-      </span>
-      <span class="sympad">getStartingUnit</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the startingUnit property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     BigDecimal
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getTier()"></A>
+<A NAME="getImportedCount()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3004,7 +2697,7 @@ From class
          
         Integer
       </span>
-      <span class="sympad">getTier</span>
+      <span class="sympad">getImportedCount</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -3017,7 +2710,273 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the tier property.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the importedCount property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     Integer
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getMd5()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getMd5</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the md5 property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the name property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getOriginalResourceUrl()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getOriginalResourceUrl</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the originalResourceUrl property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getResultResourceUrl()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getResultResourceUrl</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the resultResourceUrl property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getStatus()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getStatus</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the status property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getStatusReason()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getStatusReason</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the statusReason property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTotalCount()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        Integer
+      </span>
+      <span class="sympad">getTotalCount</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the totalCount property.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>possible object is
@@ -3100,125 +3059,6 @@ From class
      XMLGregorianCalendar
      
 </li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="isActive()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Boolean
-      </span>
-      <span class="sympad">isActive</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the active property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     Boolean
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="isIsOveragePrice()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Boolean
-      </span>
-      <span class="sympad">isIsOveragePrice</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the isOveragePrice property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>possible object is
-     Boolean
-     
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setActive(java.lang.Boolean)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setActive</span>
-      <span class="normal">(Boolean value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the active property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     Boolean
-     
-</td>
-        </tr>
-      </table>
   </div>
 
     </div>
@@ -3311,7 +3151,7 @@ From class
 </div>
 
 
-<A NAME="setCurrency(java.lang.String)"></A>
+<A NAME="setFileContent(byte[])"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3323,7 +3163,49 @@ From class
          
         void
       </span>
-      <span class="sympad">setCurrency</span>
+      <span class="sympad">setFileContent</span>
+      <span class="normal">(byte[] value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the fileContent property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     byte[]
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setImportType(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setImportType</span>
       <span class="normal">(String value)</span>
     </h4>
       <div class="api-level">
@@ -3336,7 +3218,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the currency property.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the importType property.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -3354,7 +3236,7 @@ From class
 </div>
 
 
-<A NAME="setDiscountAmount(java.math.BigDecimal)"></A>
+<A NAME="setImportedCount(java.lang.Integer)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3366,351 +3248,7 @@ From class
          
         void
       </span>
-      <span class="sympad">setDiscountAmount</span>
-      <span class="normal">(BigDecimal value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the discountAmount property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     BigDecimal
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setDiscountPercentage(java.math.BigDecimal)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setDiscountPercentage</span>
-      <span class="normal">(BigDecimal value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the discountPercentage property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     BigDecimal
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setEndingUnit(java.math.BigDecimal)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setEndingUnit</span>
-      <span class="normal">(BigDecimal value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the endingUnit property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     BigDecimal
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setIsOveragePrice(java.lang.Boolean)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setIsOveragePrice</span>
-      <span class="normal">(Boolean value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the isOveragePrice property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     Boolean
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setPrice(java.math.BigDecimal)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setPrice</span>
-      <span class="normal">(BigDecimal value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the price property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     BigDecimal
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setPriceFormat(java.lang.String)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setPriceFormat</span>
-      <span class="normal">(String value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the priceFormat property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     String
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setProductRatePlanChargeId(java.lang.String)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setProductRatePlanChargeId</span>
-      <span class="normal">(String value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the productRatePlanChargeId property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     String
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setStartingUnit(java.math.BigDecimal)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setStartingUnit</span>
-      <span class="normal">(BigDecimal value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the startingUnit property.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>value</td>
-          <td>Allowed object is
-     BigDecimal
-     
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setTier(java.lang.Integer)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setTier</span>
+      <span class="sympad">setImportedCount</span>
       <span class="normal">(Integer value)</span>
     </h4>
       <div class="api-level">
@@ -3723,7 +3261,308 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the tier property.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the importedCount property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     Integer
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setMd5(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMd5</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the md5 property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setName(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setName</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the name property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setOriginalResourceUrl(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setOriginalResourceUrl</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the originalResourceUrl property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setResultResourceUrl(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setResultResourceUrl</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the resultResourceUrl property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setStatus(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setStatus</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the status property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setStatusReason(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setStatusReason</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the statusReason property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTotalCount(java.lang.Integer)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setTotalCount</span>
+      <span class="normal">(Integer value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the totalCount property.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
