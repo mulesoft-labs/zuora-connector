@@ -20,7 +20,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mule.modules.zuora.zobject.ZObjectType;
 
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
@@ -30,12 +29,14 @@ import static org.junit.Assert.*;
 
 public class ZuoraModuleTestDriver {
     private ZuoraModule module;
+    private final String username = "YOUR_USER";
+    private final String password = "YOUR_PASSWORD";
 
     @Before
     public void setup() throws Exception {
         module = new ZuoraModule();
         module.setEndpoint("https://apisandbox.zuora.com/apps/services/a/32.0");
-        module.connect(System.getenv("zuoraUsername"), System.getenv("zuoraPassword"));
+        module.connect(username, password);
 
 
         for (ZObject z : module.find("select id from Account"))
@@ -123,7 +124,7 @@ public class ZuoraModuleTestDriver {
         assertNotNull(userInfo);
         assertFalse(userInfo.getUserId().isEmpty());
         assertFalse(userInfo.getUserEmail().isEmpty());
-        assertEquals(System.getenv("zuoraUsername"), userInfo.getUsername());
+        assertEquals(username, userInfo.getUsername());
         assertFalse(userInfo.getTenantId().isEmpty());
         assertFalse(userInfo.getTenantName().isEmpty());
     }
@@ -224,27 +225,9 @@ public class ZuoraModuleTestDriver {
         paymentMethod.setCreditCardExpirationMonth(5);
         paymentMethod.setCreditCardHolderName("Unit Test");
 
-        //Generate Start and stop days for subscription
-        XMLGregorianCalendar effectiveStartDate = null;
-        XMLGregorianCalendar effectiveEndDate = null;
-        try {
-            GregorianCalendar calStart = new GregorianCalendar();
-            // calStart.setTime(now);
-            calStart.add(Calendar.DATE, -1);
-
-            GregorianCalendar calEnd = new GregorianCalendar();
-            // calEnd.setTime(now);
-            calEnd.add(Calendar.DATE, 1);
-
-            effectiveStartDate = DatatypeFactory.newInstance()
-                    .newXMLGregorianCalendar(calStart);
-            effectiveEndDate = DatatypeFactory.newInstance()
-                    .newXMLGregorianCalendar(calStart);
-
-        } catch (DatatypeConfigurationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        GregorianCalendar calStart = new GregorianCalendar();
+        calStart.add(Calendar.DATE, -1);
+        XMLGregorianCalendar effectiveStartDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(calStart);
 
         Subscription subscription = new Subscription();
         subscription.setContractAcceptanceDate(effectiveStartDate);
@@ -252,55 +235,37 @@ public class ZuoraModuleTestDriver {
         subscription.setInitialTerm(12);
         subscription.setRenewalTerm(12);
 
-
         RatePlan ratePlan = new RatePlan();
         ratePlan.setProductRatePlanId(productRatePlanId);
         RatePlanData ratePlanData = new RatePlanData();
         ratePlanData.setRatePlan(ratePlan);
 
-
         SubscriptionData subscriptionData = new SubscriptionData();
         subscriptionData.setSubscription(subscription);
         subscriptionData.getRatePlanData().add(ratePlanData);
-
 
         subscribeReq.setAccount(account);
         subscribeReq.setBillToContact(contact);
         subscribeReq.setSoldToContact(contact);
         subscribeReq.setPaymentMethod(paymentMethod);
         subscribeReq.setSubscriptionData(subscriptionData);
-
         SubscribeResult subscribeResult = module.subscribe(Collections.singletonList(subscribeReq)).get(0);
         assertTrue(subscribeResult.isSuccess());
         assertEquals(0,subscribeResult.getErrors().size());
 
-
-
         Map<String, Object> result = module.getInvoice(subscribeResult.getInvoiceId());
-
-        System.out.println("Result = "+result);
-        
         assertEquals("Posted",result.get("status"));
-        //assertEquals("amount",result.get("amount"));
+        assertEquals("amount",result.get("amount"));
         assertNotSame(0,((ArrayList)result.get("invoiceitems")).size());
-
         assertNotNull(result.get("billTo"));
         assertNotNull(result.get("soldTo"));
 
-
-        DeleteResult deleteResultAccount = null;
-        DeleteResult deleteResultProduct = null;
-        try {
-            deleteResultAccount = module.delete(ZObjectType.Account, Collections.singletonList(subscribeResult.getAccountId())).get(0);
-            deleteResultProduct = module.delete(ZObjectType.Product, Collections.singletonList(productId)).get(0);
-        } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        DeleteResult deleteResultAccount = module.delete(ZObjectType.Account, Collections.singletonList(subscribeResult.getAccountId())).get(0);
         assertTrue(deleteResultAccount.isSuccess());
+
+        DeleteResult deleteResultProduct = module.delete(ZObjectType.Product, Collections.singletonList(productId)).get(0);
         assertTrue(deleteResultProduct.isSuccess());
-
     }
-
 
     @SuppressWarnings("serial")
     private String getTestProduct() {
