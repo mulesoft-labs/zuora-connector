@@ -149,7 +149,7 @@ public class ZuoraModule {
     }
 
     /**
-     * Batch creation of invoces for accounts
+     * Batch creation of invoices for accounts
      * <p/>
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:generate}
      *
