@@ -258,8 +258,8 @@ public class ZuoraModule {
      * <p/>
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:amend}
      *
-     * @param amendaments the list of amendaments to perform
-     * @return a list of {@link AmendResult}, one for each amendament
+     * @param amendaments the list of amendments to perform
+     * @return a list of {@link AmendResult}, one for each amendment
      * @throws Exception if amend fails
      */
     @Processor
