@@ -549,11 +549,11 @@ Summary:
          &lt;element name="LastFailedSaleTransactionDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
          &lt;element name="LastTransactionDateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
          &lt;element name="LastTransactionStatus" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         &lt;element name="MaxConsecutivePaymentFailures" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/>
+         &lt;element name="MaxConsecutivePaymentFailures" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          &lt;element name="Name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          &lt;element name="NumConsecutiveFailures" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          &lt;element name="PaymentMethodStatus" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         &lt;element name="PaymentRetryWindow" type="{http://www.w3.org/2001/XMLSchema}short" minOccurs="0"/>
+         &lt;element name="PaymentRetryWindow" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
          &lt;element name="PaypalBaid" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          &lt;element name="PaypalEmail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          &lt;element name="PaypalPreapprovalKey" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -1030,7 +1030,7 @@ Summary:
           protected
           
           
-          Short</nobr></td>
+          Integer</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#maxConsecutivePaymentFailures">maxConsecutivePaymentFailures</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -1074,7 +1074,7 @@ Summary:
           protected
           
           
-          Short</nobr></td>
+          Integer</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#paymentRetryWindow">paymentRetryWindow</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -1918,7 +1918,7 @@ Summary:
             
             
             
-            Short</nobr>
+            Integer</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#getMaxConsecutivePaymentFailures()">getMaxConsecutivePaymentFailures</a></span>()</nobr>
@@ -1990,7 +1990,7 @@ Summary:
             
             
             
-            Short</nobr>
+            Integer</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#getPaymentRetryWindow()">getPaymentRetryWindow</a></span>()</nobr>
@@ -2803,7 +2803,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#setMaxConsecutivePaymentFailures(java.lang.Short)">setMaxConsecutivePaymentFailures</a></span>(Short value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#setMaxConsecutivePaymentFailures(java.lang.Integer)">setMaxConsecutivePaymentFailures</a></span>(Integer value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the maxConsecutivePaymentFailures property.</div>
   
@@ -2875,7 +2875,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#setPaymentRetryWindow(java.lang.Short)">setPaymentRetryWindow</a></span>(Short value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/PaymentMethod.html#setPaymentRetryWindow(java.lang.Integer)">setPaymentRetryWindow</a></span>(Integer value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the paymentRetryWindow property.</div>
   
@@ -4629,7 +4629,7 @@ From class
         protected 
          
          
-        Short
+        Integer
       </span>
         maxConsecutivePaymentFailures
     </h4>
@@ -4749,7 +4749,7 @@ From class
         protected 
          
          
-        Short
+        Integer
       </span>
         paymentRetryWindow
     </h4>
@@ -6336,7 +6336,7 @@ From class
          
          
          
-        Short
+        Integer
       </span>
       <span class="sympad">getMaxConsecutivePaymentFailures</span>
       <span class="normal">()</span>
@@ -6355,7 +6355,7 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>possible object is
-     Short
+     Integer
      
 </li></ul>
   </div>
@@ -6488,7 +6488,7 @@ From class
          
          
          
-        Short
+        Integer
       </span>
       <span class="sympad">getPaymentRetryWindow</span>
       <span class="normal">()</span>
@@ -6507,7 +6507,7 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>possible object is
-     Short
+     Integer
      
 </li></ul>
   </div>
@@ -8343,7 +8343,7 @@ From class
 </div>
 
 
-<A NAME="setMaxConsecutivePaymentFailures(java.lang.Short)"></A>
+<A NAME="setMaxConsecutivePaymentFailures(java.lang.Integer)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -8356,7 +8356,7 @@ From class
         void
       </span>
       <span class="sympad">setMaxConsecutivePaymentFailures</span>
-      <span class="normal">(Short value)</span>
+      <span class="normal">(Integer value)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -8375,7 +8375,7 @@ From class
         <tr>
           <th>value</td>
           <td>Allowed object is
-     Short
+     Integer
      
 </td>
         </tr>
@@ -8515,7 +8515,7 @@ From class
 </div>
 
 
-<A NAME="setPaymentRetryWindow(java.lang.Short)"></A>
+<A NAME="setPaymentRetryWindow(java.lang.Integer)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -8528,7 +8528,7 @@ From class
         void
       </span>
       <span class="sympad">setPaymentRetryWindow</span>
-      <span class="normal">(Short value)</span>
+      <span class="normal">(Integer value)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -8547,7 +8547,7 @@ From class
         <tr>
           <th>value</td>
           <td>Allowed object is
-     Short
+     Integer
      
 </td>
         </tr>
