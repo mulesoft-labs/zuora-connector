@@ -451,11 +451,11 @@
                                      type="dateTime"/>
                             <element minOccurs="0" name="LastTransactionDateTime" nillable="true" type="dateTime"/>
                             <element minOccurs="0" name="LastTransactionStatus" nillable="true" type="string"/>
-                            <element minOccurs="0" name="MaxConsecutivePaymentFailures" nillable="true" type="short"/>
+                            <element minOccurs="0" name="MaxConsecutivePaymentFailures" nillable="true" type="int"/>
                             <element minOccurs="0" name="Name" nillable="true" type="string"/>
                             <element minOccurs="0" name="NumConsecutiveFailures" nillable="true" type="int"/>
                             <element minOccurs="0" name="PaymentMethodStatus" nillable="true" type="string"/>
-                            <element minOccurs="0" name="PaymentRetryWindow" nillable="true" type="short"/>
+                            <element minOccurs="0" name="PaymentRetryWindow" nillable="true" type="int"/>
                             <element minOccurs="0" name="PaypalBaid" nillable="true" type="string"/>
                             <element minOccurs="0" name="PaypalEmail" nillable="true" type="string"/>
                             <element minOccurs="0" name="PaypalPreapprovalKey" nillable="true" type="string"/>
