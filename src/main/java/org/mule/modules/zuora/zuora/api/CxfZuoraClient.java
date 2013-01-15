@@ -53,7 +53,7 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
         this.endpoint = endpoint;
 
         // @EL if multiple clients are created at the same time this JAXB code can
-        // generate race condiitons on the ClassLoader when it searches for the
+        // generate race conditions on the ClassLoader when it searches for the
         // ObjectFactory:
         //
         // 1. Could not create a validated object, cause: loader (instance of
