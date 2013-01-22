@@ -35,15 +35,8 @@ public class ZuoraModuleTestDriver {
     @Before
     public void setup() throws Exception {
         module = new ZuoraModule();
-        module.setEndpoint("https://apisandbox.zuora.com/apps/services/a/32.0");
+        module.setEndpoint("https://apisandbox.zuora.com/apps/services/a/43.0");
         module.connect(username, password);
-
-
-        for (ZObject z : module.find("select id from Account"))
-        {
-            module.delete(ZObjectType.Account, Arrays.asList(z.getId()));
-        }
-
     }
 
     /**
@@ -93,7 +86,7 @@ public class ZuoraModuleTestDriver {
      */
     @Test
     public void findNoResult() throws Exception {
-        Iterator<ZObject> result = module.find("SELECT Id FROM Account").iterator();
+        Iterator<ZObject> result = module.find("SELECT Id FROM Account where id ='not here!'").iterator();
         assertFalse(result.hasNext());
     }
 
