@@ -208,6 +208,10 @@ public class ZuoraModule {
      * Lazily retrieves ZObject that match a given query,
      * written in Zuora native query language
      * <p/>
+     * If you expect more than 2000 results to be returned, remember that you have
+     * to enable queryMore for your zuora account (as documented:
+     * http://knowledgecenter.zuora.com/D_Using_the_Zuora_API/C_API_Reference/E_API_Calls/queryMore())
+     * <p/>
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:find}
      *
      * @param zquery the query, using the SQL-Like Zuora Query Language
