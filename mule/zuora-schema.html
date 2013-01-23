@@ -1529,6 +1529,10 @@ This connector provides full access to the Z-Commerce platform API.&lt;/xs:docum
     &lt;xs:annotation&gt;
       &lt;xs:documentation&gt;Lazily retrieves ZObject that match a given query,
 written in Zuora native query language
+&amp;lt;p/&amp;gt;
+If you expect more than 2000 results to be returned, remember that you have
+to enable queryMore for your zuora account (as documented:
+http://knowledgecenter.zuora.com/D_Using_the_Zuora_API/C_API_Reference/E_API_Calls/queryMore())
 &amp;lt;p/&amp;gt;&lt;/xs:documentation&gt;
     &lt;/xs:annotation&gt;
   &lt;/xs:element&gt;
