@@ -28,8 +28,7 @@ import com.zuora.api.object.ZObject;
  * @author flbulgarelli
  */
 @RunWith(Theories.class)
-public class ZObjectUnitTest
-{
+public class ZObjectUnitTest {
     @DataPoints
     @SuppressWarnings("serial")
     public static ZObject[] ACCOUNTS = new ZObject[] {
@@ -47,8 +46,7 @@ public class ZObjectUnitTest
         }}};
 
     @Theory
-    public void zobjectsAreDynamic(ZObject object)
-    {
+    public void zobjectsAreDynamic(ZObject object) {
     	int originalSize =  object.getAny().size();
 
         object.setAt("Foo2", "Bar");
@@ -58,47 +56,41 @@ public class ZObjectUnitTest
     }
 
     @Test
-    public void accountIsStatic() throws Exception
-    {
+    public void accountIsStatic() {
         Account a = new Account();
         a.setAccountNumber("1590");
         assertEquals("1590", a.getAccountNumber());
     }
 
     @Test
-    public void accountStaticPropertiesMayBeSetAsDynamicProperties() throws Exception
-    {
+    public void accountStaticPropertiesMayBeSetAsDynamicProperties() {
         Account a = new Account();
         a.setAt("AccountNumber", "151");
         assertEquals("151", a.getAccountNumber());
     }
 
     @Test
-    public void accountStaticPropertiesMayBeGetAsDynamicProperties() throws Exception
-    {
+    public void accountStaticPropertiesMayBeGetAsDynamicProperties() {
         Account a = new Account();
         a.setAccountNumber("98");
         assertEquals("98", a.getAt("AccountNumber"));
     }
 
     @Test
-    public void accountStaticBooleanPropertiesMayBeGetAsDynamicProperties() throws Exception
-    {
+    public void accountStaticBooleanPropertiesMayBeGetAsDynamicProperties() {
         Account a = new Account();
         a.setAllowInvoiceEdit(true);
         assertEquals(true, a.getAt("AllowInvoiceEdit"));
     }
 
     @Test
-    public void testUninitializedAccountHasZeroStaticProperties() throws Exception
-    {
+    public void testUninitializedAccountHasZeroStaticProperties() {
         assertEquals(0, new Account().staticProperties().size());
     }
 
     @Test
     @SuppressWarnings("serial")
-    public void testInitializedAccountHasOneOrMoreStaticProperties() throws Exception
-    {
+    public void testInitializedAccountHasOneOrMoreStaticProperties() {
         assertEquals(2, new Account(){{
             setBatch("foo");
             setAllowInvoiceEdit(true);
@@ -106,35 +98,29 @@ public class ZObjectUnitTest
     }
 
     @Test
-    public void testUsingStringDatesInStaticField()
-    {
+    public void testUsingStringDatesInStaticField() {
         Account a = new Account();
         a.setField("createdDate", "2001-04-05T03:18:09Z");
 
         assertEquals(4, a.getCreatedDate().getMonth());
         assertEquals(2001, a.getCreatedDate().getYear());
-
     }
 
     @Test
-    public void testUsingStringDatesInDinamicField()
-    {
+    public void testUsingStringDatesInDinamicField() {
         Account a = new Account();
         a.setField("dateTestField", "2001-01-01T03:18:09Z");
 
         assertEquals("2001-01-01T03:18:09Z", a.getField("dateTestField"));
-
     }
 
     @Theory
-    public void dynamicProperiesAndAnyHaveSameSize(ZObject a) throws Exception
-    {
+    public void dynamicProperiesAndAnyHaveSameSize(ZObject a) {
         assertEquals(a.getAny().size(), a.dynamicProperties().size());
     }
 
     @Theory
-    public void properiesSizeIsTheSumOfStaticAndDynamicPropertiesSizes(ZObject a) throws Exception
-    {
+    public void properiesSizeIsTheSumOfStaticAndDynamicPropertiesSizes(ZObject a) {
         assertEquals(a.properties().size(), a.dynamicProperties().size() + a.staticProperties().size());
     }
 
