@@ -27,104 +27,85 @@ import com.zuora.api.object.ProductRatePlanCharge;
 import com.zuora.api.object.ProductRatePlanChargeTier;
 import com.zuora.api.object.ZObject;
 
-public class ZObjectMapperUnitTest
-{
+public class ZObjectMapperUnitTest {
+
     @Test
-    public void toZobject() throws Exception
-    {
-        Map<String, Object> accountMap = testAccount();
+    public void toZobject() throws Exception {
+        @SuppressWarnings("serial")
+		final Map<String, Object> accountMap = new HashMap<String, Object>() {{
+            put("Name", "foo");
+            put("Currency", "USD");
+            put("BillCycleDay", 1);
+            put("AccountNumber", "7891");
+            put("AllowInvoiceEdit", false);
+            put("AutoPay", false);
+            put("Notes", "foobar");
+            put("Status", "Draft");
+        }};;
 
         ZObject zObject = ZObjectMapper.toZObject(ZObjectType.Account, accountMap);
         assertThat(zObject, instanceOf(Account.class));
-        for (Entry<String, Object> e : accountMap.entrySet())
-        {
+        for (Entry<String, Object> e : accountMap.entrySet()) {
             assertEquals(zObject.getAt(e.getKey()), e.getValue());
         }
     }
 
-    @Test
-    @SuppressWarnings("unchecked")
-    public void toZObjectWithNestedZObject() throws Exception
-    {
+    @SuppressWarnings("serial")
+	@Test
+    public void toZObjectWithNestedZObject() throws Exception {
         final ProductRatePlanChargeTier tier = new ProductRatePlanChargeTier();
         tier.setId("456");
 
-        ProductRatePlanCharge charge = (ProductRatePlanCharge) ZObjectMapper.toZObject(ZObjectType.ProductRatePlanCharge, new HashMap() { {
+        ProductRatePlanCharge charge = (ProductRatePlanCharge) ZObjectMapper.toZObject(ZObjectType.ProductRatePlanCharge, new HashMap<String, Object>() {{
             put("AccountingCode", "AXD");
-            put("ProductRatePlanChargeTierData", new ProductRatePlanChargeTierData() { {
+            put("ProductRatePlanChargeTierData", new ProductRatePlanChargeTierData() {{
                 getProductRatePlanChargeTier().add(tier);
-            } } );
-        } });
+            }});
+        }});
 
         assertEquals("AXD", charge.getAccountingCode());
         assertEquals("456", charge.getProductRatePlanChargeTierData().getProductRatePlanChargeTier().get(0).getId());
-
     }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void toZObjectWithNestedMap() throws Exception
-    {
-        ProductRatePlanCharge charge = (ProductRatePlanCharge) ZObjectMapper.toZObject(ZObjectType.ProductRatePlanCharge, new HashMap() { {
-            put("AccountingCode", "AXD");
-            put("ProductRatePlanChargeTierData", new HashMap() { {
-                put("ProductRatePlanChargeTier", Arrays.asList(new HashMap() { {
-                    put("Id", "456");
-                } }));
-            } } );
-        } });
-
-        assertEquals("AXD", charge.getAccountingCode());
-        assertEquals("456", charge.getProductRatePlanChargeTierData().getProductRatePlanChargeTier().get(0).getId());
-
-    }
-
 
     @SuppressWarnings("serial")
-    private Map<String, Object> testAccount()
-    {
-        return new HashMap<String, Object>()
-        {
-            {
-                put("Name", "foo");
-                put("Currency", "USD");
-                put("BillCycleDay", 1);
-                put("AccountNumber", "7891");
-                put("AllowInvoiceEdit", false);
-                put("AutoPay", false);
-                put("Notes", "foobar");
-                put("Status", "Draft");
-            }
-        };
+	@Test
+    public void toZObjectWithNestedMap() throws Exception {
+        ProductRatePlanCharge charge = (ProductRatePlanCharge) ZObjectMapper.toZObject(ZObjectType.ProductRatePlanCharge, new HashMap<String, Object>() {{
+            put("AccountingCode", "AXD");
+            put("ProductRatePlanChargeTierData", new HashMap<String, Object>() {{
+                put("ProductRatePlanChargeTier", Arrays.asList(new HashMap<String, Object>() {{
+                    put("Id", "456");
+                }}));
+            }});
+        }});
+
+        assertEquals("AXD", charge.getAccountingCode());
+        assertEquals("456", charge.getProductRatePlanChargeTierData().getProductRatePlanChargeTier().get(0).getId());
     }
 
-
-    @SuppressWarnings({"rawtypes","unchecked"})
-    @Test
-    public void testNestedStructure() throws Exception
-    {
-        HashMap<String,Object> productRatePlanChargeMap = new HashMap() { {
+    @SuppressWarnings("serial")
+	@Test
+    public void testNestedStructure() throws Exception {
+        HashMap<String,Object> productRatePlanChargeMap = new HashMap<String, Object>() {{
             put("ChargeModel", "Per Unit Pricing");
             put("ChargeType", "Recurring");
             put("Model", "PerUnit");
             put("Name", "Product Rate Plan Charge");
             put("ProductRatePlanId", "1");
             put("TriggerEvent", "ContractEffective");
-            put("ProductRatePlanChargeTierData", new HashMap() { {
-                put("productRatePlanChargeTier", Arrays.asList(new HashMap() { {
+            put("ProductRatePlanChargeTierData", new HashMap<String, Object>() {{
+                put("productRatePlanChargeTier", Arrays.asList(new HashMap<String, Object>() {{
                     put("Active", "true");
                     put("Currency", "USD");
                     put("Price", "20");
                     put("Tier", "1");
-                } }));
+                }}));
             }});
         } };
 
-        ProductRatePlanCharge zobject = (ProductRatePlanCharge) ZObjectMapper.toZObject(ZObjectType.ProductRatePlanCharge, productRatePlanChargeMap);
+        final ProductRatePlanCharge zobject = (ProductRatePlanCharge) ZObjectMapper.toZObject(ZObjectType.ProductRatePlanCharge, productRatePlanChargeMap);
         assertEquals(zobject.getChargeModel(), "Per Unit Pricing");
         assertEquals(zobject.getChargeType(), "Recurring");
         assertEquals(zobject.getProductRatePlanId(), "1");
     }
 }
-
-
