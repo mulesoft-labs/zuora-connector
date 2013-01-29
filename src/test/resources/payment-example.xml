@@ -17,7 +17,7 @@
 
     <zuora:config username="${zuoraUsername}" 
                   password="${zuoraPassword}"
-                  endpoint="https://apisandbox.zuora.com/apps/services/a/32.0" />
+                  endpoint="https://apisandbox.zuora.com/apps/services/a/43.0" />
 
 	<flow name="example">
 		<zuora:create type="Payment">

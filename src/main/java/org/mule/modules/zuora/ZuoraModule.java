@@ -67,7 +67,7 @@ public class ZuoraModule {
      * Target URI to connect to
      */
     @Configurable
-    @Default("https://apisandbox.zuora.com/apps/services/a/32.0")
+    @Default("https://apisandbox.zuora.com/apps/services/a/43.0")
     @Optional
     @Placement(group = "Connection")
     private String endpoint;

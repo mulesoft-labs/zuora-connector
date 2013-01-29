@@ -2110,7 +2110,7 @@
 	</binding>
 	<service name="ZuoraService">
 		<port name="Soap" binding="zns:SoapBinding">
-			<soap:address location="https://apisandbox.zuora.com/apps/services/a/32.0" />
+			<soap:address location="https://apisandbox.zuora.com/apps/services/a/43.0" />
 		</port>
 	</service>
 </definitions>
