@@ -1,8 +1,6 @@
-/.classpath
-/.settings
-/.project
-/.jruby
-/*.iml
-/*.ipr
-/*.iws
-/target
+target
+.settings
+.classpath
+.project
+.checkstyle
+.springBeans

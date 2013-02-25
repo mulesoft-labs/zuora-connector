@@ -13,9 +13,6 @@
  */
 package org.mule.modules.zuora;
 
-import java.util.List;
-import java.util.Map;
-
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.annotations.Configurable;
@@ -24,17 +21,24 @@ import org.mule.api.annotations.ConnectionIdentifier;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Disconnect;
 import org.mule.api.annotations.InvalidateConnectionOn;
+import org.mule.api.annotations.MetaDataKeyRetriever;
+import org.mule.api.annotations.MetaDataRetriever;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.ValidateConnection;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
+import org.mule.api.annotations.param.MetaDataKeyParam;
 import org.mule.api.annotations.param.Optional;
+import org.mule.common.metadata.DefaultMetaData;
+import org.mule.common.metadata.DefaultMetaDataKey;
+import org.mule.common.metadata.DefaultPojoMetaDataModel;
+import org.mule.common.metadata.MetaData;
+import org.mule.common.metadata.MetaDataKey;
 import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
-import org.mule.modules.zuora.zuora.api.ZObjectMapper;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
 
 import com.zuora.api.AmendResult;
@@ -46,6 +50,10 @@ import com.zuora.api.SubscribeResult;
 import com.zuora.api.UnexpectedErrorFault;
 import com.zuora.api.object.ZObject;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Zuora is the leader in online recurring billing and payment solutions for SaaS and subscription businesses.
  * <p/>
@@ -53,7 +61,7 @@ import com.zuora.api.object.ZObject;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name = "zuora", friendlyName = "Zuora")
+@Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.4")
 public class ZuoraModule {
 
     /**
@@ -73,6 +81,28 @@ public class ZuoraModule {
     private String endpoint;
 
 
+    @MetaDataKeyRetriever
+    public List<MetaDataKey> describeObjects() {
+        List<MetaDataKey> objects = new ArrayList<MetaDataKey>();
+        
+        for (ZObjectType value : ZObjectType.values()) {
+            objects.add(new DefaultMetaDataKey(value.getTypeName(), value.getTypeName()));
+        }
+        
+        return objects;
+    }
+    
+    @MetaDataRetriever
+    public MetaData describeObject(MetaDataKey object) {
+        DefaultPojoMetaDataModel payload;
+        try {
+            payload = new DefaultPojoMetaDataModel(getClass().getClassLoader().loadClass("com.zuora.api.object." + object.getId()));
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Could not find metadata for object " + e.getMessage(), e);
+        }
+        return new DefaultMetaData(payload);
+    }
+    
     /**
      * Connects to Zuora
      *
@@ -143,9 +173,9 @@ public class ZuoraModule {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> create(ZObjectType type, List<Map<String, Object>> zobjects)
+    public List<SaveResult> create(@MetaDataKeyParam String type, @Default("#[payload]") @Optional List<ZObject> zobjects)
             throws Exception {
-        return client.create(ZObjectMapper.toZObject(type, zobjects));
+        return client.create(zobjects);
     }
 
     /**
@@ -162,9 +192,9 @@ public class ZuoraModule {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> generate(ZObjectType type, List<Map<String, Object>> zobjects)
+    public List<SaveResult> generate(@MetaDataKeyParam String type,  @Default("#[payload]") @Optional List<ZObject> zobjects)
             throws Exception {
-        return client.generate(ZObjectMapper.toZObject(type, zobjects));
+        return client.generate(zobjects);
     }
 
     /**
@@ -181,9 +211,9 @@ public class ZuoraModule {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> update(ZObjectType type, List<Map<String, Object>> zobjects)
+    public List<SaveResult> update(@MetaDataKeyParam String type,  @Default("#[payload]") @Optional List<ZObject> zobjects)
             throws Exception {
-        return client.update(ZObjectMapper.toZObject(type, zobjects));
+        return client.update(zobjects);
     }
 
     /**
@@ -199,9 +229,9 @@ public class ZuoraModule {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<DeleteResult> delete(ZObjectType type, List<String> ids)
+    public List<DeleteResult> delete(@MetaDataKeyParam String type, @Default("#[payload]") @Optional List<String> ids)
             throws Exception {
-        return client.delete(type.getTypeName(), ids);
+        return client.delete(type, ids);
     }
 
     /**
