@@ -13,11 +13,15 @@
  */
 package org.mule.modules.zuora;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
+import org.mule.api.MuleContext;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.ConnectionIdentifier;
@@ -31,11 +35,15 @@ import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
+import org.mule.api.context.MuleContextAware;
 import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
+import org.mule.modules.zuora.zuora.api.RestZuoraClient;
+import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
 import org.mule.modules.zuora.zuora.api.ZObjectMapper;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
+import org.mule.modules.zuora.zuora.api.ZuoraException;
 
 import com.zuora.api.AmendResult;
 import com.zuora.api.DeleteResult;
@@ -54,24 +62,32 @@ import com.zuora.api.object.ZObject;
  * @author MuleSoft, Inc.
  */
 @Connector(name = "zuora", friendlyName = "Zuora")
-public class ZuoraModule {
+public class ZuoraModule implements MuleContextAware {
 
+    private static final String API_URL = "/apps/services/a/43.0";
+    private static final String REST_API_URL = "/apps/api/";
     /**
      * The client to use. Mainly for mocking purposes
      */
     @Configurable
     @Optional
     private ZuoraClient<Exception> client;
+    // Not configurable, just used to get batch exports. //NOTE: If more processors need this, we might build a Facade to hide it along with the SOAP client
+    private RestZuoraClient restClient;
 
     /**
      * Target URI to connect to
      */
     @Configurable
-    @Default("https://apisandbox.zuora.com/apps/services/a/43.0")
+    @Default("https://apisandbox.zuora.com")
     @Optional
     @Placement(group = "Connection")
     private String endpoint;
 
+    private String username;
+    private String password;
+
+    private MuleContext muleContext;
 
     /**
      * Connects to Zuora
@@ -83,7 +99,10 @@ public class ZuoraModule {
     public synchronized void connect(@ConnectionKey String username, @Password String password)
             throws ConnectionException {
         try {
-            client = new CxfZuoraClient(username, password, this.endpoint);
+            client = new CxfZuoraClient(username, password, this.endpoint + API_URL);
+            restClient = new RestZuoraClientImpl(this.endpoint + REST_API_URL);
+            this.username = username;
+            this.password = password;
         } catch (UnexpectedErrorFault e) {
             throw new ConnectionException(ConnectionExceptionCode.UNKNOWN, e.getFaultInfo().getFaultCode().value(), e.getFaultInfo().getFaultMessage());
         } catch (LoginFault e) {
@@ -305,7 +324,40 @@ public class ZuoraModule {
             throws Exception {
         return client.getInvoice(invoiceId);
     }
-    
+
+    /**
+     * Retrieve an exported file from Zuora and return an InputStream to it
+     * 
+     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:get-export-file-stream}
+     *
+     * @param exportId id of the Zuora exported file to retrieve
+     * @return an InputStream to read from the exported file
+     * @throws IOException if can't access the exported file
+     * @throws ZuoraException if the exported file doesn't exist
+     */
+    @Processor
+    public InputStream getExportFileStream(final String exportId) throws IOException {
+        return getRestClient().getExportedFileStream(this.username, this.password, exportId);
+    }
+
+    /**
+     * Retrieve an exported file from Zuora, and return its content as a String
+     * 
+     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:get-export-file-content}
+     *
+     * @param exportId id of the Zuora exported file to retrieve
+     * @return the file's content as a String
+     * @throws IOException if can't access the exported file
+     * @throws ZuoraException if the exported file doesn't exist
+     */
+    @Processor
+    public String getExportFileContent(final String exportId) throws IOException {
+        final InputStream exportedFileStream = getExportFileStream(exportId);
+        final String content = IOUtils.toString(exportedFileStream, "UTF-8");
+        exportedFileStream.close();
+        return content;
+    }
+
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
     }
@@ -321,6 +373,23 @@ public class ZuoraModule {
     public ZuoraClient<Exception> getClient()
     {
         return client;
+    }
+
+    public void setRestClient(RestZuoraClient client) {
+        this.restClient = client;
+    }
+
+    private RestZuoraClient getRestClient() {
+        return this.restClient;
+    }
+
+    @Override
+    public void setMuleContext(final MuleContext context) {
+        this.muleContext = context;
+    }
+
+    MuleContext getMuleContext() {
+        return this.muleContext;
     }
     
 }
