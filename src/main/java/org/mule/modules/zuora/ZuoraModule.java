@@ -13,11 +13,26 @@
  */
 package org.mule.modules.zuora;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.mule.DefaultMuleEvent;
+import org.mule.DefaultMuleMessage;
+import org.mule.MessageExchangePattern;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
+import org.mule.api.MuleContext;
+import org.mule.api.MuleEvent;
+import org.mule.api.MuleException;
+import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.ConnectionIdentifier;
@@ -31,11 +46,17 @@ import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
+import org.mule.api.context.MuleContextAware;
+import org.mule.api.transformer.TransformerException;
+import org.mule.construct.Flow;
+import org.mule.modules.zuora.utils.FlowUtils;
 import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
 import org.mule.modules.zuora.zuora.api.ZObjectMapper;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
+import org.mule.modules.zuora.zuora.api.ZuoraException;
+import org.mule.transformer.codec.Base64Encoder;
 
 import com.zuora.api.AmendResult;
 import com.zuora.api.DeleteResult;
@@ -54,7 +75,7 @@ import com.zuora.api.object.ZObject;
  * @author MuleSoft, Inc.
  */
 @Connector(name = "zuora", friendlyName = "Zuora")
-public class ZuoraModule {
+public class ZuoraModule implements MuleContextAware {
 
     /**
      * The client to use. Mainly for mocking purposes
@@ -72,6 +93,10 @@ public class ZuoraModule {
     @Placement(group = "Connection")
     private String endpoint;
 
+    private String username;
+    private String password;
+
+    private MuleContext muleContext;
 
     /**
      * Connects to Zuora
@@ -84,6 +109,8 @@ public class ZuoraModule {
             throws ConnectionException {
         try {
             client = new CxfZuoraClient(username, password, this.endpoint);
+            this.username = username;
+            this.password = password;
         } catch (UnexpectedErrorFault e) {
             throw new ConnectionException(ConnectionExceptionCode.UNKNOWN, e.getFaultInfo().getFaultCode().value(), e.getFaultInfo().getFaultMessage());
         } catch (LoginFault e) {
@@ -305,7 +332,117 @@ public class ZuoraModule {
             throws Exception {
         return client.getInvoice(invoiceId);
     }
-    
+
+    private InputStream getExportedFileStream(final String exportId) throws IOException {
+        try {
+            URL url = new URL("https://apisandbox.zuora.com/apps/api/file/" + exportId);
+            
+            final String authentitaction = new Base64Encoder().doTransform(this.username + ":" + this.password, "utf-8").toString();
+            final URLConnection uc = url.openConnection();
+            uc.setRequestProperty("Authorization", "Basic " + authentitaction);
+            final InputStream content = uc.getInputStream();
+            return content;
+        } catch (final TransformerException e) {
+            throw new ZuoraException("Could not encode your credentials. Are they set?", e);
+        }
+    }
+
+//    @Processor
+//    public String getExport(final String exportId) throws IOException {
+//        BufferedReader reader = null;
+//        try {
+//            final InputStream stream = getExportedFileStream(exportId);
+//            reader = new BufferedReader(new InputStreamReader(stream));
+//            final StringBuilder fullContent = new StringBuilder();
+//            String inputLine = reader.readLine(); // skip headers
+//            while ((inputLine = reader.readLine()) != null) {
+//                fullContent.append(inputLine).append("\n");
+//            }
+//            return fullContent.toString();
+//        } finally {
+//            if (reader != null) {
+//                reader.close();
+//            }
+//        }
+//    }
+
+    /**
+     * Retrieve an exported file from Zuora, and invoke a callback for each batch of lines in it
+     * 
+     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:batch-process-export-file}
+     *
+     * @param exportId id of the Zuora exported file to process
+     * @param batchSize the number of lines to process per batch
+     * @param callbackFlow name of the flow to invoke for each batch
+     * 
+     * @throws IOException if can't access the exported file
+     * @throws IllegalArgumentException if the callback flow doesn't exist
+     * @throws ZuoraException if the exported file doesn't exist
+     */
+    @Processor
+    public void batchProcessExportFile(final String exportId, final @Optional @Default(value="100") Integer batchSize, final String callbackFlow) throws IOException {
+        // TODO: validate if flow exists
+        final Flow callback = this.getFlow(callbackFlow);
+        if (callback == null) {
+            throw new IllegalArgumentException("Flow with name " + callbackFlow + " doesn't exist");
+        }
+        BufferedReader reader = null;
+        try {
+            final InputStream stream = getExportedFileStream(exportId);
+            reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuilder fullContent = new StringBuilder();
+            String inputLine = reader.readLine(); // skip headers
+            int current = 0;
+            
+            while ((inputLine = reader.readLine()) != null) {
+                fullContent.append(inputLine).append("\n");
+                
+                if (current == batchSize) {
+                    //TODO: invoke
+                    MuleMessage batchMessage = new DefaultMuleMessage(fullContent.toString(), this.getMuleContext());
+                    batchMessage.setPayload(fullContent.toString());
+                    FlowUtils.callFlow(callbackFlow, batchMessage);
+                    current = 0;
+                    fullContent = new StringBuilder();
+                } else {
+                    current++;
+                }
+            }
+            if (current > 0) { // Process the last batch
+                //invoke;
+            }
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param context
+     * @param flowName
+     * @return
+     */
+    Flow getFlow(final String flowName) {
+        return FlowUtils.getFlow(flowName, this.getMuleContext());   
+    }
+//    @Processor
+//    public String getExport(final String exportId) {
+//        final String url = "https://apisandbox.zuora.com/apps/api/file/" + exportId;
+//        final WebResource.Builder builder = this.getBuilder(this.username, this.password, url);
+//        final String file = builder.get(String.class);
+//        return file;
+//        
+//    }
+//
+//    protected WebResource.Builder getBuilder(final String user, final String password, final String url) {
+//        final Client client = Client.create();
+//        client.addFilter(new HTTPBasicAuthFilter(user, password));
+//        final WebResource wr = client.resource(url);
+//        return wr.type(MediaType.APPLICATION_OCTET_STREAM_TYPE);
+//    }
+
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
     }
@@ -321,6 +458,15 @@ public class ZuoraModule {
     public ZuoraClient<Exception> getClient()
     {
         return client;
+    }
+
+    @Override
+    public void setMuleContext(final MuleContext context) {
+        this.muleContext = context;
+    }
+
+    private MuleContext getMuleContext() {
+        return this.muleContext;
     }
     
 }

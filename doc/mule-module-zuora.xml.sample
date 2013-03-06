@@ -43,3 +43,6 @@
 <!-- BEGIN_INCLUDE(zuora:get-invoice) -->
 <zuora:get-invoice invoiceId="0012..."/>
 <!-- END_INCLUDE(zuora:get-invoice) -->
+<!-- BEGIN_INCLUDE(zuora:batch-process-export-file) -->
+<zuora:batch-process-export-file exportId="SOMEID" batchSize="100" callbackFlow="some-flow-name" />
+<!-- END_INCLUDE(zuora:batch-process-export-file) -->
