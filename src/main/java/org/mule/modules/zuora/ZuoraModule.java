@@ -375,7 +375,6 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     public void batchProcessExportFile(final String exportId, final @Optional @Default(value="100") Integer batchSize, final String callbackFlow) throws IOException {
-        // TODO: validate if flow exists
         final Flow callback = this.getFlow(callbackFlow);
         if (callback == null) {
             throw new IllegalArgumentException("Flow with name " + callbackFlow + " doesn't exist");
