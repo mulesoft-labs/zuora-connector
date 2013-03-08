@@ -22,16 +22,10 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
-import org.mule.DefaultMuleEvent;
 import org.mule.DefaultMuleMessage;
-import org.mule.MessageExchangePattern;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
-import org.mule.api.MuleEvent;
-import org.mule.api.MuleException;
 import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
