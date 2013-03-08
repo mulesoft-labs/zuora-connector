@@ -394,7 +394,7 @@ public class ZuoraModule implements MuleContextAware {
                     //TODO: invoke
                     MuleMessage batchMessage = new DefaultMuleMessage(fullContent.toString(), this.getMuleContext());
                     batchMessage.setPayload(fullContent.toString());
-                    FlowUtils.callFlow(callbackFlow, batchMessage);
+                    FlowUtils.callFlow(callback, batchMessage);
                     current = 0;
                     fullContent = new StringBuilder();
                 } else {
