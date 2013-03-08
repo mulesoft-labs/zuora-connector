@@ -26,7 +26,6 @@ import org.mule.DefaultMuleMessage;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
-import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.ConnectionIdentifier;
@@ -389,18 +388,16 @@ public class ZuoraModule implements MuleContextAware {
             
             while ((inputLine = reader.readLine()) != null) {
                 fullContent.append(inputLine).append("\n");
-                
                 if (current == batchSize) {
-                    MuleMessage batchMessage = new DefaultMuleMessage(fullContent.toString(), this.getMuleContext());
-                    FlowUtils.callFlow(callback, batchMessage);
+                    FlowUtils.callFlow(callback, new DefaultMuleMessage(fullContent.toString(), this.getMuleContext()));
                     current = 0;
                     fullContent = new StringBuilder();
                 } else {
                     current++;
                 }
             }
-            if (current > 0) { // Process the last batch
-                //invoke;
+            if (current > 0) { // Total number of elements was not a multiple of batchSize, must invoke callback for remaining
+                FlowUtils.callFlow(callback, new DefaultMuleMessage(fullContent.toString(), this.getMuleContext()));
             }
         } finally {
             if (reader != null) {
