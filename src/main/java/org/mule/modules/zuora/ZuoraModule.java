@@ -329,7 +329,7 @@ public class ZuoraModule implements MuleContextAware {
     private InputStream getExportedFileStream(final String exportId) throws IOException {
         try {
             URL url = new URL("https://apisandbox.zuora.com/apps/api/file/" + exportId);
-            
+
             final String authentitaction = new Base64Encoder().doTransform(this.username + ":" + this.password, "utf-8").toString();
             final URLConnection uc = url.openConnection();
             uc.setRequestProperty("Authorization", "Basic " + authentitaction);
