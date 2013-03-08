@@ -18,24 +18,30 @@ import com.zuora.api.*;
 import com.zuora.api.object.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
+import org.mule.construct.Flow;
 import org.mule.modules.zuora.zobject.ZObjectType;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 
 public class ZuoraModuleTestDriver {
     private ZuoraModule module;
-    private final String username = "YOUR_USER";
-    private final String password = "YOUR_PASSWORD";
+    private final String username = "mule@muletax.com";
+    private final String password = "Mule2012";
 
     @Before
     public void setup() throws Exception {
         module = new ZuoraModule();
-        module.setEndpoint("https://apisandbox.zuora.com/apps/services/a/43.0");
+        module.setEndpoint("https://apisandbox.zuora.com");
         module.connect(username, password);
     }
 
@@ -341,5 +347,10 @@ public class ZuoraModuleTestDriver {
 
     }
 
-
+    @Test
+    public void foo() throws IOException {
+        ZuoraModule connector = spy(module);
+        doReturn(new Flow(null, null)).when(connector).getFlow(Matchers.anyString());
+        connector.batchProcessExportFile("2c92c0953cf65ac4013d3af746bf6114", 1, "doesn't matter");
+    }
 }

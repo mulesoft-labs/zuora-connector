@@ -15,17 +15,16 @@ package org.mule.modules.zuora;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
+import org.mule.DefaultMuleEvent;
 import org.mule.DefaultMuleMessage;
+import org.mule.MessageExchangePattern;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
+import org.mule.api.MuleEvent;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.ConnectionIdentifier;
@@ -40,16 +39,16 @@ import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
-import org.mule.api.transformer.TransformerException;
 import org.mule.construct.Flow;
 import org.mule.modules.zuora.utils.FlowUtils;
 import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
+import org.mule.modules.zuora.zuora.api.RestZuoraClient;
+import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
 import org.mule.modules.zuora.zuora.api.ZObjectMapper;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
 import org.mule.modules.zuora.zuora.api.ZuoraException;
-import org.mule.transformer.codec.Base64Encoder;
 
 import com.zuora.api.AmendResult;
 import com.zuora.api.DeleteResult;
@@ -70,18 +69,22 @@ import com.zuora.api.object.ZObject;
 @Connector(name = "zuora", friendlyName = "Zuora")
 public class ZuoraModule implements MuleContextAware {
 
+    private static final String API_URL = "/apps/services/a/43.0";
+    private static final String REST_API_URL = "/apps/api/";
     /**
      * The client to use. Mainly for mocking purposes
      */
     @Configurable
     @Optional
     private ZuoraClient<Exception> client;
+    // Not configurable, just used to get batch exports. //NOTE: If more processors need this, we might build a Facade to hide it along with the SOAP client
+    private RestZuoraClient restClient;
 
     /**
      * Target URI to connect to
      */
     @Configurable
-    @Default("https://apisandbox.zuora.com/apps/services/a/43.0")
+    @Default("https://apisandbox.zuora.com/")
     @Optional
     @Placement(group = "Connection")
     private String endpoint;
@@ -101,7 +104,8 @@ public class ZuoraModule implements MuleContextAware {
     public synchronized void connect(@ConnectionKey String username, @Password String password)
             throws ConnectionException {
         try {
-            client = new CxfZuoraClient(username, password, this.endpoint);
+            client = new CxfZuoraClient(username, password, this.endpoint + API_URL);
+            restClient = new RestZuoraClientImpl(this.endpoint + REST_API_URL);
             this.username = username;
             this.password = password;
         } catch (UnexpectedErrorFault e) {
@@ -326,20 +330,6 @@ public class ZuoraModule implements MuleContextAware {
         return client.getInvoice(invoiceId);
     }
 
-    private InputStream getExportedFileStream(final String exportId) throws IOException {
-        try {
-            URL url = new URL("https://apisandbox.zuora.com/apps/api/file/" + exportId);
-
-            final String authentitaction = new Base64Encoder().doTransform(this.username + ":" + this.password, "utf-8").toString();
-            final URLConnection uc = url.openConnection();
-            uc.setRequestProperty("Authorization", "Basic " + authentitaction);
-            final InputStream content = uc.getInputStream();
-            return content;
-        } catch (final TransformerException e) {
-            throw new ZuoraException("Could not encode your credentials. Are they set?", e);
-        }
-    }
-
 //    @Processor
 //    public String getExport(final String exportId) throws IOException {
 //        BufferedReader reader = null;
@@ -380,24 +370,22 @@ public class ZuoraModule implements MuleContextAware {
         }
         BufferedReader reader = null;
         try {
-            final InputStream stream = getExportedFileStream(exportId);
-            reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuilder fullContent = new StringBuilder();
+            reader = getRestClient().getExportedFileStream(this.username, this.password, exportId);
             String inputLine = reader.readLine(); // skip headers
-            int current = 0;
-            
+            StringBuilder fullContent = new StringBuilder();
+            int elementsReadInBatch = 0;
+
             while ((inputLine = reader.readLine()) != null) {
+                elementsReadInBatch++;
                 fullContent.append(inputLine).append("\n");
-                if (current == batchSize) {
-                    FlowUtils.callFlow(callback, new DefaultMuleMessage(fullContent.toString(), this.getMuleContext()));
-                    current = 0;
+                if (elementsReadInBatch == batchSize) {
+                    FlowUtils.callFlowOnCurrentEvent(callback, buildEvent(callback, fullContent.toString()));
+                    elementsReadInBatch = 0;
                     fullContent = new StringBuilder();
-                } else {
-                    current++;
                 }
             }
-            if (current > 0) { // Total number of elements was not a multiple of batchSize, must invoke callback for remaining
-                FlowUtils.callFlow(callback, new DefaultMuleMessage(fullContent.toString(), this.getMuleContext()));
+            if (elementsReadInBatch > 0) { // Total number of elements was not a multiple of batchSize, must invoke callback for remaining
+                FlowUtils.callFlowOnCurrentEvent(callback, buildEvent(callback, fullContent.toString()));
             }
         } finally {
             if (reader != null) {
@@ -406,11 +394,14 @@ public class ZuoraModule implements MuleContextAware {
         }
     }
 
+    MuleEvent buildEvent(final Flow flow, final String content) {
+        return new DefaultMuleEvent(new DefaultMuleMessage(content, this.getMuleContext()), MessageExchangePattern.ONE_WAY, flow);
+    }
     /**
-     * 
+     * Get flow, given it's name. Mainly for mocking
      * @param context
      * @param flowName
-     * @return
+     * @return a flow named flowName in the current context, or null, if it doesn't exist
      */
     Flow getFlow(final String flowName) {
         return FlowUtils.getFlow(flowName, this.getMuleContext());   
@@ -448,12 +439,20 @@ public class ZuoraModule implements MuleContextAware {
         return client;
     }
 
+    public void setRestClient(RestZuoraClient client) {
+        this.restClient = client;
+    }
+
+    private RestZuoraClient getRestClient() {
+        return this.restClient;
+    }
+
     @Override
     public void setMuleContext(final MuleContext context) {
         this.muleContext = context;
     }
 
-    private MuleContext getMuleContext() {
+    MuleContext getMuleContext() {
         return this.muleContext;
     }
     
