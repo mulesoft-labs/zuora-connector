@@ -377,11 +377,13 @@ public class ZuoraModule implements MuleContextAware {
 
             while ((inputLine = reader.readLine()) != null) {
                 elementsReadInBatch++;
-                fullContent.append(inputLine).append("\n");
+                fullContent.append(inputLine);
                 if (elementsReadInBatch == batchSize) {
                     FlowUtils.callFlowOnCurrentEvent(callback, buildEvent(callback, fullContent.toString()));
                     elementsReadInBatch = 0;
                     fullContent = new StringBuilder();
+                } else {
+                    fullContent.append("\n");
                 }
             }
             if (elementsReadInBatch > 0) { // Total number of elements was not a multiple of batchSize, must invoke callback for remaining
