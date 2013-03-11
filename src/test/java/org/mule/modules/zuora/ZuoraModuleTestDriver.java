@@ -346,11 +346,4 @@ public class ZuoraModuleTestDriver {
         return saveResult.getId();
 
     }
-
-    @Test
-    public void foo() throws IOException {
-        ZuoraModule connector = spy(module);
-        doReturn(new Flow(null, null)).when(connector).getFlow(Matchers.anyString());
-        connector.batchProcessExportFile("2c92c0953cf65ac4013d3af746bf6114", 1, "doesn't matter");
-    }
 }
