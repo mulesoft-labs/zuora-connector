@@ -397,7 +397,7 @@ public class ZuoraModule implements MuleContextAware {
     }
 
     MuleEvent buildEvent(final Flow flow, final String content) {
-        return new DefaultMuleEvent(new DefaultMuleMessage(content, this.getMuleContext()), MessageExchangePattern.ONE_WAY, flow);
+        return new DefaultMuleEvent(new DefaultMuleMessage(content, this.getMuleContext()), MessageExchangePattern.REQUEST_RESPONSE, flow);
     }
     /**
      * Get flow, given it's name. Mainly for mocking
