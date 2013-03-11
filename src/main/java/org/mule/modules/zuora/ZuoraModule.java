@@ -84,7 +84,7 @@ public class ZuoraModule implements MuleContextAware {
      * Target URI to connect to
      */
     @Configurable
-    @Default("https://apisandbox.zuora.com/")
+    @Default("https://apisandbox.zuora.com")
     @Optional
     @Placement(group = "Connection")
     private String endpoint;
