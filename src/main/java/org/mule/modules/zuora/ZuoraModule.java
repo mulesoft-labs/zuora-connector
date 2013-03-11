@@ -414,13 +414,6 @@ public class ZuoraModule implements MuleContextAware {
 //        return file;
 //        
 //    }
-//
-//    protected WebResource.Builder getBuilder(final String user, final String password, final String url) {
-//        final Client client = Client.create();
-//        client.addFilter(new HTTPBasicAuthFilter(user, password));
-//        final WebResource wr = client.resource(url);
-//        return wr.type(MediaType.APPLICATION_OCTET_STREAM_TYPE);
-//    }
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
