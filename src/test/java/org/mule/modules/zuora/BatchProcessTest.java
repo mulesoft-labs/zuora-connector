@@ -76,6 +76,5 @@ public class BatchProcessTest {
         when(reader.readLine()).thenReturn(first, more);
         when(restClient.getExportedFileStream(Matchers.anyString(), Matchers.anyString(), Matchers.anyString())).thenReturn(reader);
         return restClient;
-        
     }
 }
