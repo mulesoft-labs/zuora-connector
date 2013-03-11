@@ -10,5 +10,6 @@
 
 package org.mule.modules.zuora.zuora.api;
 
-public class SessionTimedOutException extends Exception {
+public class SessionTimedOutException extends RuntimeException {
+    private static final long serialVersionUID = -5658660750053912676L;
 }
