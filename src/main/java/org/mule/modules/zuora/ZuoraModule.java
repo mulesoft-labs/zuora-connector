@@ -371,9 +371,10 @@ public class ZuoraModule implements MuleContextAware {
         BufferedReader reader = null;
         try {
             reader = getRestClient().getExportedFileStream(this.username, this.password, exportId);
-            String inputLine = reader.readLine(); // skip headers
-            StringBuilder fullContent = new StringBuilder();
+            final String header = reader.readLine() + '\n';
+            StringBuilder fullContent = new StringBuilder(header);
             int elementsReadInBatch = 0;
+            String inputLine;
 
             while ((inputLine = reader.readLine()) != null) {
                 elementsReadInBatch++;
@@ -381,7 +382,7 @@ public class ZuoraModule implements MuleContextAware {
                 if (elementsReadInBatch == batchSize) {
                     FlowUtils.callFlowOnCurrentEvent(callback, buildEvent(callback, fullContent.toString()));
                     elementsReadInBatch = 0;
-                    fullContent = new StringBuilder();
+                    fullContent = new StringBuilder(header);
                 } else {
                     fullContent.append("\n");
                 }
