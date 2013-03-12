@@ -400,6 +400,7 @@ public class ZuoraModule implements MuleContextAware {
     MuleEvent buildEvent(final Flow flow, final String content) {
         return new DefaultMuleEvent(new DefaultMuleMessage(content, this.getMuleContext()), MessageExchangePattern.REQUEST_RESPONSE, flow);
     }
+
     /**
      * Get flow, given it's name. Mainly for mocking
      * @param context
@@ -409,14 +410,6 @@ public class ZuoraModule implements MuleContextAware {
     Flow getFlow(final String flowName) {
         return FlowUtils.getFlow(flowName, this.getMuleContext());   
     }
-//    @Processor
-//    public String getExport(final String exportId) {
-//        final String url = "https://apisandbox.zuora.com/apps/api/file/" + exportId;
-//        final WebResource.Builder builder = this.getBuilder(this.username, this.password, url);
-//        final String file = builder.get(String.class);
-//        return file;
-//        
-//    }
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
