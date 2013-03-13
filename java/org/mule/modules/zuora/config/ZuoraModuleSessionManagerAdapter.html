@@ -269,6 +269,8 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/FindMessageProcessor.html">FindMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GenerateDefinitionParser.html">GenerateDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GenerateMessageProcessor.html">GenerateMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GetExportFileContentDefinitionParser.html">GetExportFileContentDefinitionParser</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GetExportFileStreamDefinitionParser.html">GetExportFileStreamDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GetInvoiceDefinitionParser.html">GetInvoiceDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GetInvoiceMessageProcessor.html">GetInvoiceMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/config/GetUserInfoDefinitionParser.html">GetUserInfoDefinitionParser</a></li>
@@ -350,8 +352,17 @@
    
   
   
+   
+  
   
    
+  
+  
+
+  
+   
+  
+  
   
   
 
@@ -642,6 +653,44 @@ Summary:
 
 
 
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.modules.zuora.ZuoraModule" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-org.mule.modules.zuora.ZuoraModule-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html">org.mule.modules.zuora.ZuoraModule</a>
+<div id="inherited-constants-org.mule.modules.zuora.ZuoraModule">
+  <div id="inherited-constants-org.mule.modules.zuora.ZuoraModule-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-constants-org.mule.modules.zuora.ZuoraModule-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#API_URL">API_URL</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#REST_API_URL">REST_API_URL</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
 
 
 
@@ -884,10 +933,56 @@ org.mule.api.lifecycle.Stoppable
       </tr>
       
     
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          MuleContext</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#muleContext">muleContext</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#password">password</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          <a href="../../../../../../java/org/mule/modules/zuora/zuora/api/RestZuoraClient.html">RestZuoraClient</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#restClient">restClient</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#username">username</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
 </table>
   </div>
 </div>
 </td></tr>
+
+
 
 
 
@@ -1491,6 +1586,46 @@ From class
             
             
             
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#getExportFileContent(java.lang.String)">getExportFileContent</a></span>(String exportId)</nobr>
+        
+        <div class="jd-descrdiv">Retrieve an exported file from Zuora, and return its content as a String
+ 
+ </div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            InputStream</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#getExportFileStream(java.lang.String)">getExportFileStream</a></span>(String exportId)</nobr>
+        
+        <div class="jd-descrdiv">Retrieve an exported file from Zuora and return an InputStream to it
+ 
+ </div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             Map&lt;String,&nbsp;Object&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1603,6 +1738,38 @@ From class
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#setEndpoint(java.lang.String)">setEndpoint</a></span>(String endpoint)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#setRestClient(org.mule.modules.zuora.zuora.api.RestZuoraClient)">setRestClient</a></span>(<a href="../../../../../../java/org/mule/modules/zuora/zuora/api/RestZuoraClient.html">RestZuoraClient</a> client)</nobr>
         
   </td></tr>
 
@@ -1887,6 +2054,48 @@ From interface
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">isCapableOf</span>(Capability arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.context.MuleContextAware" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.context.MuleContextAware-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  org.mule.api.context.MuleContextAware
+
+<div id="inherited-methods-org.mule.api.context.MuleContextAware">
+  <div id="inherited-methods-org.mule.api.context.MuleContextAware-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.api.context.MuleContextAware-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
         
   </td></tr>
 
