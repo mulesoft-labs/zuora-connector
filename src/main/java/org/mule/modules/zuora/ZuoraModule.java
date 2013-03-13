@@ -13,18 +13,15 @@
  */
 package org.mule.modules.zuora;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import org.mule.DefaultMuleEvent;
-import org.mule.DefaultMuleMessage;
-import org.mule.MessageExchangePattern;
+import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
-import org.mule.api.MuleEvent;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.ConnectionIdentifier;
@@ -39,8 +36,6 @@ import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
-import org.mule.construct.Flow;
-import org.mule.modules.zuora.utils.FlowUtils;
 import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClient;
@@ -330,85 +325,37 @@ public class ZuoraModule implements MuleContextAware {
         return client.getInvoice(invoiceId);
     }
 
-//    @Processor
-//    public String getExport(final String exportId) throws IOException {
-//        BufferedReader reader = null;
-//        try {
-//            final InputStream stream = getExportedFileStream(exportId);
-//            reader = new BufferedReader(new InputStreamReader(stream));
-//            final StringBuilder fullContent = new StringBuilder();
-//            String inputLine = reader.readLine(); // skip headers
-//            while ((inputLine = reader.readLine()) != null) {
-//                fullContent.append(inputLine).append("\n");
-//            }
-//            return fullContent.toString();
-//        } finally {
-//            if (reader != null) {
-//                reader.close();
-//            }
-//        }
-//    }
-
     /**
-     * Retrieve an exported file from Zuora, and invoke a callback for each batch of lines in it
+     * Retrieve an exported file from Zuora and return an InputStream to it
      * 
-     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:batch-process-export-file}
+     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:get-export-file-stream}
      *
-     * @param exportId id of the Zuora exported file to process
-     * @param batchSize the number of lines to process per batch
-     * @param callbackFlow name of the flow to invoke for each batch
-     * 
+     * @param exportId id of the Zuora exported file to retrieve
+     * @return an InputStream to read from the exported file
      * @throws IOException if can't access the exported file
-     * @throws IllegalArgumentException if the callback flow doesn't exist
      * @throws ZuoraException if the exported file doesn't exist
      */
     @Processor
-    public void batchProcessExportFile(final String exportId, final @Optional @Default(value="100") Integer batchSize, final String callbackFlow) throws IOException {
-        final Flow callback = this.getFlow(callbackFlow);
-        if (callback == null) {
-            throw new IllegalArgumentException("Flow with name " + callbackFlow + " doesn't exist");
-        }
-        BufferedReader reader = null;
-        try {
-            reader = getRestClient().getExportedFileStream(this.username, this.password, exportId);
-            final String header = reader.readLine() + '\n';
-            StringBuilder fullContent = new StringBuilder(header);
-            int elementsReadInBatch = 0;
-            String inputLine;
-
-            while ((inputLine = reader.readLine()) != null) {
-                elementsReadInBatch++;
-                fullContent.append(inputLine);
-                if (elementsReadInBatch == batchSize) {
-                    FlowUtils.callFlowOnCurrentEvent(callback, buildEvent(callback, fullContent.toString()));
-                    elementsReadInBatch = 0;
-                    fullContent = new StringBuilder(header);
-                } else {
-                    fullContent.append("\n");
-                }
-            }
-            if (elementsReadInBatch > 0) { // Total number of elements was not a multiple of batchSize, must invoke callback for remaining
-                FlowUtils.callFlowOnCurrentEvent(callback, buildEvent(callback, fullContent.toString()));
-            }
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
-        }
-    }
-
-    MuleEvent buildEvent(final Flow flow, final String content) {
-        return new DefaultMuleEvent(new DefaultMuleMessage(content, this.getMuleContext()), MessageExchangePattern.REQUEST_RESPONSE, flow);
+    public InputStream getExportFileStream(final String exportId) throws IOException {
+        return getRestClient().getExportedFileStream(this.username, this.password, exportId);
     }
 
     /**
-     * Get flow, given it's name. Mainly for mocking
-     * @param context
-     * @param flowName
-     * @return a flow named flowName in the current context, or null, if it doesn't exist
+     * Retrieve an exported file from Zuora, and return its content as a String
+     * 
+     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:get-export-file-content}
+     *
+     * @param exportId id of the Zuora exported file to retrieve
+     * @return the file's content as a String
+     * @throws IOException if can't access the exported file
+     * @throws ZuoraException if the exported file doesn't exist
      */
-    Flow getFlow(final String flowName) {
-        return FlowUtils.getFlow(flowName, this.getMuleContext());   
+    @Processor
+    public String getExportFileContent(final String exportId) throws IOException {
+        final InputStream exportedFileStream = getExportFileStream(exportId);
+        final String content = IOUtils.toString(exportedFileStream, "UTF-8");
+        exportedFileStream.close();
+        return content;
     }
 
     public void setEndpoint(String endpoint) {

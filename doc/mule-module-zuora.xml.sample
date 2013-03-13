@@ -46,3 +46,9 @@
 <!-- BEGIN_INCLUDE(zuora:batch-process-export-file) -->
 <zuora:batch-process-export-file exportId="SOMEID" batchSize="100" callbackFlow="some-flow-name" />
 <!-- END_INCLUDE(zuora:batch-process-export-file) -->
+<!-- BEGIN_INCLUDE(zuora:get-export-file-stream) -->
+<zuora:get-export-file-stream exportId="SOMEID" />
+<!-- END_INCLUDE(zuora:get-export-file-stream) -->
+<!-- BEGIN_INCLUDE(zuora:get-export-file-content) -->
+<zuora:get-export-file-content exportId="SOMEID" />
+<!-- END_INCLUDE(zuora:get-export-file-content) -->

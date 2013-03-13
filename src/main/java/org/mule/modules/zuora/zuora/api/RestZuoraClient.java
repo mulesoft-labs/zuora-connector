@@ -10,11 +10,11 @@
 
 package org.mule.modules.zuora.zuora.api;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
- * Client for Zuora services that are Restfull instead of SOAP
+ * Client for Zuora services that are Restful instead of SOAP
  * @author marianosimone
  *
  */
@@ -27,5 +27,5 @@ public interface RestZuoraClient {
      * @throws ZuoraException if the export is not ready
      * @throws IllegalArgumentException if the credentials are not set
      */
-    BufferedReader getExportedFileStream(final String username, final String password, final String exportId) throws IOException;
+    InputStream getExportedFileStream(final String username, final String password, final String exportId) throws IOException;
 }

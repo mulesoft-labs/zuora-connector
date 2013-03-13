@@ -10,11 +10,9 @@
 
 package org.mule.modules.zuora.zuora.api;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -28,15 +26,14 @@ public class RestZuoraClientImpl implements RestZuoraClient {
         this.endpoint = endpoint;
     }
 
-    public BufferedReader getExportedFileStream(final String username, final String password, final String exportId) throws IOException {
+    public InputStream getExportedFileStream(final String username, final String password, final String exportId) throws IOException {
         try {
             URL url = new URL(this.endpoint + "file/" + exportId);
 
             final String authentitaction = new Base64Encoder().doTransform(username + ":" + password, "utf-8").toString();
             final URLConnection uc = url.openConnection();
             uc.setRequestProperty("Authorization", "Basic " + authentitaction);
-            final InputStream content = uc.getInputStream();
-            return new BufferedReader(new InputStreamReader(content));
+            return uc.getInputStream();
         } catch (final TransformerException e) {
             throw new IllegalArgumentException("Could not encode your credentials. Are they set?", e);
         } catch (final FileNotFoundException e) {
