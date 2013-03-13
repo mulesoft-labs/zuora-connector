@@ -14,15 +14,18 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.junit.Test;
+import org.mule.modules.utils.date.XmlGregorianCalendars;
 import org.mule.modules.zuora.zobject.ZObjectType;
 
 import com.zuora.api.ProductRatePlanChargeTierData;
 import com.zuora.api.object.Account;
+import com.zuora.api.object.Payment;
 import com.zuora.api.object.ProductRatePlanCharge;
 import com.zuora.api.object.ProductRatePlanChargeTier;
 import com.zuora.api.object.ZObject;
@@ -75,7 +78,7 @@ public class ZObjectMapperUnitTest {
             put("ProductRatePlanChargeTierData", new HashMap<String, Object>() {{
                 put("ProductRatePlanChargeTier", Arrays.asList(new HashMap<String, Object>() {{
                     put("Id", "456");
-                }}));
+                }})); 
             }});
         }});
 
@@ -107,5 +110,39 @@ public class ZObjectMapperUnitTest {
         assertEquals(zobject.getChargeModel(), "Per Unit Pricing");
         assertEquals(zobject.getChargeType(), "Recurring");
         assertEquals(zobject.getProductRatePlanId(), "1");
+    }
+
+    @Test
+    public void shouldBeAbleToParseStringAsDate() {
+        final Map<String, Object> paymentMap = defaultPaymentMap();
+        paymentMap.put("effectiveDate", "2012-01-09T12:18:14-03:00");
+        Payment payment = (Payment)ZObjectMapper.toZObject(ZObjectType.Payment, paymentMap);
+        assertNotNull(payment.getEffectiveDate());
+    }
+
+    @Test
+    public void shouldBeAbleToUseXmlGregorianCalendarDate() {
+        final Map<String, Object> paymentMap = defaultPaymentMap();
+        paymentMap.put("effectiveDate", XmlGregorianCalendars.from(new Date()));
+        Payment payment = (Payment)ZObjectMapper.toZObject(ZObjectType.Payment, paymentMap);
+        assertNotNull(payment.getEffectiveDate());
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void shouldRaiseWhenParsingABadDate() {
+        final Map<String, Object> paymentMap = defaultPaymentMap();
+        paymentMap.put("effectiveDate", "BAD-2012-01-03");
+        ZObjectMapper.toZObject(ZObjectType.Payment, paymentMap);
+    }
+    
+    @SuppressWarnings("serial")
+    private static Map<String, Object> defaultPaymentMap() {
+        return new HashMap<String, Object>(){{
+            put("zAccount", "123123");
+            put("amount", 45);
+            put("zuorainvoiceid", "123123");
+            put("paymentMethodId", "123123");
+            put("refid", "123123");
+        }};
     }
 }
