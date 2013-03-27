@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="zuora_demo">
+    <global-element type="http://www.springframework.org/schema/context/property-placeholder" name="Property Placeholder" entity-id="Property Placeholder#1">
+        <properties>
+            <property value="mule.properties" name="location"/>
+            <property value="1" name="auxiliary;index"/>
+        </properties>
+    </global-element>
+    <global-element type="http://www.mulesoft.org/schema/mule/zuora/config" name="Zuora" entity-id="Zuora#1">
+        <properties>
+            <property value="${zuora.user}" name="username"/>
+            <property value="Zuora" name="name"/>
+            <property name="client-ref"/>
+            <property value="${zuora.password}" name="password"/>
+            <property name="endpoint"/>
+            <property value="2" name="auxiliary;index"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/connection-pooling-profile;0">
+                <property value="WHEN_EXHAUSTED_GROW" name="exhaustedAction"/>
+                <property value="3" name="auxiliary;index"/>
+                <property value="3" name="auxiliary;wrapIn"/>
+                <property value="INITIALISE_ONE" name="initialisationPolicy"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <flow SubFlow="false" name="CreateAccount" entity-id="92045570-636e-44f7-9e72-64466879c7c1">
+        <properties>
+            <property name="processingStrategy"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="12" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#3">
+            <graphicalData height="0" width="0" y="0" x="0"/>
+            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#3">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="8081" name="port"/>
+                    <property value="localhost" name="host"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="followRedirects"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="keep-alive"/>
+                    <property name="contentType"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="password"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="httpLabel"/>
+                    <property name="address"/>
+                    <property value="createaccount" name="path"/>
+                    <property name="encoding"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="method"/>
+                    <property name="user"/>
+                    <property name="responseTimeout"/>
+                    <property name="mimeType"/>
+                    <property value="13" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/zuora/zuora-connector" name="Create" entity-id="Zuora#4">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="" name=""/>
+                    <property value="" name="username"/>
+                    <property name="updated"/>
+                    <property value="http://www.mulesoft.org/schema/mule/zuora/create" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Account" name="type"/>
+                    <property value="" name="password"/>
+                    <property value="Zuora" name="config-ref"/>
+                    <property value="14" name="auxiliary;index"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/create-zobjectss;1">
+                        <property value="15" name="auxiliary;index"/>
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/create-zobjects;1">
+                            <property value="16" name="auxiliary;index"/>
+                            <property value="16" name="auxiliary;wrapIn"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-create-zobjects;1">
+<property value="Test" name="value"/>
+<property value="Name" name="key"/>
+<property value="17" name="auxiliary;index"/>
+<property value="17" name="auxiliary;wrapIn"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-create-zobjects;3">
+<property value="Draft" name="value"/>
+<property value="Status" name="key"/>
+<property value="19" name="auxiliary;index"/>
+<property value="19" name="auxiliary;wrapIn"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-create-zobjects;4">
+<property value="1" name="value"/>
+<property value="BillCycleDay" name="key"/>
+<property value="20" name="auxiliary;index"/>
+<property value="20" name="auxiliary;wrapIn"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-create-zobjects;5">
+<property value="USD" name="value"/>
+<property value="Currency" name="key"/>
+<property value="21" name="auxiliary;index"/>
+<property value="21" name="auxiliary;wrapIn"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-create-zobjects;449551639">
+<property value="1000" name="value"/>
+<property value="AccountNumber" name="key"/>
+                            </property-collection>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/object-to-string-transformer" name="Object to String" entity-id="ad46ea7f-4572-4c6b-98b9-52b87e44b598">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="GetAccounts" entity-id="7822c657-382c-434f-a72e-bd5af8ee8761">
+        <properties>
+            <property name="processingStrategy"/>
+            <property value="8" name="auxiliary;moved-from"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#2">
+            <graphicalData height="0" width="0" y="0" x="0"/>
+            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#2">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="8081" name="port"/>
+                    <property value="localhost" name="host"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="followRedirects"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="keep-alive"/>
+                    <property name="contentType"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="password"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="httpLabel"/>
+                    <property name="address"/>
+                    <property value="getaccounts" name="path"/>
+                    <property name="encoding"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="method"/>
+                    <property name="user"/>
+                    <property name="responseTimeout"/>
+                    <property name="mimeType"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/zuora/zuora-connector" name="Find" entity-id="Zuora#3">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property name=""/>
+                    <property name="username"/>
+                    <property value="select Id, Name, Currency, BillCycleDay, AccountNumber from Account" name="zquery"/>
+                    <property value="http://www.mulesoft.org/schema/mule/zuora/find" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="password"/>
+                    <property value="Zuora" name="config-ref"/>
+                    <property value="10" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" name="Object to JSON" entity-id="Object to JSON#2">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property name="sourceClass"/>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="mapper-ref"/>
+                    <property name="mimeType"/>
+                    <property value="11" name="auxiliary;index"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="AccountProfile" entity-id="7e75e0af-2f55-4f95-bf4c-9c9fa32a6704">
+        <properties>
+            <property name="updated"/>
+            <property value="" name="processingStrategy2"/>
+            <property value="" name="bussinessEventsLabel"/>
+            <property value="true" name="auxiliary;erased;processingStrategy2"/>
+            <property value="false" name="tracking:enable-default-events"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/ee/tracking/transaction;1865141918"/>
+        </properties>
+        <description></description>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="3a2e1798-8868-4456-b831-e6a09e6cd5b7">
+            <graphicalData height="0" width="0" y="0" x="0"/>
+            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/https/endpoint" name="HTTP" entity-id="208f1732-5c62-4933-a6c9-a03054f1017f">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="8081" name="port"/>
+                    <property value="" name="contentType"/>
+                    <property value="" name="password"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="false" name="tracking:enable-default-events"/>
+                    <property name="updated"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="" name="encoding"/>
+                    <property value="accountprofile" name="path"/>
+                    <property value="" name="responseTransformer-refs"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property value="" name="mimeType"/>
+                    <property value="true" name="auxiliary;erased;contentType"/>
+                    <property value="localhost" name="host"/>
+                    <property value="" name="businessEventsLabel"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="false" name="keep-alive"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="httpLabel"/>
+                    <property value="" name="address"/>
+                    <property value="" name="user"/>
+                    <property value="" name="connector-ref"/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/zuora/zuora-connector" name="Account Profile" entity-id="2d07c730-7c0c-46e1-992b-3e266bda0c1d">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="" name=""/>
+                    <property value="" name="username"/>
+                    <property value="" name="accountId"/>
+                    <property name="updated"/>
+                    <property value="http://www.mulesoft.org/schema/mule/zuora/account-profile" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Zuora" name="config-ref"/>
+                    <property value="true" name="auxiliary;erased;accountId"/>
+                    <property value="" name="password"/>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/object-to-string-transformer" name="Object to String" entity-id="83608147-b971-4ad3-830d-306e11addd3a">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="UpdateAccount" entity-id="ef60ce03-d380-4fd9-93e0-29252d0808f5">
+        <properties>
+            <property name="updated"/>
+            <property value="" name="processingStrategy2"/>
+            <property value="" name="bussinessEventsLabel"/>
+            <property value="true" name="auxiliary;erased;processingStrategy2"/>
+            <property value="false" name="tracking:enable-default-events"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/ee/tracking/transaction;2096278407"/>
+        </properties>
+        <description></description>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="52da74ea-b178-41ec-a06b-1a1318af69a4">
+            <graphicalData height="0" width="0" y="0" x="0"/>
+            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/https/endpoint" name="HTTP" entity-id="7cd11497-0d4b-4b62-95b9-5abc3607a02f">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="8081" name="port"/>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="" name="contentType"/>
+                    <property value="" name="password"/>
+                    <property value="false" name="tracking:enable-default-events"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property name="updated"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="updateaccount" name="path"/>
+                    <property value="" name="encoding"/>
+                    <property value="" name="responseTransformer-refs"/>
+                    <property value="" name="mimeType"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property value="true" name="auxiliary;erased;contentType"/>
+                    <property value="localhost" name="host"/>
+                    <property value="" name="businessEventsLabel"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="false" name="keep-alive"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="httpLabel"/>
+                    <property value="" name="address"/>
+                    <property value="" name="user"/>
+                    <property value="" name="connector-ref"/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/zuora/zuora-connector" name="Update" entity-id="fcd5c469-507e-487a-af96-6a072730bf55">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="" name=""/>
+                    <property value="" name="username"/>
+                    <property name="updated"/>
+                    <property value="http://www.mulesoft.org/schema/mule/zuora/update" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Account" name="type"/>
+                    <property value="Zuora" name="config-ref"/>
+                    <property value="" name="password"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/update-zobjectss;1">
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/update-zobjects;1335600628">
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-update-zobjects;36440253">
+<property value="true" name="value"/>
+<property value="allowInvoiceEdit" name="key"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/inner-update-zobjects;1898359024">
+<property value="" name="value"/>
+<property value="id" name="key"/>
+                            </property-collection>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/object-to-string-transformer" name="Object to String" entity-id="22beefeb-4eed-4a93-9572-c5c526c48309">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="DeleteAccount" entity-id="b04d955c-3fd2-46ee-a1b1-63a4e8863e35">
+        <properties>
+            <property name="updated"/>
+            <property value="" name="processingStrategy2"/>
+            <property value="" name="bussinessEventsLabel"/>
+            <property value="false" name="tracking:enable-default-events"/>
+            <property value="true" name="auxiliary;erased;processingStrategy2"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/ee/tracking/transaction;2064208283"/>
+        </properties>
+        <description></description>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="34fa5651-9dc2-46f9-aff4-6b87313b6d60">
+            <graphicalData height="0" width="0" y="0" x="0"/>
+            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/https/endpoint" name="HTTP" entity-id="70193bf0-3a21-4928-8af0-cce2f183f09a">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="8081" name="port"/>
+                    <property value="" name="contentType"/>
+                    <property value="" name="password"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="false" name="tracking:enable-default-events"/>
+                    <property name="updated"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="" name="encoding"/>
+                    <property value="deleteaccount" name="path"/>
+                    <property value="" name="responseTransformer-refs"/>
+                    <property value="10000" name="responseTimeout"/>
+                    <property value="" name="mimeType"/>
+                    <property value="true" name="auxiliary;erased;contentType"/>
+                    <property value="localhost" name="host"/>
+                    <property value="" name="businessEventsLabel"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="false" name="keep-alive"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="httpLabel"/>
+                    <property value="" name="address"/>
+                    <property value="" name="user"/>
+                    <property value="" name="connector-ref"/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/zuora/zuora-connector" name="Delete" entity-id="6eb10b0a-9933-4dec-91cd-3d9f82a5997b">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+                <properties>
+                    <property value="" name=""/>
+                    <property value="" name="username"/>
+                    <property name="updated"/>
+                    <property value="http://www.mulesoft.org/schema/mule/zuora/delete" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="Account" name="type"/>
+                    <property value="Zuora" name="config-ref"/>
+                    <property value="" name="password"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/delete-idss;1">
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/zuora/delete-ids;1568245653">
+                            <property value="" name="value"/>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/object-to-string-transformer" name="Object to String" entity-id="96d808cd-d97c-4b29-ac9a-cf099a10cb43">
+                <graphicalData height="0" width="0" y="0" x="0"/>
+            </pattern>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

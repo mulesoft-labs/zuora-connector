@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:context="http://www.springframework.org/schema/context" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:zuora="http://www.mulesoft.org/schema/mule/zuora" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd 
+http://www.mulesoft.org/schema/mule/zuora http://www.mulesoft.org/schema/mule/zuora/1.0/mule-zuora.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd ">
+    <context:property-placeholder location="mule.properties"/>
+    <zuora:config name="Zuora" username="${zuora.user}" password="${zuora.password}" doc:name="Zuora">
+        <zuora:connection-pooling-profile initialisationPolicy="INITIALISE_ONE" exhaustedAction="WHEN_EXHAUSTED_GROW"/>
+    </zuora:config>
+    <flow name="CreateAccount" doc:name="CreateAccount">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="createaccount" doc:name="HTTP"/>
+        <zuora:create config-ref="Zuora" type="Account" doc:name="Create">
+            <zuora:zobjects>
+                <zuora:zobject>
+                    <zuora:inner-zobject key="Name">Test</zuora:inner-zobject>
+                    <zuora:inner-zobject key="Status">Draft</zuora:inner-zobject>
+                    <zuora:inner-zobject key="BillCycleDay">1</zuora:inner-zobject>
+                    <zuora:inner-zobject key="Currency">USD</zuora:inner-zobject>
+                    <zuora:inner-zobject key="AccountNumber">1000</zuora:inner-zobject>
+                </zuora:zobject>
+            </zuora:zobjects>
+        </zuora:create>
+        <object-to-string-transformer doc:name="Object to String"/>
+    </flow>
+    <flow name="GetAccounts" doc:name="GetAccounts">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="getaccounts" doc:name="HTTP"/>
+        <zuora:find config-ref="Zuora" zquery="select Id, Name, Currency, BillCycleDay, AccountNumber from Account" doc:name="Find"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+    </flow>
+    <flow name="AccountProfile" doc:name="AccountProfile">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="accountprofile" doc:name="HTTP"/>
+        <zuora:account-profile config-ref="Zuora" accountId="" doc:name="Account Profile"/>
+        <object-to-string-transformer doc:name="Object to String"/>
+    </flow>
+    <flow name="UpdateAccount" doc:name="UpdateAccount">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="updateaccount" doc:name="HTTP"/>
+        <zuora:update config-ref="Zuora" type="Account" doc:name="Update">
+            <zuora:zobjects>
+                <zuora:zobject>
+                    <zuora:inner-zobject key="allowInvoiceEdit">true</zuora:inner-zobject>
+                    <zuora:inner-zobject key="id"/>
+                </zuora:zobject>
+            </zuora:zobjects>
+        </zuora:update>
+        <object-to-string-transformer doc:name="Object to String"/>
+    </flow>
+    <flow name="DeleteAccount" doc:name="DeleteAccount">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="deleteaccount" doc:name="HTTP"/>
+        <zuora:delete config-ref="Zuora" type="Account" doc:name="Delete">
+            <zuora:ids>
+                <zuora:id/>
+            </zuora:ids>
+        </zuora:delete>
+        <object-to-string-transformer doc:name="Object to String"/>
+    </flow>
+</mule>
