@@ -16,7 +16,6 @@
     <properties>
         <cxf.version>2.5.1</cxf.version>
         <mule.modules.utils.version>1.1.2</mule.modules.utils.version>
-        <org.springframework.version>3.1.0.RELEASE</org.springframework.version>
         <jersey.version>1.16</jersey.version>
         <category>Standard</category>
         <licensePath>LICENSE.md</licensePath>
@@ -64,14 +63,10 @@
           <scope>provided</scope>
         </dependency>
         <dependency>
-	      <groupId>org.springframework</groupId>
-	      <artifactId>spring-core</artifactId>
-	      <version>${org.springframework.version}</version>
-	    </dependency>
-	    <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-beans</artifactId>
-          <version>${org.springframework.version}</version>
+          <groupId>org.mule.modules</groupId>
+          <artifactId>mule-module-spring-config</artifactId>
+          <version>${mule.version}</version>
+          <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
