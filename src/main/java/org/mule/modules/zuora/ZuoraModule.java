@@ -13,12 +13,6 @@
  */
 package org.mule.modules.zuora;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
@@ -28,7 +22,10 @@ import org.mule.api.annotations.ConnectionIdentifier;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Disconnect;
 import org.mule.api.annotations.InvalidateConnectionOn;
+import org.mule.api.annotations.MetaDataKeyRetriever;
+import org.mule.api.annotations.MetaDataRetriever;
 import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.QueryTranslator;
 import org.mule.api.annotations.ValidateConnection;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
@@ -36,6 +33,14 @@ import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
+import org.mule.common.metadata.DefaultMetaData;
+import org.mule.common.metadata.DefaultMetaDataKey;
+import org.mule.common.metadata.DefaultPojoMetaDataModel;
+import org.mule.common.metadata.MetaData;
+import org.mule.common.metadata.MetaDataKey;
+import org.mule.common.query.DefaultOperatorVisitor;
+import org.mule.common.query.DsqlQueryVisitor;
+import org.mule.common.query.Query;
 import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClient;
@@ -52,7 +57,44 @@ import com.zuora.api.LoginFault;
 import com.zuora.api.SaveResult;
 import com.zuora.api.SubscribeResult;
 import com.zuora.api.UnexpectedErrorFault;
+import com.zuora.api.object.Account;
+import com.zuora.api.object.Amendment;
+import com.zuora.api.object.CommunicationProfile;
+import com.zuora.api.object.Contact;
+import com.zuora.api.object.CreditBalanceAdjustment;
+import com.zuora.api.object.Export;
+import com.zuora.api.object.GatewayOption;
+import com.zuora.api.object.Import;
+import com.zuora.api.object.Invoice;
+import com.zuora.api.object.InvoiceAdjustment;
+import com.zuora.api.object.InvoiceItem;
+import com.zuora.api.object.InvoiceItemAdjustment;
+import com.zuora.api.object.InvoicePayment;
+import com.zuora.api.object.Payment;
+import com.zuora.api.object.PaymentMethod;
+import com.zuora.api.object.PaymentTransactionLog;
+import com.zuora.api.object.Product;
+import com.zuora.api.object.ProductRatePlan;
+import com.zuora.api.object.ProductRatePlanCharge;
+import com.zuora.api.object.ProductRatePlanChargeTier;
+import com.zuora.api.object.RatePlan;
+import com.zuora.api.object.RatePlanCharge;
+import com.zuora.api.object.RatePlanChargeTier;
+import com.zuora.api.object.Refund;
+import com.zuora.api.object.RefundInvoicePayment;
+import com.zuora.api.object.RefundTransactionLog;
+import com.zuora.api.object.Subscription;
+import com.zuora.api.object.TaxationItem;
+import com.zuora.api.object.Usage;
 import com.zuora.api.object.ZObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.io.IOUtils;
 
 /**
  * Zuora is the leader in online recurring billing and payment solutions for SaaS and subscription businesses.
@@ -61,7 +103,7 @@ import com.zuora.api.object.ZObject;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name = "zuora", friendlyName = "Zuora")
+@Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.4")
 public class ZuoraModule implements MuleContextAware {
 
     private static final String API_URL = "/apps/services/a/43.0";
@@ -89,6 +131,56 @@ public class ZuoraModule implements MuleContextAware {
 
     private MuleContext muleContext;
 
+    @MetaDataKeyRetriever
+    public List<MetaDataKey> getMetadataKeys() {
+        List<MetaDataKey> keys = new ArrayList<MetaDataKey>();
+        
+        keys.add(createKey(InvoicePayment.class));
+        keys.add(createKey(Import.class));
+        keys.add(createKey(TaxationItem.class));
+        keys.add(createKey(Account.class));
+        keys.add(createKey(InvoiceItem.class));
+        keys.add(createKey(InvoiceItemAdjustment.class));
+        keys.add(createKey(InvoiceAdjustment.class));
+        keys.add(createKey(RefundInvoicePayment.class));
+        keys.add(createKey(Payment.class));
+        keys.add(createKey(Usage.class));
+        keys.add(createKey(RefundTransactionLog.class));
+        keys.add(createKey(ProductRatePlanCharge.class));
+        keys.add(createKey(Amendment.class));
+        keys.add(createKey(CommunicationProfile.class));
+        keys.add(createKey(PaymentTransactionLog.class));
+        keys.add(createKey(GatewayOption.class));
+        keys.add(createKey(ProductRatePlan.class));
+        keys.add(createKey(ProductRatePlanChargeTier.class));
+        keys.add(createKey(RatePlan.class));
+        keys.add(createKey(RatePlanCharge.class));
+        keys.add(createKey(Product.class));
+        keys.add(createKey(CreditBalanceAdjustment.class));
+        keys.add(createKey(Contact.class));
+        keys.add(createKey(Invoice.class));
+        keys.add(createKey(PaymentMethod.class));
+        keys.add(createKey(Export.class));
+        keys.add(createKey(Subscription.class));
+        keys.add(createKey(RatePlanChargeTier.class));
+        keys.add(createKey(Refund.class));
+        
+        return keys;
+    }
+    
+    private MetaDataKey createKey(Class<?> cls) {
+        return new DefaultMetaDataKey(cls.getSimpleName(), cls.getSimpleName());
+    }
+
+    @MetaDataRetriever 
+    public MetaData getMetadata(MetaDataKey key) throws Exception {
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        
+        Class<?> cls = cl.loadClass("com.zuora.api.object." + key.getId());
+        
+        return new DefaultMetaData(new DefaultPojoMetaDataModel(cls));
+    }
+    
     /**
      * Connects to Zuora
      *
@@ -241,11 +333,19 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public Iterable<ZObject> find(String zquery)
+    public Iterable<ZObject> find(@org.mule.api.annotations.Query String zquery)
             throws Exception {
         return client.find(zquery);
     }
 
+    @QueryTranslator
+    public String toNativeQuery(Query query){
+        ZuoraQueryVisitor visitor = new ZuoraQueryVisitor();
+        query.accept(visitor);
+        return visitor.dsqlQuery();
+    }
+
+    
     /**
      * Retrieve a product profile
      * <p/>
@@ -392,4 +492,21 @@ public class ZuoraModule implements MuleContextAware {
         return this.muleContext;
     }
     
+    public static class ZuoraQueryVisitor extends DsqlQueryVisitor {
+
+        @Override
+        public org.mule.common.query.expression.OperatorVisitor operatorVisitor() {
+            return new ZuoraOperatorVisitor();
+        }
+
+    }
+    
+    public static class ZuoraOperatorVisitor extends DefaultOperatorVisitor {
+
+        @Override
+        public java.lang.String notEqualsOperator() {
+            return " != ";
+        }
+
+    }
 }

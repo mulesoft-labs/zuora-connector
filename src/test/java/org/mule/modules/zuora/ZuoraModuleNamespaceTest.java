@@ -14,9 +14,9 @@
 
 package org.mule.modules.zuora;
 
-import org.junit.Test;
-import org.mule.api.processor.MessageProcessor;
 import org.mule.tck.junit4.FunctionalTestCase;
+
+import org.junit.Test;
 
 /**
  * Test for zuora mule schema ZuoraModuleNamespaceTest
@@ -36,13 +36,4 @@ public class ZuoraModuleNamespaceTest extends FunctionalTestCase
     {
     }
 
-    /**
-     * Retrieve a flow by name from the registry
-     * 
-     * @param name Name of the flow to retrieve
-     */
-    protected MessageProcessor lookupFlowConstruct(String name)
-    {
-        return (MessageProcessor) muleContext.getRegistry().lookupFlowConstruct(name);
-    }
 }
