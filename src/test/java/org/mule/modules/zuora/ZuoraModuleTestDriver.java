@@ -14,26 +14,57 @@
 
 package org.mule.modules.zuora;
 
-import com.zuora.api.*;
-import com.zuora.api.object.*;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Matchers;
-import org.mule.construct.Flow;
-import org.mule.modules.zuora.zobject.ZObjectType;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.*;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.spy;
+import com.zuora.api.DeleteResult;
+import com.zuora.api.ProductRatePlanChargeTierData;
+import com.zuora.api.RatePlanData;
+import com.zuora.api.SaveResult;
+import com.zuora.api.SubscribeRequest;
+import com.zuora.api.SubscribeResult;
+import com.zuora.api.SubscriptionData;
+import com.zuora.api.object.Account;
+import com.zuora.api.object.Contact;
+import com.zuora.api.object.Invoice;
+import com.zuora.api.object.PaymentMethod;
+import com.zuora.api.object.Product;
+import com.zuora.api.object.ProductRatePlan;
+import com.zuora.api.object.ProductRatePlanCharge;
+import com.zuora.api.object.ProductRatePlanChargeTier;
+import com.zuora.api.object.RatePlan;
+import com.zuora.api.object.Subscription;
+import com.zuora.api.object.ZObject;
 
 public class ZuoraModuleTestDriver {
+	private static DatatypeFactory calendarFactory;
+	static {
+		try {
+			calendarFactory = DatatypeFactory.newInstance();
+		} catch (DatatypeConfigurationException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
     private ZuoraModule module;
     private final String username = "mule@muletax.com";
     private final String password = "Mule2012";
@@ -50,11 +81,11 @@ public class ZuoraModuleTestDriver {
      */
     @Test
     public void createAndDelete() throws Exception {
-        SaveResult result = module.create(ZObjectType.Account, Collections.singletonList(testAccount())).get(0);
+        SaveResult result = module.create("Account", Collections.singletonList((ZObject)testAccount())).get(0);
         assertTrue(result.isSuccess());
 
 
-        DeleteResult deleteResult = module.delete(ZObjectType.Account, Arrays.asList(result.getId())).get(0);
+        DeleteResult deleteResult = module.delete("Account", Arrays.asList(result.getId())).get(0);
         assertTrue(deleteResult.isSuccess());
     }
 
@@ -64,28 +95,32 @@ public class ZuoraModuleTestDriver {
     @Test
     @SuppressWarnings("serial")
     public void createAndDeleteRelated() throws Exception {
-        SaveResult saveResult = module.create(ZObjectType.Account, Collections.singletonList(testAccount())).get(0);
+        SaveResult saveResult = module.create("Account", Collections.singletonList((ZObject)testAccount())).get(0);
         assertTrue(saveResult.isSuccess());
 
         final String accountId = saveResult.getId();
         try {
-            SaveResult result = module.create(ZObjectType.Contact,
-                    Collections.<Map<String, Object>>singletonList(new HashMap<String, Object>() {
-                        {
-                            put("Country", "US");
-                            put("FirstName", "John");
-                            put("LastName", "Doe");
-                            put("AccountId", accountId);
-                        }
-                    })).get(0);
+        	Contact contact = testContact(accountId);
+        	
+            SaveResult result = module.create("Contact",
+                    Collections.singletonList((ZObject)contact)).get(0);
             assertTrue(result.isSuccess());
 
-            DeleteResult deleteResult = module.delete(ZObjectType.Contact, Arrays.asList(result.getId())).get(0);
+            DeleteResult deleteResult = module.delete("Contact", Arrays.asList(result.getId())).get(0);
             assertTrue(deleteResult.isSuccess());
         } finally {
-            module.delete(ZObjectType.Account, Arrays.asList(accountId)).get(0);
+            module.delete("Account", Arrays.asList(accountId)).get(0);
         }
     }
+
+	private Contact testContact(final String accountId) {
+		Contact contact = new Contact();
+		contact.setFirstName("John");
+		contact.setLastName("Doe");
+		contact.setCountry("US");
+		contact.setAccountId(accountId);
+		return contact;
+	}
 
     /**
      * Test for fetching zobjects when there is no object that matches the query
@@ -101,16 +136,16 @@ public class ZuoraModuleTestDriver {
      */
     @Test
     public void findOneResult() throws Exception {
-        String id = module.create(ZObjectType.Account, Collections.singletonList(testAccount())).get(0).getId();
+        String id = module.create("Account", Collections.singletonList((ZObject)testAccount())).get(0).getId();
         try {
             Iterator<ZObject> result = module.find("SELECT Id, Name, AccountNumber FROM Account WHERE AccountNumber = '7891'").iterator();
             assertTrue(result.hasNext());
-            ZObject next = result.next();
+            Account next = (Account)result.next();
             assertNotNull(next.getId());
-            assertEquals(testAccount().get("Name"), next.getAt("Name"));
+            assertEquals(testAccount().getName(), next.getName());
             assertFalse(result.hasNext());
         } finally {
-            module.delete(ZObjectType.Account, Arrays.asList(id));
+            module.delete("Account", Arrays.asList(id));
         }
     }
 
@@ -131,54 +166,42 @@ public class ZuoraModuleTestDriver {
     @Test
     @SuppressWarnings("serial")
     public void createRetrieveAnAccountProfileAndDeleteRelatedAccount() throws Exception {
-        SaveResult accountResult = module.create(ZObjectType.Account, Collections.singletonList(testAccount())).get(0);
+        SaveResult accountResult = module.create("Account", Collections.singletonList((ZObject)testAccount())).get(0);
         assertTrue(accountResult.isSuccess());
 
         final String accountId = accountResult.getId();
         try {
-            SaveResult contactResult = module.create(ZObjectType.Contact,
-                    Collections.<Map<String, Object>>singletonList(new HashMap<String, Object>() {
-                        {
-                            put("Country", "US");
-                            put("FirstName", "John");
-                            put("LastName", "Doe");
-                            put("AccountId", accountId);
-                        }
-                    })).get(0);
+        	Contact contact = testContact(accountId);
+            SaveResult contactResult = module.create("Contact",
+                    Collections.singletonList((ZObject) contact)).get(0);
 
             assertTrue(contactResult.isSuccess());
 
-            Map<String, Object> accountMap = testAccount();
-            accountMap.put("Id", accountId);
-            accountMap.put("BillToId", contactResult.getId());
+            Account accountMap = testAccount();
+            accountMap.setId(accountId);
+            accountMap.setBillToId(contactResult.getId());
 
-            SaveResult accountUpdateResult = module.update(ZObjectType.Account, Collections.singletonList(accountMap)).get(0);
+            SaveResult accountUpdateResult = module.update("Account", Collections.<ZObject>singletonList(accountMap)).get(0);
 
             assertTrue(accountUpdateResult.isSuccess());
-
-            Map<String, Object> accountProfile = module.accountProfile(accountId);
-
-
-            assertEquals("Doe", ((Map<String, Object>) accountProfile.get("billTo")).get("lastName"));
         } finally {
-            module.delete(ZObjectType.Account, Arrays.asList(accountId)).get(0);
+            module.delete("Account", Arrays.asList(accountId)).get(0);
         }
     }
 
     @SuppressWarnings("serial")
-    private Map<String, Object> testAccount() {
-        return new HashMap<String, Object>() {
-            {
-                put("Name", "foo");
-                put("Currency", "USD");
-                put("BillCycleDay", "1");
-                put("AccountNumber", "7891");
-                put("AllowInvoiceEdit", "false");
-                put("AutoPay", "false");
-                put("Notes", "foobar");
-                put("Status", "Draft");
-            }
-        };
+    private Account testAccount() {
+    	Account account = new Account();
+    	account.setName("foo");
+    	account.setCurrency("USD");
+    	account.setBillCycleDay(1);
+    	account.setAccountNumber("7891");
+    	account.setAllowInvoiceEdit(false);
+    	account.setAutoPay(false);
+    	account.setNotes("foobar");
+    	account.setStatus("Draft");
+    	
+        return account;
     }
 
     /**
@@ -195,7 +218,6 @@ public class ZuoraModuleTestDriver {
         assertNotNull(productId);
         assertNotNull(productRatePlanId);
         assertNotNull(productRateplanChargeId);
-
         SubscribeRequest subscribeReq = new SubscribeRequest();
 
         //subscribeReq.setAccount(testAccount());
@@ -204,7 +226,9 @@ public class ZuoraModuleTestDriver {
         Contact contact = new Contact();
         contact.setFirstName(uniqueString);
         contact.setLastName(uniqueString);
-
+        contact.setCountry("USA");
+        contact.setState("MI");
+        
 
         Account account = new Account();
         account.setName(uniqueString);
@@ -250,71 +274,67 @@ public class ZuoraModuleTestDriver {
         subscribeReq.setSubscriptionData(subscriptionData);
         SubscribeResult subscribeResult = module.subscribe(Collections.singletonList(subscribeReq)).get(0);
         assertTrue(subscribeResult.isSuccess());
+
         assertEquals(0,subscribeResult.getErrors().size());
 
-        Map<String, Object> result = module.getInvoice(subscribeResult.getInvoiceId());
-        assertEquals("Posted",result.get("status"));
-        assertEquals("amount",result.get("amount"));
-        assertNotSame(0,((ArrayList)result.get("invoiceitems")).size());
-        assertNotNull(result.get("billTo"));
-        assertNotNull(result.get("soldTo"));
+        Iterable<ZObject> results = module.find("select Id,Status,Amount from Invoice where Id = '" + subscribeResult.getInvoiceId() + "'");
+        
+        Invoice invoice = (Invoice) results.iterator().next();
+        
+        assertEquals("Posted",invoice.getStatus());
+        assertEquals("1.18",invoice.getAmount().toString());
+//        
+//        Iterable<ZObject> itemResult = module.find("select Id,Posted,Amount from InvoiceItem where InvoiceId = '" + subscribeResult.getInvoiceId() + "'");
+//        
+//        InvoiceItem item = (InvoiceItem) itemResult.iterator().next();
+//        assertNotNull(invoice.get);
+//        assertNotNull(result.get("soldTo"));
 
-        DeleteResult deleteResultAccount = module.delete(ZObjectType.Account, Collections.singletonList(subscribeResult.getAccountId())).get(0);
+        DeleteResult deleteResultAccount = module.delete("Account", Collections.singletonList(subscribeResult.getAccountId())).get(0);
         assertTrue(deleteResultAccount.isSuccess());
 
-        DeleteResult deleteResultProduct = module.delete(ZObjectType.Product, Collections.singletonList(productId)).get(0);
+        DeleteResult deleteResultProduct = module.delete("Product", Collections.singletonList(productId)).get(0);
         assertTrue(deleteResultProduct.isSuccess());
     }
 
     @SuppressWarnings("serial")
-    private String getTestProduct() {
+    private String getTestProduct() throws Exception {
 
         Map<String, Object> returnMap = new HashMap<String, Object>();
-
-
-
         SaveResult saveResult = null;
 
-        try {
-            saveResult = module.create(ZObjectType.Product, Collections.<Map<String, Object>>singletonList(new HashMap<String, Object>() {
-                {
-                    put("Name", "UnitTestProduct");
-                    put("EffectiveStartDate", "2011-01-01T20:00:00");
-                    put("EffectiveEndDate", "2013-01-01T20:00:00");
-                }
-            })).get(0);
-        } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-
+    	Product product = new Product();
+    	product.setName("UnitTestProduct");
+    	
+    	product.setEffectiveStartDate(calendarFactory.newXMLGregorianCalendar("2011-01-01T20:00:00"));
+    	product.setEffectiveEndDate(calendarFactory.newXMLGregorianCalendar("2015-01-01T20:00:00"));
+    	
+        saveResult = module.create("Product", Collections.<ZObject>singletonList(product)).get(0);
 
         return saveResult.getId();
 
     }
 
     @SuppressWarnings("serial")
-    private String getTestProductRatePlan(final String productId) {
+    private String getTestProductRatePlan(final String productId) throws Exception {
         SaveResult saveResult = null;
 
-        try {
-            saveResult = module.create(ZObjectType.ProductRatePlan, Collections.<Map<String, Object>>singletonList(new HashMap<String, Object>() {
-                {
-                    put("ProductId", productId);
-                    put("Name", "TestProductRatePlan");
-                    put("EffectiveStartDate", "2011-01-01T20:00:00");
-                    put("EffectiveEndDate", "2013-01-01T20:00:00");
-                    put("Description", "Test product used in unit test.");
-                }
-            })).get(0);
-        } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+    	ProductRatePlan productRatePlan = new ProductRatePlan();
+    	productRatePlan.setProductId(productId);
+    	productRatePlan.setName("TestProductRatePlan");
+    	
+    	productRatePlan.setEffectiveStartDate(calendarFactory.newXMLGregorianCalendar("2011-01-01T20:00:00"));
+    	productRatePlan.setEffectiveEndDate(calendarFactory.newXMLGregorianCalendar("2015-01-01T20:00:00"));
+    	
+    	productRatePlan.setDescription("Test product used in unit test.");
+
+    	saveResult = module.create("ProductRatePlan", Collections.<ZObject>singletonList(productRatePlan)).get(0);
         return saveResult.getId();
 
     }
 
     @SuppressWarnings("serial")
-    private String getTestProductRatePlanCharge(final String productRatePlanId) {
+    private String getTestProductRatePlanCharge(final String productRatePlanId) throws Exception {
         ProductRatePlanChargeTier tier = new ProductRatePlanChargeTier();
         tier.setCurrency("USD");
         tier.setPrice(new BigDecimal(12.2));
@@ -325,24 +345,21 @@ public class ZuoraModuleTestDriver {
 
         SaveResult saveResult = null;
 
-        try {
-            saveResult = module.create(ZObjectType.ProductRatePlanCharge, Collections.<Map<String, Object>>singletonList(new HashMap<String, Object>() {
-                {
-                    put("BillingPeriod", "Month");
-                    put("ChargeModel", "FlatFee");
-                    put("ChargeType", "Recurring");
-                    put("DefaultQuantity", "1	");
-                    put("Model", "PerUnit");
-                    put("Name", "TestProductRatePlanCharge");
-                    put("ProductRatePlanId", productRatePlanId);
-                    put("ProductRatePlanChargeTierData", productRatePlanChargeTierData);
-                    put("TriggerEvent", "ContractEffective");
-                    put("Type", "Recurring");
-                }
-            })).get(0);
-        } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        ProductRatePlanCharge charge = new ProductRatePlanCharge();
+        charge.setBillingPeriod("Month");
+        charge.setChargeModel("FlatFee");
+        charge.setChargeType("Recurring");
+        charge.setDefaultQuantity(new BigDecimal(1));
+        charge.setName("TestProductRatePlanCharge");
+        charge.setProductRatePlanId(productRatePlanId);
+        charge.setProductRatePlanChargeTierData(productRatePlanChargeTierData);
+        charge.setTriggerEvent("ContractEffective");
+        charge.setChargeType("Recurring");
+        charge.setChargeModel("PerUnit");
+        charge.setUOM("Each");;
+        
+        saveResult = module.create("ProductRatePlanCharge", Collections.<ZObject>singletonList(charge)).get(0);
+
         return saveResult.getId();
 
     }

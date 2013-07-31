@@ -3,18 +3,18 @@
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.5.0-SNAPSHOT</version>
+        <version>3.5.0-andes</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mule.modules</groupId>
     <artifactId>mule-module-zuora</artifactId>
-    <version>1.9.3-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>mule-module</packaging>
     <name>Mule Zuora Connector</name>
 
     <properties>
-        <cxf.version>2.5.1</cxf.version>
+        <cxf.version>2.5.9</cxf.version>
         <mule.modules.utils.version>1.1.2</mule.modules.utils.version>
         <jersey.version>1.16</jersey.version>
         <category>Standard</category>
@@ -131,12 +131,6 @@
     </dependencies>
     
     <repositories>
-      <repository>
-            <id>mule-ee-snapshot</id>
-            <name>EE Repository Snapshots</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/snapshots</url>
-            <layout>default</layout>
-        </repository>
         <repository>
             <id>mule-ee</id>
             <name>EE Repository Releases</name>
@@ -149,7 +143,34 @@
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <id>dev.ee</id>
+            <name>EE Repository Releases</name>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+            <layout>default</layout>
+       </repository>
     </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mule-ee</id>
+            <name>EE Repository Releases</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
+            <layout>default</layout>
+        </pluginRepository>
+        <pluginRepository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>http://repository.mulesoft.org/releases/</url>
+            <layout>default</layout>
+        </pluginRepository>
+        <pluginRepository>
+            <id>dev.ee</id>
+            <name>EE Repository Releases</name>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+            <layout>default</layout>
+       </pluginRepository>
+    </pluginRepositories>
 
     <scm>
         <connection>scm:git:git://github.com:mulesoft/zuora-connector.git</connection>

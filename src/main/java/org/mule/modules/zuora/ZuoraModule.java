@@ -13,6 +13,12 @@
  */
 package org.mule.modules.zuora;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
@@ -31,6 +37,7 @@ import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
+import org.mule.api.annotations.param.MetaDataKeyParam;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
 import org.mule.common.metadata.DefaultMetaData;
@@ -41,12 +48,10 @@ import org.mule.common.metadata.MetaDataKey;
 import org.mule.common.query.DefaultOperatorVisitor;
 import org.mule.common.query.DsqlQueryVisitor;
 import org.mule.common.query.Query;
-import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
-import org.mule.modules.zuora.zuora.api.ZObjectMapper;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
 import org.mule.modules.zuora.zuora.api.ZuoraException;
 
@@ -87,14 +92,6 @@ import com.zuora.api.object.Subscription;
 import com.zuora.api.object.TaxationItem;
 import com.zuora.api.object.Usage;
 import com.zuora.api.object.ZObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.io.IOUtils;
 
 /**
  * Zuora is the leader in online recurring billing and payment solutions for SaaS and subscription businesses.
@@ -254,9 +251,9 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> create(ZObjectType type, List<Map<String, Object>> zobjects)
+    public List<SaveResult> create(@MetaDataKeyParam String type, List<ZObject> zobjects)
             throws Exception {
-        return client.create(ZObjectMapper.toZObject(type, zobjects));
+        return client.create(zobjects);
     }
 
     /**
@@ -273,9 +270,9 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> generate(ZObjectType type, List<Map<String, Object>> zobjects)
+    public List<SaveResult> generate(@MetaDataKeyParam String type, List<ZObject> zobjects)
             throws Exception {
-        return client.generate(ZObjectMapper.toZObject(type, zobjects));
+        return client.generate(zobjects);
     }
 
     /**
@@ -292,9 +289,9 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> update(ZObjectType type, List<Map<String, Object>> zobjects)
+    public List<SaveResult> update(@MetaDataKeyParam String type, List<ZObject> zobjects)
             throws Exception {
-        return client.update(ZObjectMapper.toZObject(type, zobjects));
+        return client.update(zobjects);
     }
 
     /**
@@ -310,9 +307,9 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<DeleteResult> delete(ZObjectType type, List<String> ids)
+    public List<DeleteResult> delete(@MetaDataKeyParam String type, List<String> ids)
             throws Exception {
-        return client.delete(type.getTypeName(), ids);
+        return client.delete(type, ids);
     }
 
     /**
@@ -344,23 +341,7 @@ public class ZuoraModule implements MuleContextAware {
         query.accept(visitor);
         return visitor.dsqlQuery();
     }
-
     
-    /**
-     * Retrieve a product profile
-     * <p/>
-     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:product-profile}
-     *
-     * @param productId The id of the product to retrieve a product profile for
-     * @return the profile, as a String-Object Map
-     * @throws Exception if requesting product profile fails
-     */
-    @Processor
-    @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public Map<String, Object> productProfile(String productId) throws Exception {
-        return client.productProfile(productId);
-    }
-
     /**
      * Answers user information
      * <p/>
@@ -390,39 +371,6 @@ public class ZuoraModule implements MuleContextAware {
     public List<AmendResult> amend(List<com.zuora.api.AmendRequest> amendaments)
             throws Exception {
         return client.amend(amendaments);
-    }
-
-    /**
-     * Retrieve an account profile
-     * <p/>
-     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:account-profile}
-     *
-     * @param accountId The id of the account to retrieve an account profile for
-     * @return the account, as a String-Object Map
-     * @throws Exception if request fails
-     */
-    @Processor
-    @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public Map<String, Object> accountProfile(String accountId)
-            throws Exception {
-        return client.accountProfile(accountId);
-    }
-
-    /**
-     * Retrieve a full invoice
-     * <p/>
-     * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:get-invoice}
-     *
-     * @param invoiceId The id of the account to retrieve an account profile for
-     * @return the invoice, as a String-Object Map
-     * 
-     * @throws Exception if request fails
-     */
-    @Processor
-    @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public Map<String, Object> getInvoice(String invoiceId)
-            throws Exception {
-        return client.getInvoice(invoiceId);
     }
 
     /**
