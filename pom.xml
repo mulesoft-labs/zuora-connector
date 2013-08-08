@@ -37,7 +37,7 @@
                              <extension>true</extension>
                              <wsdlOptions>
                                  <wsdlOption>
-                                     <wsdl>${basedir}/src/main/resources/zuora.a.43.0-modified.wsdl</wsdl>
+                                     <wsdl>${basedir}/src/main/resources/zuora-48.modified.wsdl</wsdl>
                                      <bindingFiles>
                                          <bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
                                      </bindingFiles>
@@ -107,25 +107,14 @@
             <version>${mule.modules.utils.version}</version>
         </dependency>
         <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+        <dependency>
             <groupId>eclipse</groupId>
             <artifactId>eclipse-runtime</artifactId>
             <version>2.1.0</version>
-        </dependency>
-        <!-- Jersey -->
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-core</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-server</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
 
     </dependencies>

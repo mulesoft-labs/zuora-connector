@@ -66,7 +66,7 @@ public class ZuoraConnectionTestDriver
         List<SaveResult> create = newConnection.create(Arrays.<ZObject>asList(new Account()
         {
             {
-                setField("Name", "foo");
+                put("Name", "foo");
                 setField("Currency", "USD");
                 setField("BillCycleDay", "1");
                 setField("AccountNumber", "501");

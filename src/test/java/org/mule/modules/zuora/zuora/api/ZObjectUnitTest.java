@@ -12,6 +12,9 @@ package org.mule.modules.zuora.zuora.api;
 
 import static org.junit.Assert.*;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -29,22 +32,15 @@ import com.zuora.api.object.ZObject;
  */
 @RunWith(Theories.class)
 public class ZObjectUnitTest {
-    @DataPoints
-    @SuppressWarnings("serial")
-    public static ZObject[] ACCOUNTS = new ZObject[] {
-    	new Contact(),
-        new Account(),
-        new Account(){{
-            setAt("Foo", "Bar");
-        }},
-        new Account(){{
-            setAccountNumber("15969");
-        }},
-        new Account(){{
-            setAccountNumber("879");
-            setAt("Foo", "Bar");
-        }}};
-
+	static DatatypeFactory factory = null;
+	static {
+		try {
+			factory = DatatypeFactory.newInstance();
+		} catch (DatatypeConfigurationException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
     @Theory
     public void zobjectsAreDynamic(ZObject object) {
     	int originalSize =  object.getAny().size();
@@ -84,23 +80,9 @@ public class ZObjectUnitTest {
     }
 
     @Test
-    public void testUninitializedAccountHasZeroStaticProperties() {
-        assertEquals(0, new Account().staticProperties().size());
-    }
-
-    @Test
-    @SuppressWarnings("serial")
-    public void testInitializedAccountHasOneOrMoreStaticProperties() {
-        assertEquals(2, new Account(){{
-            setBatch("foo");
-            setAllowInvoiceEdit(true);
-            }}.staticProperties().size());
-    }
-
-    @Test
     public void testUsingStringDatesInStaticField() {
         Account a = new Account();
-        a.setField("createdDate", "2001-04-05T03:18:09Z");
+        a.setCustomField("customField", factory.newXMLGregorianCalendar("2001-04-05T03:18:09Z"));
 
         assertEquals(4, a.getCreatedDate().getMonth());
         assertEquals(2001, a.getCreatedDate().getYear());
@@ -117,11 +99,6 @@ public class ZObjectUnitTest {
     @Theory
     public void dynamicProperiesAndAnyHaveSameSize(ZObject a) {
         assertEquals(a.getAny().size(), a.dynamicProperties().size());
-    }
-
-    @Theory
-    public void properiesSizeIsTheSumOfStaticAndDynamicPropertiesSizes(ZObject a) {
-        assertEquals(a.properties().size(), a.dynamicProperties().size() + a.staticProperties().size());
     }
 
 }

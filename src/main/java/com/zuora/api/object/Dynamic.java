@@ -11,34 +11,14 @@
 
 package com.zuora.api.object;
 
-import static org.apache.commons.collections.CollectionUtils.*;
-
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
-import org.apache.commons.collections.Transformer;
-import org.apache.commons.collections.keyvalue.DefaultMapEntry;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.mule.modules.utils.MuleSoftException;
-import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 import org.mule.modules.zuora.zobject.ElementBuilders;
 import org.w3c.dom.Element;
-
-import com.zauberlabs.commons.mom.MapObjectMapper;
-import com.zauberlabs.commons.mom.MapObjectMappers;
-import com.zauberlabs.commons.mom.NaiveProperties;
-import com.zauberlabs.commons.mom.PropertyModel;
-import com.zauberlabs.commons.mom.StructureType;
-import com.zauberlabs.commons.mom.style.impl.JaxbStyle;
 
 /**
  * Base class for Zuora objects that simplifies accessing customizable properties -
@@ -46,113 +26,21 @@ import com.zauberlabs.commons.mom.style.impl.JaxbStyle;
  *
  * @author flbulgarelli
  */
-@SuppressWarnings("unchecked")
 public abstract class Dynamic
 {
-    private static final HashSet<String> EXCLUDED_PROPERTY_NAMES = new HashSet<String>(Arrays.asList("any", "class", "fieldsToNull"));
-    private static MapObjectMapper mom = MapObjectMappers.defaultWithPackage("com.zuora.api")
-        .withConverter(JaxbMapObjectMappers.muleStringToXmlGregorianCalendarConverter())
-        .withPropertyModel(new PropertyModel()
-        {
-            public void setProperty(Object value, Object destination, String key, MapObjectMapper mom)
-            {
-                Dynamic dynamic = (Dynamic) destination;
-                dynamic.setAt(key, value);
-            }
-        })
-        .build();
+
     /**
      * Answers the dynamic property elements. Warning: this method is CXF specific and
      * its usage is discouraged
      * @return a collection of elements, if this object has true dynamic properties
      */
-    public List<Element> getAny()
+    protected List<Element> getAny()
     {
         throw new UnsupportedOperationException("Instances of class " + this.getClass()
                                                 + " have not dynamic properties. Use normal getters and setters instead");
     }
 
-    /**
-     * Answers the name and values of the dynamic properties of this object
-     * @return the dynamic properties, as string-object pairs
-     */
-    public Collection<Entry<String,Object>> dynamicProperties() {
-        return CollectionUtils.collect(getAny(), new Transformer() {
-            public Object transform(Object input)
-            {
-                Element e = (Element) input;
-                return new DefaultMapEntry(e.getLocalName(), e.getTextContent());
-            }
-        });
-    }
-
-    /**
-     * Answers the name and values of the static properties of this object
-     * @return the static properties, as string-object pairs
-     */
-    public Collection<Entry<String,Object>> staticProperties() {
-        return CollectionUtils.select(propertyValues(), new Predicate() {
-            public boolean evaluate(Object object)
-            {
-                Entry e = (Entry) object;
-                return e.getValue() != null && !EXCLUDED_PROPERTY_NAMES.contains(e.getKey());
-            }
-        });
-    }
-
-    /**
-     * Answers the name and values of the both static and dynamic properties of this object
-     * @return this object's properties, as string-object pairs
-     */
-    private Collection<Entry<String, Object>> propertyValues()
-    {
-        try
-        {
-            return collect(Arrays.asList(Introspector.getBeanInfo(this.getClass()).getPropertyDescriptors()),
-                new Transformer() {
-                    public Object transform(Object input) {
-                        PropertyDescriptor p = (PropertyDescriptor) input;
-                        return new DefaultMapEntry(p.getName(), NaiveProperties.get(Dynamic.this, p.getName()));
-                    }
-                });
-        }
-        catch (Exception e)
-        {
-            throw MuleSoftException.soften(e);
-        }
-    }
-
-    public  Collection<Entry<String,Object>> properties() {
-        return CollectionUtils.union(staticProperties(), dynamicProperties());
-    }
-
-
-    /**
-     * Synonym of {@link #setField(String, String)} that lets groovy script users
-     * to set dynamic properties with the indexed brackets [] syntax.
-     *
-     * @param name
-     * @param value
-     */
-    public void setAt(String name, Object value)
-    {
-        setField(name, value);
-    }
-
-    public void setField(String name, Object value)
-    {
-        String propertyName = toPropertyName(name);
-        if (NaiveProperties.getterOrNull(getClass(), propertyName) != null)
-        {
-            setStaticProperty(value, propertyName);
-        }
-        else
-        {
-            setDynamicProperty(name, value);
-        }
-    }
-
-    private void setDynamicProperty(String name, Object value)
+    public void setCustomField(String name, Object value)
     {
         Element element = getElement(this, name);
         if (element != null)
@@ -161,19 +49,10 @@ public abstract class Dynamic
         }
         else
         {
+        	if (!(value instanceof String)) {
+        		
+        	}
             this.getAny().add(ElementBuilders.newElement(name, (String) value));
-        }
-    }
-
-    private void setStaticProperty(Object value, String propertyName)
-    {
-        try
-        {
-            JaxbStyle.STYLE.setValue(this, propertyName, mom.unmap(value, StructureType.getStructureType(this, propertyName)));
-        }
-        catch (Exception e)
-        {
-            throw MuleSoftException.soften(e);
         }
     }
 
@@ -181,44 +60,12 @@ public abstract class Dynamic
     {
         return StringUtils.uncapitalize(name);
     }
-
-    /**
-     * Synonym of {@link #getField(String)} that lets groovy script users
-     * to access dynamic properties with the indexed brackets [] syntax.
-     *
-     * @param name
-     * @return {@link #getField(String)}
-     */
-    public Object getAt(String name)
+    
+    public Object getCustomField(final String name)
     {
-        return getField(name);
-    }
-
-    public Object getField(final String name)
-    {
-        String propertyName = toPropertyName(name);
-        Method readMethod = NaiveProperties.getterOrNull(getClass(), propertyName);
-        if (readMethod != null)
-        {
-            return getProperty(readMethod);
-        }
-
         Element element = getElement(this, name);
         return element != null ? element.getTextContent() : null;
     }
-
-    private Object getProperty(Method readMethod)
-    {
-        try
-        {
-            return readMethod.invoke(this);
-        }
-        catch (Exception e)
-        {
-            throw new AssertionError(e);
-        }
-    }
-
 
     private static Element getElement(Dynamic object, final String name)
     {

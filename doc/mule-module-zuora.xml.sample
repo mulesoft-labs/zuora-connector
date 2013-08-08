@@ -24,7 +24,7 @@
 </zuora:delete>
 <!-- END_INCLUDE(zuora:delete) -->
 <!-- BEGIN_INCLUDE(zuora:find) -->
-<zuora:find zquery="#[header:queryString]" />
+<zuora:find query="#[header:queryString]" />
 <!-- END_INCLUDE(zuora:find) -->
 <!-- BEGIN_INCLUDE(zuora:product-profile) -->
 <zuora:product-profile productId="001..."/>

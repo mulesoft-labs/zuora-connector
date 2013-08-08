@@ -36,7 +36,7 @@ public interface ZuoraClient<E extends Throwable>
 
     List<DeleteResult> delete(@NotNull String type, @NotNull List<String> ids) throws E;
 
-    Iterable<ZObject> find(@NotNull String zquery) throws E;
+    List<ZObject> find(@NotNull String zquery) throws E;
 
     User getUserInfo() throws E;
 

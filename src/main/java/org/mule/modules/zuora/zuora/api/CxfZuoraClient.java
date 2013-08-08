@@ -160,7 +160,7 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
     }
 
     @Override
-    public Iterable<ZObject> find(final String zquery) throws Exception {
+    public List<ZObject> find(final String zquery) throws Exception {
         Validate.notEmpty(zquery);
 
         List<ZObject> allRecords = new ArrayList<ZObject>();

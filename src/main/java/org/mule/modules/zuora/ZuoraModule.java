@@ -13,10 +13,15 @@
  */
 package org.mule.modules.zuora;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
@@ -40,11 +45,14 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.MetaDataKeyParam;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
+import org.mule.common.metadata.DefaultDefinedMapMetaDataModel;
 import org.mule.common.metadata.DefaultMetaData;
 import org.mule.common.metadata.DefaultMetaDataKey;
-import org.mule.common.metadata.DefaultPojoMetaDataModel;
+import org.mule.common.metadata.DefaultSimpleMetaDataModel;
 import org.mule.common.metadata.MetaData;
 import org.mule.common.metadata.MetaDataKey;
+import org.mule.common.metadata.MetaDataModel;
+import org.mule.common.metadata.datatype.DataType;
 import org.mule.common.query.DefaultOperatorVisitor;
 import org.mule.common.query.DsqlQueryVisitor;
 import org.mule.common.query.Query;
@@ -54,6 +62,7 @@ import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
 import org.mule.modules.zuora.zuora.api.ZuoraException;
+import org.springframework.beans.BeanUtils;
 
 import com.zuora.api.AmendResult;
 import com.zuora.api.DeleteResult;
@@ -92,6 +101,7 @@ import com.zuora.api.object.Subscription;
 import com.zuora.api.object.TaxationItem;
 import com.zuora.api.object.Usage;
 import com.zuora.api.object.ZObject;
+import com.zuora.api.object.ZuoraBeanMap;
 
 /**
  * Zuora is the leader in online recurring billing and payment solutions for SaaS and subscription businesses.
@@ -100,10 +110,10 @@ import com.zuora.api.object.ZObject;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.4")
+@Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.5")
 public class ZuoraModule implements MuleContextAware {
 
-    private static final String API_URL = "/apps/services/a/43.0";
+    private static final String API_URL = "/apps/services/a/48.0";
     private static final String REST_API_URL = "/apps/api/";
     /**
      * The client to use. Mainly for mocking purposes
@@ -171,12 +181,43 @@ public class ZuoraModule implements MuleContextAware {
 
     @MetaDataRetriever 
     public MetaData getMetadata(MetaDataKey key) throws Exception {
+		Class<?> cls = getClassForType(key.getId());
+		
+		PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(cls);
+		
+		Map<String, MetaDataModel> fieldMap = new HashMap<String, MetaDataModel>();
+		for (PropertyDescriptor pd : pds) {
+			if (pd.getReadMethod() != null && pd.getWriteMethod() != null) {
+				fieldMap.put(pd.getName(), getFieldMetadata(pd.getPropertyType()));
+			}
+		}
+		
+		DefaultDefinedMapMetaDataModel mapModel = new DefaultDefinedMapMetaDataModel(fieldMap);
+		
+        return new DefaultMetaData(mapModel);
+    }
+
+	private MetaDataModel getFieldMetadata(Class<?> propertyType) {
+		DataType dataType;
+		if (String.class.equals(propertyType)) {
+			dataType = DataType.STRING;
+		} else if (Number.class.isAssignableFrom(propertyType)) {
+			dataType = DataType.NUMBER;
+		} else if (XMLGregorianCalendar.class.equals(propertyType)) {
+			dataType = DataType.DATE_TIME;
+		} else {
+			dataType = DataType.POJO;
+		}
+		return new DefaultSimpleMetaDataModel(dataType);
+	}
+
+	private Class<?> getClassForType(String type)
+			throws ClassNotFoundException {
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         
-        Class<?> cls = cl.loadClass("com.zuora.api.object." + key.getId());
-        
-        return new DefaultMetaData(new DefaultPojoMetaDataModel(cls));
-    }
+		Class<?> cls = cl.loadClass("com.zuora.api.object." + type);
+		return cls;
+	}
     
     /**
      * Connects to Zuora
@@ -251,12 +292,40 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> create(@MetaDataKeyParam String type, List<ZObject> zobjects)
+    public List<SaveResult> create(@MetaDataKeyParam String type, List<Map<String,Object>> zobjects)
             throws Exception {
-        return client.create(zobjects);
+        return client.create(toPojos(type, zobjects));
     }
 
-    /**
+	private List<ZObject> toPojos(String type, List<Map<String, Object>> zobjects) {
+		ArrayList<ZObject> pojos = new ArrayList<ZObject>();
+		for (Map<String,Object> o : zobjects) {
+			ZObject zobject = toPojo(type, o);
+
+			pojos.add(zobject);
+		}
+		return pojos;
+	}
+
+    @SuppressWarnings("unchecked")
+	private ZObject toPojo(String type, Map<String, Object> o) {
+		ZObject zobject;
+		if (o instanceof ZuoraBeanMap) {
+			zobject = (ZObject) ((ZuoraBeanMap)o).getBean();
+		} else {
+			try {
+				Class<?> cls = getClassForType(type);
+			    zobject = (ZObject)cls.newInstance();
+				ZuoraBeanMap zuoraBeanMap = new ZuoraBeanMap(zobject);
+				zuoraBeanMap.putAll(o);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return zobject;
+	}
+
+	/**
      * Batch creation of invoices for accounts
      * <p/>
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:generate}
@@ -270,9 +339,9 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> generate(@MetaDataKeyParam String type, List<ZObject> zobjects)
+    public List<SaveResult> generate(@MetaDataKeyParam String type, List<Map<String,Object>> zobjects)
             throws Exception {
-        return client.generate(zobjects);
+        return client.generate(toPojos(type, zobjects));
     }
 
     /**
@@ -289,9 +358,9 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> update(@MetaDataKeyParam String type, List<ZObject> zobjects)
+    public List<SaveResult> update(@MetaDataKeyParam String type, List<Map<String,Object>> zobjects)
             throws Exception {
-        return client.update(zobjects);
+        return client.update(toPojos(type, zobjects));
     }
 
     /**
@@ -322,17 +391,24 @@ public class ZuoraModule implements MuleContextAware {
      * <p/>
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:find}
      *
-     * @param zquery the query, using the SQL-Like Zuora Query Language
+     * @param query the query, using the SQL-Like Zuora Query Language
      * @return a {@link ZObject} iterable. {@link ZObject} returned by this operation
      *         may be instances of either static ZObject - like Account or Amendment -,  if the object is a non-customizable Zuora entity,
      *         or {@link ZObject},  if the object is a customizable Zuora entity
      * @throws Exception if find fails
      */
-    @Processor
+    @SuppressWarnings("unchecked")
+	@Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public Iterable<ZObject> find(@org.mule.api.annotations.Query String zquery)
+    public Iterable<Map<String,Object>> find(@org.mule.api.annotations.Query String query)
             throws Exception {
-        return client.find(zquery);
+        List<ZObject> iterable = client.find(query);
+        List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
+        
+        for (ZObject o : iterable) {
+        	maps.add(new ZuoraBeanMap(o));
+        }
+        return maps;
     }
 
     @QueryTranslator
