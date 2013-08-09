@@ -75,7 +75,6 @@ import com.zuora.api.object.Account;
 import com.zuora.api.object.Amendment;
 import com.zuora.api.object.CommunicationProfile;
 import com.zuora.api.object.Contact;
-import com.zuora.api.object.CreditBalanceAdjustment;
 import com.zuora.api.object.Export;
 import com.zuora.api.object.GatewayOption;
 import com.zuora.api.object.Import;
@@ -98,7 +97,6 @@ import com.zuora.api.object.Refund;
 import com.zuora.api.object.RefundInvoicePayment;
 import com.zuora.api.object.RefundTransactionLog;
 import com.zuora.api.object.Subscription;
-import com.zuora.api.object.TaxationItem;
 import com.zuora.api.object.Usage;
 import com.zuora.api.object.ZObject;
 import com.zuora.api.object.ZuoraBeanMap;
@@ -144,7 +142,7 @@ public class ZuoraModule implements MuleContextAware {
         
         keys.add(createKey(InvoicePayment.class));
         keys.add(createKey(Import.class));
-        keys.add(createKey(TaxationItem.class));
+//        keys.add(createKey(TaxationItem.class));
         keys.add(createKey(Account.class));
         keys.add(createKey(InvoiceItem.class));
         keys.add(createKey(InvoiceItemAdjustment.class));
@@ -163,7 +161,7 @@ public class ZuoraModule implements MuleContextAware {
         keys.add(createKey(RatePlan.class));
         keys.add(createKey(RatePlanCharge.class));
         keys.add(createKey(Product.class));
-        keys.add(createKey(CreditBalanceAdjustment.class));
+//        keys.add(createKey(CreditBalanceAdjustment.class));
         keys.add(createKey(Contact.class));
         keys.add(createKey(Invoice.class));
         keys.add(createKey(PaymentMethod.class));

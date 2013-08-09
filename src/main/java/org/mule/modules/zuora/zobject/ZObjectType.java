@@ -13,7 +13,6 @@ package org.mule.modules.zuora.zobject;
 import com.zuora.api.object.Account;
 import com.zuora.api.object.Amendment;
 import com.zuora.api.object.Contact;
-import com.zuora.api.object.CreditBalanceAdjustment;
 import com.zuora.api.object.Export;
 import com.zuora.api.object.Invoice;
 import com.zuora.api.object.InvoiceAdjustment;
@@ -32,7 +31,6 @@ import com.zuora.api.object.RatePlanChargeTier;
 import com.zuora.api.object.Refund;
 import com.zuora.api.object.RefundInvoicePayment;
 import com.zuora.api.object.Subscription;
-import com.zuora.api.object.TaxationItem;
 import com.zuora.api.object.Usage;
 import com.zuora.api.object.ZObject;
 
@@ -61,7 +59,7 @@ public enum ZObjectType
 //    AdjustmentAccountingDetail(AdjustmentAccountingDetail.class), //
     Amendment(Amendment.class), //
     Contact(Contact.class), //
-    CreditBalanceAdjustment(CreditBalanceAdjustment.class), //
+//    CreditBalanceAdjustment(CreditBalanceAdjustment.class), //
     Export(Export.class), // 
 //    InvoiceAccountingDetail(InvoiceAccountingDetail.class), //
     InvoicePayment(InvoicePayment.class), //
@@ -71,8 +69,8 @@ public enum ZObjectType
     RatePlan(RatePlan.class), //
     RatePlanChargeTier(RatePlanChargeTier.class), // 
     RefundInvoicePayment(RefundInvoicePayment.class), //
-    RatePlanCharge(RatePlanCharge.class), //
-    TaxationItem(TaxationItem.class);
+    RatePlanCharge(RatePlanCharge.class); //
+//    TaxationItem(TaxationItem.class);
 
     
     private Class<? extends ZObject> clazz;
