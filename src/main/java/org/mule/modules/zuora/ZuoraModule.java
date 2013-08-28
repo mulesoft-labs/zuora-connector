@@ -16,28 +16,19 @@ package org.mule.modules.zuora;
 import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.zuora.api.*;
+import net.sf.staccatocommons.collections.Lists;
 import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
-import org.mule.api.annotations.Configurable;
-import org.mule.api.annotations.Connect;
-import org.mule.api.annotations.ConnectionIdentifier;
-import org.mule.api.annotations.Connector;
-import org.mule.api.annotations.Disconnect;
-import org.mule.api.annotations.InvalidateConnectionOn;
-import org.mule.api.annotations.MetaDataKeyRetriever;
-import org.mule.api.annotations.MetaDataRetriever;
-import org.mule.api.annotations.Processor;
-import org.mule.api.annotations.QueryTranslator;
-import org.mule.api.annotations.ValidateConnection;
+import org.mule.api.MuleException;
+import org.mule.api.annotations.*;
+import org.mule.api.annotations.Query;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.param.ConnectionKey;
@@ -54,23 +45,19 @@ import org.mule.common.metadata.MetaDataKey;
 import org.mule.common.metadata.MetaDataModel;
 import org.mule.common.metadata.datatype.DataType;
 import org.mule.common.query.DefaultOperatorVisitor;
+import org.mule.common.query.DsqlQuery;
 import org.mule.common.query.DsqlQueryVisitor;
-import org.mule.common.query.Query;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
 import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
 import org.mule.modules.zuora.zuora.api.ZuoraException;
+import org.mule.streaming.PagingConfiguration;
+import org.mule.streaming.PagingDelegate;
+import org.mule.streaming.PagingDelegateWrapper;
 import org.springframework.beans.BeanUtils;
 
-import com.zuora.api.AmendResult;
-import com.zuora.api.DeleteResult;
-import com.zuora.api.ErrorCode;
-import com.zuora.api.LoginFault;
-import com.zuora.api.SaveResult;
-import com.zuora.api.SubscribeResult;
-import com.zuora.api.UnexpectedErrorFault;
 import com.zuora.api.object.Account;
 import com.zuora.api.object.Amendment;
 import com.zuora.api.object.CommunicationProfile;
@@ -390,27 +377,66 @@ public class ZuoraModule implements MuleContextAware {
      * {@sample.xml ../../../doc/mule-module-zuora.xml.sample zuora:find}
      *
      * @param query the query, using the SQL-Like Zuora Query Language
+     * @param pagingConfiguration .
      * @return a {@link ZObject} iterable. {@link ZObject} returned by this operation
      *         may be instances of either static ZObject - like Account or Amendment -,  if the object is a non-customizable Zuora entity,
      *         or {@link ZObject},  if the object is a customizable Zuora entity
      * @throws Exception if find fails
      */
     @SuppressWarnings("unchecked")
+    @Paged
 	@Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public Iterable<Map<String,Object>> find(@org.mule.api.annotations.Query String query)
-            throws Exception {
-        List<ZObject> iterable = client.find(query);
-        List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
-        
-        for (ZObject o : iterable) {
-        	maps.add(new ZuoraBeanMap(o));
-        }
-        return maps;
+    public PagingDelegate<Map<String,Object>> find(@org.mule.api.annotations.Query final String query, final PagingConfiguration pagingConfiguration) {
+        PagingDelegate<Map<String, Object>> pagingDelegate = new PagingDelegate<Map<String, Object>>() {
+
+            private int pageNumber = 0;
+            private boolean isDone;
+            private String queryLocator;
+
+            @Override
+            public List<Map<String, Object>> getPage() {
+                try {
+                    QueryResult result = null;
+                    if (this.pageNumber == 0) {
+                        result = client.query(query);
+                        isDone = result.isDone();
+                        queryLocator = result.getQueryLocator();
+                    } else if(!isDone) {
+                        result = client.queryMore(queryLocator);
+                        isDone = result.isDone();
+                        queryLocator = result.getQueryLocator();
+                    } else {
+                        return Collections.emptyList();
+                    }
+
+                    List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
+                    for (ZObject o : result.getRecords()) {
+                        maps.add(new ZuoraBeanMap(o));
+                    }
+                    return maps;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return Collections.emptyList();
+            }
+
+            @Override
+            public int getTotalResults() {
+                return -1;
+            }
+
+            @Override
+            public void close() throws MuleException {
+
+            }
+        };
+        return new PagingDelegateWrapper<Map<String, Object>>(pagingDelegate);
     }
 
     @QueryTranslator
-    public String toNativeQuery(Query query){
+    public String toNativeQuery(DsqlQuery query){
         ZuoraQueryVisitor visitor = new ZuoraQueryVisitor();
         query.accept(visitor);
         return visitor.dsqlQuery();

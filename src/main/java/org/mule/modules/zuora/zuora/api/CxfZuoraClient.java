@@ -22,25 +22,12 @@ import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Holder;
 import javax.xml.ws.handler.MessageContext;
 
+import com.zuora.api.*;
 import org.apache.commons.lang.Validate;
 import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.mule.modules.zuora.User;
 
-import com.zuora.api.AmendRequest;
-import com.zuora.api.AmendResult;
-import com.zuora.api.DeleteResult;
-import com.zuora.api.ErrorCode;
-import com.zuora.api.LoginFault;
-import com.zuora.api.LoginResult;
-import com.zuora.api.QueryResult;
-import com.zuora.api.SaveResult;
-import com.zuora.api.SessionHeader;
-import com.zuora.api.Soap;
-import com.zuora.api.SubscribeRequest;
-import com.zuora.api.SubscribeResult;
-import com.zuora.api.UnexpectedErrorFault;
-import com.zuora.api.ZuoraService;
 import com.zuora.api.object.ZObject;
 
 /**
@@ -151,6 +138,32 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
 
         try {
             return this.soap.delete(type, ids);
+        } catch (UnexpectedErrorFault unexpectedErrorFault) {
+            if (unexpectedErrorFault.getFaultInfo().getFaultCode() == ErrorCode.INVALID_SESSION) {
+                throw new SessionTimedOutException();
+            }
+            throw unexpectedErrorFault;
+        }
+    }
+
+    @Override
+    public QueryResult query(String zquery) throws UnexpectedErrorFault, MalformedQueryFault, InvalidQueryLocatorFault {
+        try {
+            QueryResult result = soap.query(zquery);
+            return result;
+        } catch (UnexpectedErrorFault unexpectedErrorFault) {
+            if (unexpectedErrorFault.getFaultInfo().getFaultCode() == ErrorCode.INVALID_SESSION) {
+                throw new SessionTimedOutException();
+            }
+            throw unexpectedErrorFault;
+        }
+    }
+
+    @Override
+    public QueryResult queryMore(String queryLocator) throws InvalidQueryLocatorFault, UnexpectedErrorFault {
+        try {
+            QueryResult result = soap.queryMore(queryLocator);
+            return result;
         } catch (UnexpectedErrorFault unexpectedErrorFault) {
             if (unexpectedErrorFault.getFaultInfo().getFaultCode() == ErrorCode.INVALID_SESSION) {
                 throw new SessionTimedOutException();

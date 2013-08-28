@@ -14,14 +14,9 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import com.zuora.api.*;
 import org.mule.modules.zuora.User;
 
-import com.zuora.api.AmendRequest;
-import com.zuora.api.AmendResult;
-import com.zuora.api.DeleteResult;
-import com.zuora.api.SaveResult;
-import com.zuora.api.SubscribeRequest;
-import com.zuora.api.SubscribeResult;
 import com.zuora.api.object.ZObject;
 
 public interface ZuoraClient<E extends Throwable>
@@ -43,4 +38,8 @@ public interface ZuoraClient<E extends Throwable>
     List<AmendResult> amend(@NotNull  List<AmendRequest> amendaments) throws E;
 
     String getSessionId();
+
+    QueryResult query(String zquery) throws UnexpectedErrorFault, MalformedQueryFault, InvalidQueryLocatorFault;
+
+    QueryResult queryMore(String queryLocator) throws InvalidQueryLocatorFault, UnexpectedErrorFault;
 }
