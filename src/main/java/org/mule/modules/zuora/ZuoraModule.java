@@ -36,17 +36,11 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.MetaDataKeyParam;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
-import org.mule.common.metadata.DefaultDefinedMapMetaDataModel;
-import org.mule.common.metadata.DefaultMetaData;
-import org.mule.common.metadata.DefaultMetaDataKey;
-import org.mule.common.metadata.DefaultSimpleMetaDataModel;
-import org.mule.common.metadata.MetaData;
-import org.mule.common.metadata.MetaDataKey;
-import org.mule.common.metadata.MetaDataModel;
+import org.mule.common.metadata.*;
 import org.mule.common.metadata.datatype.DataType;
 import org.mule.common.query.DefaultOperatorVisitor;
-import org.mule.common.query.DsqlQuery;
 import org.mule.common.query.DsqlQueryVisitor;
+import org.mule.common.query.DsqlQuery;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
@@ -177,7 +171,7 @@ public class ZuoraModule implements MuleContextAware {
 			}
 		}
 		
-		DefaultDefinedMapMetaDataModel mapModel = new DefaultDefinedMapMetaDataModel(fieldMap);
+		DefaultDefinedMapMetaDataModel mapModel = new DefaultDefinedMapMetaDataModel(fieldMap, key.getId());
 		
         return new DefaultMetaData(mapModel);
     }
@@ -191,7 +185,7 @@ public class ZuoraModule implements MuleContextAware {
 		} else if (XMLGregorianCalendar.class.equals(propertyType)) {
 			dataType = DataType.DATE_TIME;
 		} else {
-			dataType = DataType.POJO;
+			return new DefaultPojoMetaDataModel(propertyType);
 		}
 		return new DefaultSimpleMetaDataModel(dataType);
 	}
@@ -554,6 +548,16 @@ public class ZuoraModule implements MuleContextAware {
         @Override
         public java.lang.String notEqualsOperator() {
             return " != ";
+        }
+
+        @Override
+        public String lessOperator() {
+            return  " &lt; ";
+        }
+
+        @Override
+        public java.lang.String lessOrEqualsOperator() {
+            return " &lt;= ";
         }
 
     }
