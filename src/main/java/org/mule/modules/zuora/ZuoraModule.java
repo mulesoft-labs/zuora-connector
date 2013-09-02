@@ -387,6 +387,7 @@ public class ZuoraModule implements MuleContextAware {
             private int pageNumber = 0;
             private boolean isDone;
             private String queryLocator;
+            private int count = -1;
 
             @Override
             public List<Map<String, Object>> getPage() {
@@ -394,10 +395,13 @@ public class ZuoraModule implements MuleContextAware {
                     QueryResult result = null;
                     if (this.pageNumber == 0) {
                         result = client.query(query);
+                        pageNumber++;
+                        count = result.getSize();
                         isDone = result.isDone();
                         queryLocator = result.getQueryLocator();
                     } else if(!isDone) {
                         result = client.queryMore(queryLocator);
+                        pageNumber++;
                         isDone = result.isDone();
                         queryLocator = result.getQueryLocator();
                     } else {
@@ -418,7 +422,7 @@ public class ZuoraModule implements MuleContextAware {
 
             @Override
             public int getTotalResults() {
-                return -1;
+                return count;
             }
 
             @Override
@@ -426,6 +430,7 @@ public class ZuoraModule implements MuleContextAware {
 
             }
         };
+
         return new PagingDelegateWrapper<Map<String, Object>>(pagingDelegate);
     }
 
