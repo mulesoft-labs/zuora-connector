@@ -219,6 +219,8 @@
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/package-summary.html">org.mule.modules.zuora</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/adapter/package-summary.html">org.mule.modules.zuora.adapter</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/adapters/package-summary.html">org.mule.modules.zuora.adapters</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/agents/package-summary.html">org.mule.modules.zuora.agents</a></li>
@@ -227,7 +229,11 @@
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/config/spring/package-summary.html">org.mule.modules.zuora.config.spring</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/connection/package-summary.html">org.mule.modules.zuora.connection</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/connectivity/package-summary.html">org.mule.modules.zuora.connectivity</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/modules/zuora/devkit/package-summary.html">org.mule.modules.zuora.devkit</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/modules/zuora/process/package-summary.html">org.mule.modules.zuora.process</a></li>
     <li class="selected api apilevel-">
@@ -255,6 +261,7 @@
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractExpressionEvaluator.html">AbstractExpressionEvaluator</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractListeningMessageProcessor.html">AbstractListeningMessageProcessor</a>&lt;O&gt;</li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/AccountProfileMessageProcessor.html">AccountProfileMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/AmendMessageProcessor.html">AmendMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/modules/zuora/processors/CreateMessageProcessor.html">CreateMessageProcessor</a></li>
@@ -408,309 +415,7 @@ Summary:
 
 
 
-<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
-          ><img id="subclasses-direct-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
-
-  <div id="subclasses-direct">
-      <div id="subclasses-direct-list"
-              class="jd-inheritedlinks"
-              
-              >
-          
-            
-            
-              
-                <a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/object/transformers/AccountExpressionHolderTransformer.html">AccountExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/AmendOptionsExpressionHolderTransformer.html">AmendOptionsExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/AmendRequestExpressionHolderTransformer.html">AmendRequestExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/object/transformers/AmendmentExpressionHolderTransformer.html">AmendmentExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/object/transformers/ContactExpressionHolderTransformer.html">ContactExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/ExternalPaymentOptionsExpressionHolderTransformer.html">ExternalPaymentOptionsExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/InvoiceProcessingOptionsExpressionHolderTransformer.html">InvoiceProcessingOptionsExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/org/mule/modules/zuora/process/ManagedConnectionProcessInterceptor.html">ManagedConnectionProcessInterceptor</a>&lt;T&gt;,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/object/transformers/PaymentMethodExpressionHolderTransformer.html">PaymentMethodExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/PreviewOptionsExpressionHolderTransformer.html">PreviewOptionsExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/RatePlanChargeDataExpressionHolderTransformer.html">RatePlanChargeDataExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/object/transformers/RatePlanChargeExpressionHolderTransformer.html">RatePlanChargeExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/object/transformers/RatePlanChargeTierExpressionHolderTransformer.html">RatePlanChargeTierExpressionHolderTransformer</a>,
-              
-              
-            
-              
-                <a href="../../../../../../java/com/zuora/api/transformers/RatePlanDataExpressionHolderTransformer.html">RatePlanDataExpressionHolderTransformer</a>,
-              
-              and
-                <a href="#" onclick="return toggleInherited(document.getElementById('subclasses-direct', null))">6 others.</a>
-              
-            
-          
-      </div>
-      <div id="subclasses-direct-summary"
-              style="display: none;"
-              >
-  <table class="jd-sumtable-expando">
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/AccountExpressionHolderTransformer.html">AccountExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/AmendOptionsExpressionHolderTransformer.html">AmendOptionsExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/AmendRequestExpressionHolderTransformer.html">AmendRequestExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/AmendmentExpressionHolderTransformer.html">AmendmentExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/ContactExpressionHolderTransformer.html">ContactExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/ExternalPaymentOptionsExpressionHolderTransformer.html">ExternalPaymentOptionsExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/InvoiceProcessingOptionsExpressionHolderTransformer.html">InvoiceProcessingOptionsExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/process/ManagedConnectionProcessInterceptor.html">ManagedConnectionProcessInterceptor</a>&lt;T&gt;</td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/PaymentMethodExpressionHolderTransformer.html">PaymentMethodExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/PreviewOptionsExpressionHolderTransformer.html">PreviewOptionsExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/RatePlanChargeDataExpressionHolderTransformer.html">RatePlanChargeDataExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/RatePlanChargeExpressionHolderTransformer.html">RatePlanChargeExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/RatePlanChargeTierExpressionHolderTransformer.html">RatePlanChargeTierExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/RatePlanDataExpressionHolderTransformer.html">RatePlanDataExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/RatePlanExpressionHolderTransformer.html">RatePlanExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/SubscribeInvoiceProcessingOptionsExpressionHolderTransformer.html">SubscribeInvoiceProcessingOptionsExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/SubscribeOptionsExpressionHolderTransformer.html">SubscribeOptionsExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/SubscribeRequestExpressionHolderTransformer.html">SubscribeRequestExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/transformers/SubscriptionDataExpressionHolderTransformer.html">SubscriptionDataExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/com/zuora/api/object/transformers/SubscriptionExpressionHolderTransformer.html">SubscriptionExpressionHolderTransformer</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-  </table>
-      </div>
-  </div>
-</td></tr></table>
-
-
-
-<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-indirect" class="jd-expando-trigger closed"
-          ><img id="subclasses-indirect-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>Known Indirect Subclasses
-
-  <div id="subclasses-indirect">
-      <div id="subclasses-indirect-list"
-              class="jd-inheritedlinks"
-              
-              >
-          
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractListeningMessageProcessor.html">AbstractListeningMessageProcessor</a>&lt;O&gt;,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/AccountProfileMessageProcessor.html">AccountProfileMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/AmendMessageProcessor.html">AmendMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/CreateMessageProcessor.html">CreateMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/DeleteMessageProcessor.html">DeleteMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/FindMessageProcessor.html">FindMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/GenerateMessageProcessor.html">GenerateMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/GetExportFileContentMessageProcessor.html">GetExportFileContentMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/GetExportFileStreamMessageProcessor.html">GetExportFileStreamMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/GetInvoiceMessageProcessor.html">GetInvoiceMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/GetUserInfoMessageProcessor.html">GetUserInfoMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/ProductProfileMessageProcessor.html">ProductProfileMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/SubscribeMessageProcessor.html">SubscribeMessageProcessor</a>,
-            
-              <a href="../../../../../../java/org/mule/modules/zuora/processors/UpdateMessageProcessor.html">UpdateMessageProcessor</a>
-            
-          
-      </div>
-      <div id="subclasses-indirect-summary"
-              style="display: none;"
-              >
-  <table class="jd-sumtable-expando">
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractListeningMessageProcessor.html">AbstractListeningMessageProcessor</a>&lt;O&gt;</td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;</td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/AccountProfileMessageProcessor.html">AccountProfileMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">AccountProfileMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#accountProfile(java.lang.String)">accountProfile(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/AmendMessageProcessor.html">AmendMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">AmendMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#amend(java.util.List<com.zuora.api.AmendRequest>)">amend(java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/CreateMessageProcessor.html">CreateMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">CreateMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#create(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">create(org.mule.modules.zuora.zobject.ZObjectType, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/DeleteMessageProcessor.html">DeleteMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">DeleteMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#delete(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.lang.String>)">delete(org.mule.modules.zuora.zobject.ZObjectType, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/FindMessageProcessor.html">FindMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">FindMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#find(java.lang.String)">find(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/GenerateMessageProcessor.html">GenerateMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GenerateMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#generate(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">generate(org.mule.modules.zuora.zobject.ZObjectType, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/GetExportFileContentMessageProcessor.html">GetExportFileContentMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetExportFileContentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#getExportFileContent(java.lang.String)">getExportFileContent(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/GetExportFileStreamMessageProcessor.html">GetExportFileStreamMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetExportFileStreamMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#getExportFileStream(java.lang.String)">getExportFileStream(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/GetInvoiceMessageProcessor.html">GetInvoiceMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetInvoiceMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#getInvoice(java.lang.String)">getInvoice(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/GetUserInfoMessageProcessor.html">GetUserInfoMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetUserInfoMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#getUserInfo()">getUserInfo()</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/ProductProfileMessageProcessor.html">ProductProfileMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">ProductProfileMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#productProfile(java.lang.String)">productProfile(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/SubscribeMessageProcessor.html">SubscribeMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">SubscribeMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#subscribe(java.util.List<com.zuora.api.SubscribeRequest>)">subscribe(java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/modules/zuora/processors/UpdateMessageProcessor.html">UpdateMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">UpdateMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#update(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">update(org.mule.modules.zuora.zobject.ZObjectType, java.util.List)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>.&nbsp;</td>
-          </tr>
-  </table>
-      </div>
-  </div>
-</td></tr></table>
 
 
 <div class="jd-descr">

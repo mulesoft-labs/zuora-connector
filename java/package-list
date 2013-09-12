@@ -6,11 +6,14 @@ com.zuora.api.object.holders
 com.zuora.api.object.transformers
 com.zuora.api.transformers
 org.mule.modules.zuora
+org.mule.modules.zuora.adapter
 org.mule.modules.zuora.adapters
 org.mule.modules.zuora.agents
 org.mule.modules.zuora.config
 org.mule.modules.zuora.config.spring
+org.mule.modules.zuora.connection
 org.mule.modules.zuora.connectivity
+org.mule.modules.zuora.devkit
 org.mule.modules.zuora.process
 org.mule.modules.zuora.processors
 org.mule.modules.zuora.transformers
