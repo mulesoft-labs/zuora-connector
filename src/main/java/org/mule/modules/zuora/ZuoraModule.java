@@ -61,7 +61,7 @@ import com.zuora.api.object.ZObject;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.4")
+@Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.5")
 public class ZuoraModule implements MuleContextAware {
 
     private static final String API_URL = "/apps/services/a/43.0";
