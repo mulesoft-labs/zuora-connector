@@ -66,6 +66,49 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -240,7 +283,7 @@ Summary:
           <th>Schema Version</th><td>1.0</td>
         </tr>
 <tr>
-          <th>Minimum Mule Version</th><td>3.4</td>
+          <th>Minimum Mule Version</th><td>3.5</td>
         </tr>
     </tbody></table>
   </div>
@@ -657,9 +700,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Retrieve an account profile
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieve an account profile
  <p/>
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:account-profile accountId="12"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:account-profile accountId="12"/&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -676,14 +723,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>accountId</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The id of the account to retrieve an account profile for</td>
-                        <td class="jd-descrcol">String</td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol">UTF-8</td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>accountId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the account to retrieve an account profile for</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
                 
                 
           
@@ -725,8 +774,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">Map&lt;String,&nbsp;Object&gt;</td>
-                <td class="jd-descrcol">the account, as a String-Object Map</td>
+                
+                    <td class="jd-descrcol">Map&lt;String,&nbsp;Object&gt;</td>
+                    <td class="jd-descrcol">the account, as a String-Object Map</td>
+                
+
              </tr>
          </table>
   </div>
@@ -762,11 +814,15 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Amends subscriptions
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Amends subscriptions
  <p/>
  <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:amend&gt;
     &lt;zuora:amendaments ref="#[header:amendamentsList]"/&gt;
-&lt;/zuora:amend&gt;</pre></div></p></div>
+&lt;/zuora:amend&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -841,8 +897,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/AmendResult.html">AmendResult</a>&gt;</td>
-                <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/AmendResult.html">AmendResult</a></code>, one for each amendment</td>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/AmendResult.html">AmendResult</a>&gt;</td>
+                    <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/AmendResult.html">AmendResult</a></code>, one for each amendment</td>
+                
+
              </tr>
          </table>
   </div>
@@ -878,11 +937,15 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Batch creation of ZObjects
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Batch creation of ZObjects
  <p/>
  <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:create type="Account"&gt;
    &lt;zuora:zobjects ref="#[variable:zobjects]"/&gt;
-&lt;/zuora:create&gt;</pre></div></p></div>
+&lt;/zuora:create&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -899,14 +962,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>type</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The type of zobject passed</td>
-                        <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol"></td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>type</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The type of zobject passed</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
                 
                 
           
@@ -971,8 +1036,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</td>
-                <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/SaveResult.html">SaveResult</a></code>, one for each ZObject</td>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</td>
+                    <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/SaveResult.html">SaveResult</a></code>, one for each ZObject</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1008,11 +1076,15 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Batch delete of ZObjects
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Batch delete of ZObjects
  <p/>
  <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:delete type="Account"&gt;
     &lt;zuora:ids ref="#[variable:ids]"/&gt;
-&lt;/zuora:delete&gt;</pre></div></p></div>
+&lt;/zuora:delete&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1029,14 +1101,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>type</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The type of ZObjects to delete</td>
-                        <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol"></td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>type</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The type of ZObjects to delete</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
                 
                 
           
@@ -1101,8 +1175,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/DeleteResult.html">DeleteResult</a>&gt;</td>
-                <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/DeleteResult.html">DeleteResult</a></code>, one for each id</td>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/DeleteResult.html">DeleteResult</a>&gt;</td>
+                    <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/DeleteResult.html">DeleteResult</a></code>, one for each id</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1138,14 +1215,18 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Lazily retrieves ZObject that match a given query,
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Lazily retrieves ZObject that match a given query,
  written in Zuora native query language
  <p/>
  If you expect more than 2000 results to be returned, remember that you have
  to enable queryMore for your zuora account (as documented:
  http://knowledgecenter.zuora.com/D_Using_the_Zuora_API/C_API_Reference/E_API_Calls/queryMore())
  <p/>
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:find zquery="#[header:queryString]" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:find zquery="#[header:queryString]" /&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1162,14 +1243,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>zquery</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The query, using the SQL-Like Zuora Query Language</td>
-                        <td class="jd-descrcol">String</td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol">UTF-8</td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>zquery</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The query, using the SQL-Like Zuora Query Language</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
                 
                 
           
@@ -1211,10 +1294,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">Iterable&lt;<a href="../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</td>
-                <td class="jd-descrcol">a <code><a href="../java/com/zuora/api/object/ZObject.html">ZObject</a></code> iterable. <code><a href="../java/com/zuora/api/object/ZObject.html">ZObject</a></code> returned by this operation
+                
+                    <td class="jd-descrcol">Iterable&lt;<a href="../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</td>
+                    <td class="jd-descrcol">a <code><a href="../java/com/zuora/api/object/ZObject.html">ZObject</a></code> iterable. <code><a href="../java/com/zuora/api/object/ZObject.html">ZObject</a></code> returned by this operation
          may be instances of either static ZObject - like Account or Amendment -,  if the object is a non-customizable Zuora entity,
          or <code><a href="../java/com/zuora/api/object/ZObject.html">ZObject</a></code>,  if the object is a customizable Zuora entity</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1250,11 +1336,15 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Batch creation of invoices for accounts
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Batch creation of invoices for accounts
  <p/>
  <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:generate type="Account"&gt;
     &lt;zuora:zobjects ref="#[variable:zobjects]"/&gt;
-&lt;/zuora:generate&gt;</pre></div></p></div>
+&lt;/zuora:generate&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1271,14 +1361,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>type</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The type of zobject passed</td>
-                        <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol"></td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>type</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The type of zobject passed</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
                 
                 
           
@@ -1344,8 +1436,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</td>
-                <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/SaveResult.html">SaveResult</a></code>, one for each ZObject</td>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</td>
+                    <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/SaveResult.html">SaveResult</a></code>, one for each ZObject</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1381,9 +1476,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Retrieve an exported file from Zuora, and return its content as a String
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieve an exported file from Zuora, and return its content as a String
  
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-export-file-content exportId="SOMEID" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-export-file-content exportId="SOMEID" /&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1400,14 +1499,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>exportId</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">Id of the Zuora exported file to retrieve</td>
-                        <td class="jd-descrcol">String</td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol">UTF-8</td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>exportId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">Id of the Zuora exported file to retrieve</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
                 
                 
           
@@ -1449,8 +1550,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">String</td>
-                <td class="jd-descrcol">the file's content as a String</td>
+                
+                    <td class="jd-descrcol">String</td>
+                    <td class="jd-descrcol">the file's content as a String</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1490,9 +1594,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Retrieve an exported file from Zuora and return an InputStream to it
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieve an exported file from Zuora and return an InputStream to it
  
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-export-file-stream exportId="SOMEID" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-export-file-stream exportId="SOMEID" /&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1509,14 +1617,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>exportId</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">Id of the Zuora exported file to retrieve</td>
-                        <td class="jd-descrcol">String</td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol">UTF-8</td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>exportId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">Id of the Zuora exported file to retrieve</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
                 
                 
           
@@ -1558,8 +1668,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">InputStream</td>
-                <td class="jd-descrcol">an InputStream to read from the exported file</td>
+                
+                    <td class="jd-descrcol">InputStream</td>
+                    <td class="jd-descrcol">an InputStream to read from the exported file</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1599,9 +1712,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Retrieve a full invoice
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieve a full invoice
  <p/>
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-invoice invoiceId="0012..."/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-invoice invoiceId="0012..."/&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1618,14 +1735,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>invoiceId</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The id of the account to retrieve an account profile for</td>
-                        <td class="jd-descrcol">String</td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol">UTF-8</td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>invoiceId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the account to retrieve an account profile for</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
                 
                 
           
@@ -1667,8 +1786,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">Map&lt;String,&nbsp;Object&gt;</td>
-                <td class="jd-descrcol">the invoice, as a String-Object Map</td>
+                
+                    <td class="jd-descrcol">Map&lt;String,&nbsp;Object&gt;</td>
+                    <td class="jd-descrcol">the invoice, as a String-Object Map</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1704,9 +1826,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Answers user information
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Answers user information
  <p/>
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-user-info /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:get-user-info /&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1760,8 +1886,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/User.html">User</a></td>
-                <td class="jd-descrcol">a <code><a href="../java/org/mule/modules/zuora/User.html">User</a></code></td>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/User.html">User</a></td>
+                    <td class="jd-descrcol">a <code><a href="../java/org/mule/modules/zuora/User.html">User</a></code></td>
+                
+
              </tr>
          </table>
   </div>
@@ -1797,9 +1926,13 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Retrieve a product profile
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieve a product profile
  <p/>
- <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:product-profile productId="001..."/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:product-profile productId="001..."/&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1816,14 +1949,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>productId</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The id of the product to retrieve a product profile for</td>
-                        <td class="jd-descrcol">String</td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol">UTF-8</td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>productId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the product to retrieve a product profile for</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
                 
                 
           
@@ -1865,8 +2000,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">Map&lt;String,&nbsp;Object&gt;</td>
-                <td class="jd-descrcol">the profile, as a String-Object Map</td>
+                
+                    <td class="jd-descrcol">Map&lt;String,&nbsp;Object&gt;</td>
+                    <td class="jd-descrcol">the profile, as a String-Object Map</td>
+                
+
              </tr>
          </table>
   </div>
@@ -1902,11 +2040,15 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Batch creation of ZObjects associated to Subscriptions
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Batch creation of ZObjects associated to Subscriptions
  <p/>
  <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:subscribe&gt;
     &lt;zuora:subscriptions ref="#[variable:subscriptions]"/&gt;
-&lt;/zuora:subscribe&gt;</pre></div></p></div>
+&lt;/zuora:subscribe&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1981,8 +2123,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SubscribeResult.html">SubscribeResult</a>&gt;</td>
-                <td class="jd-descrcol">a subscription results list, one for each subscription</td>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SubscribeResult.html">SubscribeResult</a>&gt;</td>
+                    <td class="jd-descrcol">a subscription results list, one for each subscription</td>
+                
+
              </tr>
          </table>
   </div>
@@ -2018,11 +2163,15 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Batch update of ZObjects
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Batch update of ZObjects
  <p/>
  <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;zuora:update type="Account"&gt;
     &lt;zuora:zobjects ref="#[variable:zobjects]"/&gt;
-&lt;/zuora:update&gt;</pre></div></p></div>
+&lt;/zuora:update&gt;</pre></div>
+      
+  </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2039,14 +2188,16 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
           
           
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>type</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol">The type of zobject passed</td>
-                        <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
-                        <td class="jd-descrcol">*/*</td>
-                        <td class="jd-descrcol"></td>
-                    </tr>
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>type</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The type of zobject passed</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
                 
                 
           
@@ -2112,8 +2263,11 @@ attempts to reconnect only during business hours. Such a setting can prove usefu
                 <th>Description</th>
              </tr>
              <tr>
-                <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</td>
-                <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/SaveResult.html">SaveResult</a></code>, one for each ZObject</td>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</td>
+                    <td class="jd-descrcol">a list of <code><a href="../java/com/zuora/api/SaveResult.html">SaveResult</a></code>, one for each ZObject</td>
+                
+
              </tr>
          </table>
   </div>
