@@ -67,7 +67,7 @@ http://www.mulesoft.org/schema/mule/zuora http://www.mulesoft.org/schema/mule/zu
   </flow>
 
   <flow name="Find">
-    <zuora:find zquery="#[header:queryString]" />
+    <zuora:find query="#[header:queryString]" />
   </flow>
 
   <!--  <flow name="Amend">-->

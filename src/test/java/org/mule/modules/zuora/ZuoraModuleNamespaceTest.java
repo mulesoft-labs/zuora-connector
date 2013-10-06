@@ -18,6 +18,8 @@ import org.junit.Test;
 import org.mule.construct.Flow;
 import org.mule.tck.junit4.FunctionalTestCase;
 
+import org.junit.Test;
+
 /**
  * Test for zuora mule schema ZuoraModuleNamespaceTest
  * 

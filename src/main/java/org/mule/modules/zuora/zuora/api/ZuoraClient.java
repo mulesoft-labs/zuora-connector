@@ -10,13 +10,14 @@
 
 package org.mule.modules.zuora.zuora.api;
 
-import com.zuora.api.*;
-import com.zuora.api.object.ZObject;
-import org.mule.modules.zuora.User;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Map;
+
+import com.zuora.api.*;
+import org.mule.modules.zuora.User;
+
+import com.zuora.api.object.ZObject;
 
 public interface ZuoraClient<E extends Throwable>
 {
@@ -30,17 +31,15 @@ public interface ZuoraClient<E extends Throwable>
 
     List<DeleteResult> delete(@NotNull String type, @NotNull List<String> ids) throws E;
 
-    Iterable<ZObject> find(@NotNull String zquery) throws E;
+    List<ZObject> find(@NotNull String zquery) throws E;
 
     User getUserInfo() throws E;
 
     List<AmendResult> amend(@NotNull  List<AmendRequest> amendaments) throws E;
 
-    Map<String, Object> productProfile(@NotNull String productId) throws E;
-
     String getSessionId();
 
-    Map<String, Object> accountProfile(@NotNull String accountId) throws E;
+    QueryResult query(String zquery) throws UnexpectedErrorFault, MalformedQueryFault, InvalidQueryLocatorFault;
 
-    Map<String, Object> getInvoice(@NotNull String accountId) throws E;
+    QueryResult queryMore(String queryLocator) throws InvalidQueryLocatorFault, UnexpectedErrorFault;
 }

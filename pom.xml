@@ -38,7 +38,7 @@
                              <extension>true</extension>
                              <wsdlOptions>
                                  <wsdlOption>
-                                     <wsdl>${basedir}/src/main/resources/zuora.a.43.0-modified.wsdl</wsdl>
+                                     <wsdl>${basedir}/src/main/resources/zuora-48.modified.wsdl</wsdl>
                                      <bindingFiles>
                                          <bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
                                      </bindingFiles>
@@ -60,7 +60,13 @@
         <dependency>
           <groupId>org.mule.modules</groupId>
           <artifactId>mule-module-cxf</artifactId>
-          <version>${mule.module.cxf.version}</version>
+          <version>${mule.version}</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.mule.modules</groupId>
+          <artifactId>mule-module-spring-config</artifactId>
+          <version>${mule.version}</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
@@ -102,36 +108,19 @@
             <version>${mule.modules.utils.version}</version>
         </dependency>
         <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+        <dependency>
             <groupId>eclipse</groupId>
             <artifactId>eclipse-runtime</artifactId>
             <version>2.1.0</version>
-        </dependency>
-        <!-- Jersey -->
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-core</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-server</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
 
     </dependencies>
     
     <repositories>
-      <repository>
-            <id>mule-ee-snapshot</id>
-            <name>EE Repository Snapshots</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/snapshots</url>
-            <layout>default</layout>
-        </repository>
         <repository>
             <id>mule-ee</id>
             <name>EE Repository Releases</name>
@@ -144,7 +133,34 @@
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <id>dev.ee</id>
+            <name>EE Repository Releases</name>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+            <layout>default</layout>
+       </repository>
     </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mule-ee</id>
+            <name>EE Repository Releases</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
+            <layout>default</layout>
+        </pluginRepository>
+        <pluginRepository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>http://repository.mulesoft.org/releases/</url>
+            <layout>default</layout>
+        </pluginRepository>
+        <pluginRepository>
+            <id>dev.ee</id>
+            <name>EE Repository Releases</name>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+            <layout>default</layout>
+       </pluginRepository>
+    </pluginRepositories>
 
     <scm>
         <connection>scm:git:git://github.com:mulesoft/zuora-connector.git</connection>
