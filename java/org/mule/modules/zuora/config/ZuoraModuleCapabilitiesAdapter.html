@@ -888,26 +888,6 @@ From class
             
             
             
-            Map&lt;String,&nbsp;Object&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#accountProfile(java.lang.String)">accountProfile</a></span>(String accountId)</nobr>
-        
-        <div class="jd-descrdiv">Retrieve an account profile
- <p/>
- </div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             List&lt;<a href="../../../../../../java/com/zuora/api/AmendResult.html">AmendResult</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -921,7 +901,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             synchronized
@@ -939,7 +919,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -949,7 +929,7 @@ From class
             List&lt;<a href="../../../../../../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#create(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">create</a></span>(<a href="../../../../../../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a> type, List&lt;Map&lt;String,&nbsp;Object&gt;&gt; zobjects)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#create(java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">create</a></span>(String type, List&lt;Map&lt;String,&nbsp;Object&gt;&gt; zobjects)</nobr>
         
         <div class="jd-descrdiv">Batch creation of ZObjects
  <p/>
@@ -959,7 +939,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -969,7 +949,7 @@ From class
             List&lt;<a href="../../../../../../java/com/zuora/api/DeleteResult.html">DeleteResult</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#delete(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.lang.String>)">delete</a></span>(<a href="../../../../../../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a> type, List&lt;String&gt; ids)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#delete(java.lang.String, java.util.List<java.lang.String>)">delete</a></span>(String type, List&lt;String&gt; ids)</nobr>
         
         <div class="jd-descrdiv">Batch delete of ZObjects
  <p/>
@@ -979,7 +959,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             synchronized
@@ -998,17 +978,17 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
             
             
             
-            Iterable&lt;<a href="../../../../../../java/com/zuora/api/object/ZObject.html">ZObject</a>&gt;</nobr>
+            PagingDelegate&lt;Map&lt;String,&nbsp;Object&gt;&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#find(java.lang.String)">find</a></span>(String zquery)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#find(java.lang.String, org.mule.streaming.PagingConfiguration)">find</a></span>(String query, PagingConfiguration pagingConfiguration)</nobr>
         
         <div class="jd-descrdiv">Lazily retrieves ZObject that match a given query,
  written in Zuora native query language
@@ -1023,7 +1003,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1033,7 +1013,7 @@ From class
             List&lt;<a href="../../../../../../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#generate(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">generate</a></span>(<a href="../../../../../../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a> type, List&lt;Map&lt;String,&nbsp;Object&gt;&gt; zobjects)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#generate(java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">generate</a></span>(String type, List&lt;Map&lt;String,&nbsp;Object&gt;&gt; zobjects)</nobr>
         
         <div class="jd-descrdiv">Batch creation of invoices for accounts
  <p/>
@@ -1043,7 +1023,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1059,7 +1039,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1075,7 +1055,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1095,7 +1075,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1115,6 +1095,22 @@ From class
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            MetaData</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#getMetadata(org.mule.common.metadata.MetaDataKey)">getMetadata</a></span>(MetaDataKey key)</nobr>
+        
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
@@ -1122,15 +1118,11 @@ From class
             
             
             
-            Map&lt;String,&nbsp;Object&gt;</nobr>
+            List&lt;MetaDataKey&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#getInvoice(java.lang.String)">getInvoice</a></span>(String invoiceId)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#getMetadataKeys()">getMetadataKeys</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Retrieve a full invoice
- <p/>
- </div>
-  
   </td></tr>
 
 
@@ -1194,26 +1186,6 @@ From class
             
             
             
-            Map&lt;String,&nbsp;Object&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#productProfile(java.lang.String)">productProfile</a></span>(String productId)</nobr>
-        
-        <div class="jd-descrdiv">Retrieve a product profile
- <p/>
- </div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1223,7 +1195,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1239,7 +1211,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1255,7 +1227,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1271,7 +1243,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1291,6 +1263,22 @@ From class
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#toNativeQuery(org.mule.common.query.DsqlQuery)">toNativeQuery</a></span>(DsqlQuery query)</nobr>
+        
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
@@ -1301,7 +1289,7 @@ From class
             List&lt;<a href="../../../../../../java/com/zuora/api/SaveResult.html">SaveResult</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#update(org.mule.modules.zuora.zobject.ZObjectType, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">update</a></span>(<a href="../../../../../../java/org/mule/modules/zuora/zobject/ZObjectType.html">ZObjectType</a> type, List&lt;Map&lt;String,&nbsp;Object&gt;&gt; zobjects)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/ZuoraModule.html#update(java.lang.String, java.util.List<java.util.Map<java.lang.String, java.lang.Object>>)">update</a></span>(String type, List&lt;Map&lt;String,&nbsp;Object&gt;&gt; zobjects)</nobr>
         
         <div class="jd-descrdiv">Batch update of ZObjects
  <p/>

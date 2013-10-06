@@ -419,6 +419,20 @@
   
   
 
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
 
 <div class="sum-details-links">
 
@@ -503,6 +517,10 @@ Summary:
         Initialisable 
       
         Testable 
+      
+        ConnectorMetaDataEnabled 
+      
+        NativeQueryMetadataTranslator 
       
         <a href="../../../../../../java/org/mule/modules/zuora/connection/ConnectionManager.html">ConnectionManager</a>&lt;K,&nbsp;C&nbsp;extends&nbsp;<a href="../../../../../../java/org/mule/modules/zuora/connection/Connection.html">Connection</a>&gt; 
       
@@ -708,6 +726,10 @@ org.mule.api.lifecycle.Initialisable
   </div>
 </div>
 </td></tr>
+
+
+
+
 
 
 
@@ -1076,6 +1098,38 @@ org.mule.api.lifecycle.Initialisable
             
             
             
+            Result&lt;MetaData&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/connectivity/ZuoraModuleConnectionManager.html#getMetaData(org.mule.common.metadata.MetaDataKey)">getMetaData</a></span>(MetaDataKey metaDataKey)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Result&lt;List&lt;MetaDataKey&gt;&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/connectivity/ZuoraModuleConnectionManager.html#getMetaDataKeys()">getMetaDataKeys</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1420,6 +1474,22 @@ org.mule.api.lifecycle.Initialisable
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/connectivity/ZuoraModuleConnectionManager.html#test()">test</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Result&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/connectivity/ZuoraModuleConnectionManager.html#toNativeQuery(org.mule.common.query.DsqlQuery)">toNativeQuery</a></span>(DsqlQuery query)</nobr>
         
   </td></tr>
 
@@ -1990,6 +2060,106 @@ From interface
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">test</span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.common.metadata.ConnectorMetaDataEnabled" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.common.metadata.ConnectorMetaDataEnabled-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  org.mule.common.metadata.ConnectorMetaDataEnabled
+
+<div id="inherited-methods-org.mule.common.metadata.ConnectorMetaDataEnabled">
+  <div id="inherited-methods-org.mule.common.metadata.ConnectorMetaDataEnabled-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.common.metadata.ConnectorMetaDataEnabled-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Result&lt;MetaData&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getMetaData</span>(MetaDataKey arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Result&lt;List&lt;MetaDataKey&gt;&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getMetaDataKeys</span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.common.metadata.NativeQueryMetadataTranslator" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.common.metadata.NativeQueryMetadataTranslator-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  org.mule.common.metadata.NativeQueryMetadataTranslator
+
+<div id="inherited-methods-org.mule.common.metadata.NativeQueryMetadataTranslator">
+  <div id="inherited-methods-org.mule.common.metadata.NativeQueryMetadataTranslator-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.common.metadata.NativeQueryMetadataTranslator-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Result&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toNativeQuery</span>(DsqlQuery arg0)</nobr>
         
   </td></tr>
 
@@ -3126,6 +3296,77 @@ From interface
 </div>
 
 
+<A NAME="getMetaData(org.mule.common.metadata.MetaDataKey)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        Result&lt;MetaData&gt;
+      </span>
+      <span class="sympad">getMetaData</span>
+      <span class="normal">(MetaDataKey metaDataKey)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>metaDataKey</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getMetaDataKeys()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        Result&lt;List&lt;MetaDataKey&gt;&gt;
+      </span>
+      <span class="sympad">getMetaDataKeys</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <A NAME="getMinMuleVersion()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -3867,6 +4108,46 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="toNativeQuery(org.mule.common.query.DsqlQuery)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        Result&lt;String&gt;
+      </span>
+      <span class="sympad">toNativeQuery</span>
+      <span class="normal">(DsqlQuery query)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>query</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>

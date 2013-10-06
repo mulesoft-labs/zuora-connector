@@ -117,7 +117,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
 <title>
 
-  MalformedQueryFault
+  ZuoraModule.ZuoraOperatorVisitor
 
 
 | Mule Zuora Connector
@@ -247,7 +247,7 @@
                 
     <li class="api apilevel-">
   <a href="../../../../../java/com/zuora/api/package-summary.html">com.zuora.api</a></li>
-    <li class="selected api apilevel-">
+    <li class="api apilevel-">
   <a href="../../../../../java/com/zuora/api/fault/package-summary.html">com.zuora.api.fault</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/com/zuora/api/holders/package-summary.html">com.zuora.api.holders</a></li>
@@ -259,7 +259,7 @@
   <a href="../../../../../java/com/zuora/api/object/transformers/package-summary.html">com.zuora.api.object.transformers</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/com/zuora/api/transformers/package-summary.html">com.zuora.api.transformers</a></li>
-    <li class="api apilevel-">
+    <li class="selected api apilevel-">
   <a href="../../../../../java/org/mule/modules/zuora/package-summary.html">org.mule.modules.zuora</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/modules/zuora/adapter/package-summary.html">org.mule.modules.zuora.adapter</a></li>
@@ -300,14 +300,10 @@
               
     <li><h2>Classes</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/ApiFault.html">ApiFault</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/InvalidQueryLocatorFault.html">InvalidQueryLocatorFault</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/InvalidTypeFault.html">InvalidTypeFault</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/InvalidValueFault.html">InvalidValueFault</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/LoginFault.html">LoginFault</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../java/com/zuora/api/fault/MalformedQueryFault.html">MalformedQueryFault</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/ObjectFactory.html">ObjectFactory</a></li>
-          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/fault/UnexpectedErrorFault.html">UnexpectedErrorFault</a></li>
+          <li class="api apilevel-"><a href="../../../../../java/org/mule/modules/zuora/User.html">User</a></li>
+          <li class="api apilevel-"><a href="../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../java/org/mule/modules/zuora/ZuoraModule.ZuoraOperatorVisitor.html">ZuoraModule.ZuoraOperatorVisitor</a></li>
+          <li class="api apilevel-"><a href="../../../../../java/org/mule/modules/zuora/ZuoraModule.ZuoraQueryVisitor.html">ZuoraModule.ZuoraQueryVisitor</a></li>
       </ul>
     </li>
               
@@ -358,8 +354,6 @@
    
   
   
-   
-  
   
 
   
@@ -371,11 +365,6 @@
 
   
    
-  
-  
-  
-  
-
   
   
   
@@ -391,23 +380,20 @@ Summary:
 
 
 
-  <a href="#constants">Constants</a>
+
+  <a href="#inhconstants">Inherited Constants</a>
   
 
 
-  &#124; <a href="#inhconstants">Inherited Constants</a>
-  
-
-
-
-  &#124; <a href="#inhfields">Inherited Fields</a>
-  
 
 
   &#124; <a href="#pubctors">Ctors</a>
   
 
 
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
 
 
 
@@ -431,11 +417,11 @@ Summary:
 
 <div id="jd-header">
     public
-     
+    static 
      
     
     class
-<h1>MalformedQueryFault</h1>
+<h1>ZuoraModule.ZuoraOperatorVisitor</h1>
 
 
 
@@ -444,21 +430,12 @@ Summary:
   
 
   
-  
-  
-
-  
-    extends <a href="../../../../../java/com/zuora/api/fault/ApiFault.html">ApiFault</a><br/>
+    extends DefaultOperatorVisitor<br/>
   
   
   
 
   
-  
-      implements 
-      
-        Serializable 
-      
   
   
 
@@ -473,7 +450,7 @@ Summary:
 
     <tr>
         
-        <td colspan="4" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -481,7 +458,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../../java/com/zuora/api/object/Dynamic.html">com.zuora.api.object.Dynamic</a></td>
+        <td colspan="2" class="jd-inheritance-class-cell">org.mule.common.query.DefaultOperatorVisitor</td>
     </tr>
     
 
@@ -491,19 +468,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../java/com/zuora/api/fault/ApiFault.html">com.zuora.api.fault.ApiFault</a></td>
-    </tr>
-    
-
-    <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
-        
-        <td colspan="1" class="jd-inheritance-class-cell">com.zuora.api.fault.MalformedQueryFault</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.modules.zuora.ZuoraModule.ZuoraOperatorVisitor</td>
     </tr>
     
 
@@ -517,23 +482,6 @@ Summary:
 
 <div class="jd-descr">
 
-
-<h2>Class Overview</h2>
-<p><p>Java class for MalformedQueryFault complex type.
- 
- <p>The following schema fragment specifies the expected content contained within this class.
- 
- <pre>
- &lt;complexType name="MalformedQueryFault">
-   &lt;complexContent>
-     &lt;extension base="{http://fault.api.zuora.com/}ApiFault">
-     &lt;/extension>
-   &lt;/complexContent>
- &lt;/complexType>
- </pre>
- 
- 
-</p>
 
 
 
@@ -573,22 +521,6 @@ Summary:
 
 
 
-<!-- =========== ENUM CONSTANT SUMMARY =========== -->
-<table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
-
-
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">long</td>
-        <td class="jd-linkcol"><a href="../../../../../com/zuora/api/fault/MalformedQueryFault.html#serialVersionUID">serialVersionUID</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-
-</table>
-
-
 
 
 
@@ -601,23 +533,65 @@ Summary:
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-com.zuora.api.fault.ApiFault" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-com.zuora.api.fault.ApiFault-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.common.query.DefaultOperatorVisitor" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-org.mule.common.query.DefaultOperatorVisitor-trigger"
           src="../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>From class
-<a href="../../../../../com/zuora/api/fault/ApiFault.html">com.zuora.api.fault.ApiFault</a>
-<div id="inherited-constants-com.zuora.api.fault.ApiFault">
-  <div id="inherited-constants-com.zuora.api.fault.ApiFault-list"
+org.mule.common.query.DefaultOperatorVisitor
+<div id="inherited-constants-org.mule.common.query.DefaultOperatorVisitor">
+  <div id="inherited-constants-org.mule.common.query.DefaultOperatorVisitor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-constants-com.zuora.api.fault.ApiFault-summary" style="display: none;">
+  <div id="inherited-constants-org.mule.common.query.DefaultOperatorVisitor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
     
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">long</td>
-        <td class="jd-linkcol"><a href="../../../../../com/zuora/api/fault/ApiFault.html#serialVersionUID">serialVersionUID</a></td>
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">EQUALS</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">GREATER</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">GREATER_OR_EQUALS</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">LESS</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">LESS_OR_EQUALS</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">LIKE</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">NOT_EQUALS</td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
@@ -632,74 +606,12 @@ Summary:
 
 
 
-
-
 </table>
 
 
 
 
 
-
-
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="inhfields" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Fields</div></th></tr>
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-com.zuora.api.fault.ApiFault" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-com.zuora.api.fault.ApiFault-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From class
-<a href="../../../../../com/zuora/api/fault/ApiFault.html">com.zuora.api.fault.ApiFault</a>
-<div id="inherited-fields-com.zuora.api.fault.ApiFault">
-  <div id="inherited-fields-com.zuora.api.fault.ApiFault-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-fields-com.zuora.api.fault.ApiFault-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          <a href="../../../../../java/com/zuora/api/ErrorCode.html">ErrorCode</a></nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/fault/ApiFault.html#faultCode">faultCode</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/fault/ApiFault.html#faultMessage">faultMessage</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-
-
-
-
-
-</table>
 
 
 
@@ -720,7 +632,7 @@ Summary:
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/fault/MalformedQueryFault.html#MalformedQueryFault()">MalformedQueryFault</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/zuora/ZuoraModule.ZuoraOperatorVisitor.html#ZuoraModule.ZuoraOperatorVisitor()">ZuoraModule.ZuoraOperatorVisitor</a></span>()</nobr>
         
   </td></tr>
 
@@ -731,6 +643,63 @@ Summary:
 
 
 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/zuora/ZuoraModule.ZuoraOperatorVisitor.html#lessOperator()">lessOperator</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/zuora/ZuoraModule.ZuoraOperatorVisitor.html#lessOrEqualsOperator()">lessOrEqualsOperator</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/modules/zuora/ZuoraModule.ZuoraOperatorVisitor.html#notEqualsOperator()">notEqualsOperator</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
 
 
 
@@ -746,19 +715,19 @@ Summary:
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.zuora.api.fault.ApiFault" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-com.zuora.api.fault.ApiFault-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.common.query.DefaultOperatorVisitor" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.common.query.DefaultOperatorVisitor-trigger"
           src="../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From class
 
-  <a href="../../../../../com/zuora/api/fault/ApiFault.html">com.zuora.api.fault.ApiFault</a>
+  org.mule.common.query.DefaultOperatorVisitor
 
-<div id="inherited-methods-com.zuora.api.fault.ApiFault">
-  <div id="inherited-methods-com.zuora.api.fault.ApiFault-list"
+<div id="inherited-methods-org.mule.common.query.DefaultOperatorVisitor">
+  <div id="inherited-methods-org.mule.common.query.DefaultOperatorVisitor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-com.zuora.api.fault.ApiFault-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.common.query.DefaultOperatorVisitor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -771,142 +740,10 @@ From class
             
             
             
-            <a href="../../../../../java/com/zuora/api/ErrorCode.html">ErrorCode</a></nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/fault/ApiFault.html#getFaultCode()">getFaultCode</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the faultCode property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/fault/ApiFault.html#getFaultMessage()">getFaultMessage</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Gets the value of the faultMessage property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/fault/ApiFault.html#setFaultCode(com.zuora.api.ErrorCode)">setFaultCode</a></span>(<a href="../../../../../java/com/zuora/api/ErrorCode.html">ErrorCode</a> value)</nobr>
-        
-        <div class="jd-descrdiv">Sets the value of the faultCode property.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/fault/ApiFault.html#setFaultMessage(java.lang.String)">setFaultMessage</a></span>(String value)</nobr>
-        
-        <div class="jd-descrdiv">Sets the value of the faultMessage property.</div>
-  
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.zuora.api.object.Dynamic" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-com.zuora.api.object.Dynamic-trigger"
-          src="../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From class
-
-  <a href="../../../../../com/zuora/api/object/Dynamic.html">com.zuora.api.object.Dynamic</a>
-
-<div id="inherited-methods-com.zuora.api.object.Dynamic">
-  <div id="inherited-methods-com.zuora.api.object.Dynamic-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-com.zuora.api.object.Dynamic-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            List&lt;Element&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getAny()">getAny</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Answers the dynamic property elements.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getCustomField(java.lang.String)">getCustomField</a></span>(String name)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#setCustomField(java.lang.String, java.lang.Object)">setCustomField</a></span>(String name, Object value)</nobr>
+        <span class="sympad">_dont_implement_OperatorVisitor___instead_extend_DefaultOperatorVisitor</span>()</nobr>
         
   </td></tr>
 
@@ -922,7 +759,7 @@ From class
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#toPropertyName(java.lang.String)">toPropertyName</a></span>(String name)</nobr>
+        <span class="sympad">equalsOperator</span>()</nobr>
         
   </td></tr>
 
@@ -938,7 +775,87 @@ From class
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#toString()">toString</a></span>()</nobr>
+        <span class="sympad">greaterOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">greaterOrEqualsOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">lessOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">lessOrEqualsOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">likeOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notEqualsOperator</span>()</nobr>
         
   </td></tr>
 
@@ -1152,6 +1069,158 @@ From class
 
 
 
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.common.query.expression.OperatorVisitor" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.common.query.expression.OperatorVisitor-trigger"
+          src="../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  org.mule.common.query.expression.OperatorVisitor
+
+<div id="inherited-methods-org.mule.common.query.expression.OperatorVisitor">
+  <div id="inherited-methods-org.mule.common.query.expression.OperatorVisitor-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.common.query.expression.OperatorVisitor-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_dont_implement_OperatorVisitor___instead_extend_DefaultOperatorVisitor</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equalsOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">greaterOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">greaterOrEqualsOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">lessOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">lessOrEqualsOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">likeOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notEqualsOperator</span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 </table>
 
@@ -1176,53 +1245,6 @@ From class
 <!-- Constants -->
 
 
-<!-- ========= ENUM CONSTANTS DETAIL ======== -->
-<h2>Constants</h2>
-
-
-
-
-<A NAME="serialVersionUID"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-        static 
-        final 
-        long
-      </span>
-        serialVersionUID
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                100
-                (0x0000000000000064)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-
 <!-- Fields -->
 
 
@@ -1234,7 +1256,7 @@ From class
 
 
 
-<A NAME="MalformedQueryFault()"></A>
+<A NAME="ZuoraModule.ZuoraOperatorVisitor()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1246,7 +1268,7 @@ From class
          
         
       </span>
-      <span class="sympad">MalformedQueryFault</span>
+      <span class="sympad">ZuoraModule.ZuoraOperatorVisitor</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1275,6 +1297,104 @@ From class
 
 <!-- ========= METHOD DETAIL ======== -->
 <!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="lessOperator()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">lessOperator</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="lessOrEqualsOperator()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">lessOrEqualsOperator</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="notEqualsOperator()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">notEqualsOperator</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 
 
 

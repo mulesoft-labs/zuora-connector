@@ -339,6 +339,7 @@
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/TaxationItem.html">TaxationItem</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/Usage.html">Usage</a></li>
           <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/ZObject.html">ZObject</a></li>
+          <li class="api apilevel-"><a href="../../../../../java/com/zuora/api/object/ZuoraBeanMap.html">ZuoraBeanMap</a></li>
       </ul>
     </li>
               
@@ -401,12 +402,9 @@ Summary:
 
 
 
-  <a href="#lfields">Fields</a>
-  
 
 
-
-  &#124; <a href="#pubctors">Ctors</a>
+  <a href="#pubctors">Ctors</a>
   
 
 
@@ -1116,37 +1114,6 @@ Summary:
 
 
 
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
-
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          static
-          final
-          HashSet&lt;String&gt;</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Dynamic.html#EXCLUDED_PROPERTY_NAMES">EXCLUDED_PROPERTY_NAMES</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          static
-          
-          MapObjectMapper</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../com/zuora/api/object/Dynamic.html#mom">mom</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-
-</table>
-
-
 
 
 
@@ -1194,81 +1161,10 @@ Summary:
             
             
             
-            Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#dynamicProperties()">dynamicProperties</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Answers the name and values of the dynamic properties of this object</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            List&lt;Element&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getAny()">getAny</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Answers the dynamic property elements.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getAt(java.lang.String)">getAt</a></span>(String name)</nobr>
-        
-        <div class="jd-descrdiv">Synonym of <code><a href="../../../../../java/com/zuora/api/object/Dynamic.html#getField(java.lang.String)">getField(String)</a></code> that lets groovy script users
- to access dynamic properties with the indexed brackets [] syntax.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getField(java.lang.String)">getField</a></span>(String name)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#properties()">properties</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getCustomField(java.lang.String)">getCustomField</a></span>(String name)</nobr>
         
   </td></tr>
 
@@ -1284,45 +1180,8 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#setAt(java.lang.String, java.lang.Object)">setAt</a></span>(String name, Object value)</nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#setCustomField(java.lang.String, java.lang.Object)">setCustomField</a></span>(String name, Object value)</nobr>
         
-        <div class="jd-descrdiv">Synonym of #setField(String, String) that lets groovy script users
- to set dynamic properties with the indexed brackets [] syntax.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#setField(java.lang.String, java.lang.Object)">setField</a></span>(String name, Object value)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#staticProperties()">staticProperties</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Answers the name and values of the static properties of this object</div>
-  
   </td></tr>
 
 
@@ -1355,6 +1214,24 @@ Summary:
 
 	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            List&lt;Element&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../com/zuora/api/object/Dynamic.html#getAny()">getAny</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Answers the dynamic property elements.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1609,73 +1486,6 @@ From class
 <!-- Fields -->
 
 
-<!-- ========= FIELD DETAIL ======== -->
-<h2>Fields</h2>
-
-
-
-
-<A NAME="EXCLUDED_PROPERTY_NAMES"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-        static 
-        final 
-        HashSet&lt;String&gt;
-      </span>
-        EXCLUDED_PROPERTY_NAMES
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="mom"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-        static 
-         
-        MapObjectMapper
-      </span>
-        mom
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-
 <!-- Public ctors -->
 
 
@@ -1730,80 +1540,7 @@ From class
 
 
 
-<A NAME="dynamicProperties()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;
-      </span>
-      <span class="sympad">dynamicProperties</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Answers the name and values of the dynamic properties of this object</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>the dynamic properties, as string-object pairs
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getAny()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        List&lt;Element&gt;
-      </span>
-      <span class="sympad">getAny</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Answers the dynamic property elements. Warning: this method is CXF specific and
- its usage is discouraged</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>a collection of elements, if this object has true dynamic properties
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getAt(java.lang.String)"></A>
+<A NAME="getCustomField(java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1815,53 +1552,7 @@ From class
          
         Object
       </span>
-      <span class="sympad">getAt</span>
-      <span class="normal">(String name)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Synonym of <code><a href="../../../../../java/com/zuora/api/object/Dynamic.html#getField(java.lang.String)">getField(String)</a></code> that lets groovy script users
- to access dynamic properties with the indexed brackets [] syntax.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>name</td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li><code><a href="../../../../../java/com/zuora/api/object/Dynamic.html#getField(java.lang.String)">getField(String)</a></code>
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="getField(java.lang.String)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Object
-      </span>
-      <span class="sympad">getField</span>
+      <span class="sympad">getCustomField</span>
       <span class="normal">(String name)</span>
     </h4>
       <div class="api-level">
@@ -1889,38 +1580,7 @@ From class
 </div>
 
 
-<A NAME="properties()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;
-      </span>
-      <span class="sympad">properties</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="setAt(java.lang.String, java.lang.Object)"></A>
+<A NAME="setCustomField(java.lang.String, java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1932,52 +1592,7 @@ From class
          
         void
       </span>
-      <span class="sympad">setAt</span>
-      <span class="normal">(String name, Object value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Synonym of #setField(String, String) that lets groovy script users
- to set dynamic properties with the indexed brackets [] syntax.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>name</td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>value</td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setField(java.lang.String, java.lang.Object)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setField</span>
+      <span class="sympad">setCustomField</span>
       <span class="normal">(String name, Object value)</span>
     </h4>
       <div class="api-level">
@@ -2003,42 +1618,6 @@ From class
           <td></td>
         </tr>
       </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="staticProperties()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;
-      </span>
-      <span class="sympad">staticProperties</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Answers the name and values of the static properties of this object</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>the static properties, as string-object pairs
-</li></ul>
   </div>
 
     </div>
@@ -2083,6 +1662,43 @@ From class
 
 <h2>Protected Methods</h2>
 
+
+
+<A NAME="getAny()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        List&lt;Element&gt;
+      </span>
+      <span class="sympad">getAny</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Answers the dynamic property elements. Warning: this method is CXF specific and
+ its usage is discouraged</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>a collection of elements, if this object has true dynamic properties
+</li></ul>
+  </div>
+
+    </div>
+</div>
 
 
 <A NAME="toPropertyName(java.lang.String)"></A>

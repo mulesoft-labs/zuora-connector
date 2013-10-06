@@ -384,6 +384,15 @@
   
   
   
+   
+  
+  
+
+  
+   
+  
+  
+  
   
 
   
@@ -541,7 +550,11 @@ Summary:
   
 
   
-    extends <a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a><br/>
+  
+  
+
+  
+    extends <a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a><br/>
   
   
   
@@ -568,7 +581,7 @@ Summary:
 
     <tr>
         
-        <td colspan="5" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="6" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -576,7 +589,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="4" class="jd-inheritance-class-cell">org.mule.devkit.processor.ExpressionEvaluatorSupport</td>
+        <td colspan="5" class="jd-inheritance-class-cell">org.mule.devkit.processor.ExpressionEvaluatorSupport</td>
     </tr>
     
 
@@ -586,7 +599,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="3" class="jd-inheritance-class-cell">org.mule.devkit.processor.DevkitBasedMessageProcessor</td>
+        <td colspan="4" class="jd-inheritance-class-cell">org.mule.devkit.processor.DevkitBasedMessageProcessor</td>
     </tr>
     
 
@@ -598,11 +611,27 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractConnectedProcessor.html">org.mule.modules.zuora.processors.AbstractConnectedProcessor</a></td>
+        <td colspan="3" class="jd-inheritance-class-cell">org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor</td>
     </tr>
     
 
     <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../java/org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html">org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;</td>
         
@@ -628,7 +657,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>FindMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#find(java.lang.String)">find(java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>FindMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html#find(java.lang.String, org.mule.streaming.PagingConfiguration)">find(java.lang.String, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../java/org/mule/modules/zuora/ZuoraModule.html">ZuoraModule</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -677,6 +706,8 @@ Summary:
 <table id="inhconstants" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Constants</div></th></tr>
+
+
 
 
 
@@ -837,8 +868,30 @@ org.mule.api.lifecycle.Stoppable
           protected
           
           
+          PagingConfiguration</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#_pagingConfigurationType">_pagingConfigurationType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#_zqueryType">_zqueryType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#_queryType">_queryType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#pagingConfiguration">pagingConfiguration</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -849,7 +902,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#zquery">zquery</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#query">query</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -870,16 +923,16 @@ org.mule.api.lifecycle.Stoppable
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.modules.zuora.processors.AbstractConnectedProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-org.mule.modules.zuora.processors.AbstractConnectedProcessor-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>From class
-<a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html">org.mule.modules.zuora.processors.AbstractConnectedProcessor</a>
-<div id="inherited-fields-org.mule.modules.zuora.processors.AbstractConnectedProcessor">
-  <div id="inherited-fields-org.mule.modules.zuora.processors.AbstractConnectedProcessor-list"
+<a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html">org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor</a>
+<div id="inherited-fields-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor">
+  <div id="inherited-fields-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-fields-org.mule.modules.zuora.processors.AbstractConnectedProcessor-summary" style="display: none;">
+  <div id="inherited-fields-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -890,7 +943,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#_passwordType">_passwordType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#_passwordType">_passwordType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -901,7 +954,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#_usernameType">_usernameType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#_usernameType">_usernameType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -912,7 +965,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#password">password</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#password">password</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -923,7 +976,42 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#username">username</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#username">username</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor
+<div id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor">
+  <div id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol">fetchSize</td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1084,10 +1172,10 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             
             
             
-            void</nobr>
+            Result&lt;MetaData&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#dispose()">dispose</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#auxOutputMetaData(org.mule.common.metadata.MetaData, java.lang.String)">auxOutputMetaData</a></span>(MetaData inputMetadata, String key)</nobr>
         
   </td></tr>
 
@@ -1100,13 +1188,11 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             
             
             
-            MuleEvent</nobr>
+            void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#doProcess(org.mule.api.MuleEvent)">doProcess</a></span>(MuleEvent event)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#dispose()">dispose</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Invokes the MessageProcessor.</div>
-  
   </td></tr>
 
 
@@ -1150,12 +1236,12 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             
             
             
-            void</nobr>
+            PagingDelegate</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#initialise()">initialise</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#getPagingDelegate(org.mule.api.MuleEvent, org.mule.streaming.PagingConfiguration)">getPagingDelegate</a></span>(MuleEvent event, PagingConfiguration pagingConfiguration)</nobr>
         
-        <div class="jd-descrdiv">Obtains the expression manager from the Mule context and initialises the connector.</div>
+        <div class="jd-descrdiv">Invokes the MessageProcessor.</div>
   
   </td></tr>
 
@@ -1171,9 +1257,45 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#setZquery(java.lang.Object)">setZquery</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#initialise()">initialise</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Sets zquery</div>
+        <div class="jd-descrdiv">Obtains the expression manager from the Mule context and initialises the connector.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#setPagingConfiguration(java.lang.Object)">setPagingConfiguration</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets pagingConfiguration</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/FindMessageProcessor.html#setQuery(java.lang.Object)">setQuery</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets query</div>
   
   </td></tr>
 
@@ -1227,19 +1349,19 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.modules.zuora.processors.AbstractConnectedProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.modules.zuora.processors.AbstractConnectedProcessor-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From class
 
-  <a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html">org.mule.modules.zuora.processors.AbstractConnectedProcessor</a>
+  <a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html">org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor</a>
 
-<div id="inherited-methods-org.mule.modules.zuora.processors.AbstractConnectedProcessor">
-  <div id="inherited-methods-org.mule.modules.zuora.processors.AbstractConnectedProcessor-list"
+<div id="inherited-methods-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor">
+  <div id="inherited-methods-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.modules.zuora.processors.AbstractConnectedProcessor-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.modules.zuora.processors.AbstractPagedConnectedProcessor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -1255,7 +1377,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#getPassword()">getPassword</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#getPassword()">getPassword</a></span>()</nobr>
         
         <div class="jd-descrdiv">Retrieves password
  
@@ -1275,7 +1397,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#getUsername()">getUsername</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#getUsername()">getUsername</a></span>()</nobr>
         
         <div class="jd-descrdiv">Retrieves username
  
@@ -1295,7 +1417,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#setPassword(java.lang.Object)">setPassword</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#setPassword(java.lang.Object)">setPassword</a></span>(Object value)</nobr>
         
         <div class="jd-descrdiv">Sets password</div>
   
@@ -1313,10 +1435,84 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractConnectedProcessor.html#setUsername(java.lang.Object)">setUsername</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/modules/zuora/processors/AbstractPagedConnectedProcessor.html#setUsername(java.lang.Object)">setUsername</a></span>(Object value)</nobr>
         
         <div class="jd-descrdiv">Sets username</div>
   
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor
+
+<div id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor">
+  <div id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            MuleEvent</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">doProcess</span>(MuleEvent arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            PagingDelegate&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getPagingDelegate</span>(MuleEvent arg0, PagingConfiguration arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setFetchSize</span>(String arg0)</nobr>
+        
   </td></tr>
 
 
@@ -2416,7 +2612,7 @@ From interface
 
 
 
-<A NAME="_zqueryType"></A>
+<A NAME="_pagingConfigurationType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2424,9 +2620,9 @@ From interface
         protected 
          
          
-        String
+        PagingConfiguration
       </span>
-        _zqueryType
+        _pagingConfigurationType
     </h4>
       <div class="api-level">
         
@@ -2446,7 +2642,37 @@ From interface
 
 
 
-<A NAME="zquery"></A>
+<A NAME="_queryType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        _queryType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="pagingConfiguration"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2456,7 +2682,37 @@ From interface
          
         Object
       </span>
-        zquery
+        pagingConfiguration
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="query"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Object
+      </span>
+        query
     </h4>
       <div class="api-level">
         
@@ -2540,6 +2796,50 @@ From interface
 
 
 
+<A NAME="auxOutputMetaData(org.mule.common.metadata.MetaData, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        Result&lt;MetaData&gt;
+      </span>
+      <span class="sympad">auxOutputMetaData</span>
+      <span class="normal">(MetaData inputMetadata, String key)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>inputMetadata</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>key</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="dispose()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2566,55 +2866,6 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="doProcess(org.mule.api.MuleEvent)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        MuleEvent
-      </span>
-      <span class="sympad">doProcess</span>
-      <span class="normal">(MuleEvent event)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Invokes the MessageProcessor.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>event</td>
-          <td>MuleEvent to be processed</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th>Exception</td>
-            <td></td>
-        </tr>
-      </table>
-  </div>
 
     </div>
 </div>
@@ -2691,6 +2942,59 @@ From interface
 </div>
 
 
+<A NAME="getPagingDelegate(org.mule.api.MuleEvent, org.mule.streaming.PagingConfiguration)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        PagingDelegate
+      </span>
+      <span class="sympad">getPagingDelegate</span>
+      <span class="normal">(MuleEvent event, PagingConfiguration pagingConfiguration)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Invokes the MessageProcessor.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>event</td>
+          <td>MuleEvent to be processed</td>
+        </tr>
+        <tr>
+          <th>pagingConfiguration</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>Exception</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="initialise()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2731,7 +3035,7 @@ From interface
 </div>
 
 
-<A NAME="setZquery(java.lang.Object)"></A>
+<A NAME="setPagingConfiguration(java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2743,7 +3047,7 @@ From interface
          
         void
       </span>
-      <span class="sympad">setZquery</span>
+      <span class="sympad">setPagingConfiguration</span>
       <span class="normal">(Object value)</span>
     </h4>
       <div class="api-level">
@@ -2756,7 +3060,48 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets zquery</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets pagingConfiguration</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Value to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setQuery(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setQuery</span>
+      <span class="normal">(Object value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets query</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

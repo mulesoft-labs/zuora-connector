@@ -419,8 +419,6 @@
   
   
   
-   
-  
   
 
   
@@ -453,9 +451,6 @@ Summary:
   &#124; <a href="#lfields">Fields</a>
   
 
-
-  &#124; <a href="#inhfields">Inherited Fields</a>
-  
 
 
   &#124; <a href="#pubctors">Ctors</a>
@@ -571,11 +566,16 @@ Summary:
        &lt;sequence>
          &lt;element name="AmendmentIds" type="{http://api.zuora.com/}ID" maxOccurs="unbounded" minOccurs="0"/>
          &lt;element name="Errors" type="{http://api.zuora.com/}Error" maxOccurs="unbounded" minOccurs="0"/>
+         &lt;element name="GatewayResponse" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="GatewayResponseCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          &lt;element name="InvoiceDatas" type="{http://api.zuora.com/}InvoiceData" maxOccurs="unbounded" minOccurs="0"/>
          &lt;element name="InvoiceId" type="{http://api.zuora.com/}ID" minOccurs="0"/>
          &lt;element name="PaymentId" type="{http://api.zuora.com/}ID" minOccurs="0"/>
          &lt;element name="PaymentTransactionNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         &lt;element name="SubscriptionId" type="{http://api.zuora.com/}ID" minOccurs="0"/>
          &lt;element name="Success" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+         &lt;element name="TotalDeltaMrr" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
+         &lt;element name="TotalDeltaTcv" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/>
        &lt;/sequence>
      &lt;/restriction>
    &lt;/complexContent>
@@ -676,6 +676,28 @@ Summary:
           protected
           
           
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#gatewayResponse">gatewayResponse</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#gatewayResponseCode">gatewayResponseCode</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
           List&lt;<a href="../../../../java/com/zuora/api/InvoiceData.html">InvoiceData</a>&gt;</nobr></td>
           <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#invoiceDatas">invoiceDatas</a></td>
           <td class="jd-descrcol" width="100%"></td>
@@ -720,75 +742,50 @@ Summary:
           protected
           
           
-          Boolean</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#success">success</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-
-</table>
-
-
-
-
-
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="inhfields" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Fields</div></th></tr>
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-com.zuora.api.object.Dynamic" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-com.zuora.api.object.Dynamic-trigger"
-          src="../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From class
-<a href="../../../../com/zuora/api/object/Dynamic.html">com.zuora.api.object.Dynamic</a>
-<div id="inherited-fields-com.zuora.api.object.Dynamic">
-  <div id="inherited-fields-com.zuora.api.object.Dynamic-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-fields-com.zuora.api.object.Dynamic-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          static
-          final
-          HashSet&lt;String&gt;</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/object/Dynamic.html#EXCLUDED_PROPERTY_NAMES">EXCLUDED_PROPERTY_NAMES</a></td>
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#subscriptionId">subscriptionId</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
-          private
-          static
+          protected
           
-          MapObjectMapper</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../com/zuora/api/object/Dynamic.html#mom">mom</a></td>
+          
+          Boolean</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#success">success</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          BigDecimal</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#totalDeltaMrr">totalDeltaMrr</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          BigDecimal</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../com/zuora/api/AmendResult.html#totalDeltaTcv">totalDeltaTcv</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+
 </table>
-  </div>
-</div>
-</td></tr>
 
 
 
-
-
-
-</table>
 
 
 
@@ -859,6 +856,42 @@ Summary:
         <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getErrors()">getErrors</a></span>()</nobr>
         
         <div class="jd-descrdiv">Gets the value of the errors property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getGatewayResponse()">getGatewayResponse</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the gatewayResponse property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getGatewayResponseCode()">getGatewayResponseCode</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the gatewayResponseCode property.</div>
   
   </td></tr>
 
@@ -943,6 +976,60 @@ Summary:
             
             
             
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getSubscriptionId()">getSubscriptionId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the subscriptionId property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            BigDecimal</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getTotalDeltaMrr()">getTotalDeltaMrr</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the totalDeltaMrr property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            BigDecimal</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#getTotalDeltaTcv()">getTotalDeltaTcv</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the totalDeltaTcv property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             Boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -954,7 +1041,43 @@ Summary:
 
 
 	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setGatewayResponse(java.lang.String)">setGatewayResponse</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the gatewayResponse property.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setGatewayResponseCode(java.lang.String)">setGatewayResponseCode</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the gatewayResponseCode property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -972,7 +1095,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -990,7 +1113,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1003,6 +1126,24 @@ Summary:
         <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setPaymentTransactionNumber(java.lang.String)">setPaymentTransactionNumber</a></span>(String value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the paymentTransactionNumber property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setSubscriptionId(java.lang.String)">setSubscriptionId</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the subscriptionId property.</div>
   
   </td></tr>
 
@@ -1021,6 +1162,42 @@ Summary:
         <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setSuccess(java.lang.Boolean)">setSuccess</a></span>(Boolean value)</nobr>
         
         <div class="jd-descrdiv">Sets the value of the success property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setTotalDeltaMrr(java.math.BigDecimal)">setTotalDeltaMrr</a></span>(BigDecimal value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the totalDeltaMrr property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/AmendResult.html#setTotalDeltaTcv(java.math.BigDecimal)">setTotalDeltaTcv</a></span>(BigDecimal value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the totalDeltaTcv property.</div>
   
   </td></tr>
 
@@ -1067,24 +1244,6 @@ From class
             
             
             
-            Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#dynamicProperties()">dynamicProperties</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Answers the name and values of the dynamic properties of this object</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             List&lt;Element&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1096,25 +1255,6 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#getAt(java.lang.String)">getAt</a></span>(String name)</nobr>
-        
-        <div class="jd-descrdiv">Synonym of <code><a href="../../../../java/com/zuora/api/object/Dynamic.html#getField(java.lang.String)">getField(String)</a></code> that lets groovy script users
- to access dynamic properties with the indexed brackets [] syntax.</div>
-  
-  </td></tr>
-
-
-	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
@@ -1125,43 +1265,8 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#getField(java.lang.String)">getField</a></span>(String name)</nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#getCustomField(java.lang.String)">getCustomField</a></span>(String name)</nobr>
         
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#properties()">properties</a></span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#setAt(java.lang.String, java.lang.Object)">setAt</a></span>(String name, Object value)</nobr>
-        
-        <div class="jd-descrdiv">Synonym of #setField(String, String) that lets groovy script users
- to set dynamic properties with the indexed brackets [] syntax.</div>
-  
   </td></tr>
 
 
@@ -1176,31 +1281,13 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#setField(java.lang.String, java.lang.Object)">setField</a></span>(String name, Object value)</nobr>
+        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#setCustomField(java.lang.String, java.lang.Object)">setCustomField</a></span>(String name, Object value)</nobr>
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Collection&lt;Entry&lt;String,&nbsp;Object&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../com/zuora/api/object/Dynamic.html#staticProperties()">staticProperties</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Answers the name and values of the static properties of this object</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1216,7 +1303,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1580,6 +1667,66 @@ From class
 
 
 
+<A NAME="gatewayResponse"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        gatewayResponse
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="gatewayResponseCode"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        gatewayResponseCode
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="invoiceDatas"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1700,6 +1847,36 @@ From class
 
 
 
+<A NAME="subscriptionId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        subscriptionId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="success"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1711,6 +1888,66 @@ From class
         Boolean
       </span>
         success
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="totalDeltaMrr"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        BigDecimal
+      </span>
+        totalDeltaMrr
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="totalDeltaTcv"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        BigDecimal
+      </span>
+        totalDeltaTcv
     </h4>
       <div class="api-level">
         
@@ -1887,6 +2124,82 @@ From class
 </div>
 
 
+<A NAME="getGatewayResponse()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getGatewayResponse</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the gatewayResponse property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getGatewayResponseCode()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getGatewayResponseCode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the gatewayResponseCode property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="getInvoiceDatas()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2052,6 +2365,120 @@ From class
 </div>
 
 
+<A NAME="getSubscriptionId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getSubscriptionId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the subscriptionId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTotalDeltaMrr()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        BigDecimal
+      </span>
+      <span class="sympad">getTotalDeltaMrr</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the totalDeltaMrr property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     BigDecimal
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTotalDeltaTcv()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        BigDecimal
+      </span>
+      <span class="sympad">getTotalDeltaTcv</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the totalDeltaTcv property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     BigDecimal
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="isSuccess()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2084,6 +2511,92 @@ From class
      Boolean
      
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setGatewayResponse(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setGatewayResponse</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the gatewayResponse property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setGatewayResponseCode(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setGatewayResponseCode</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the gatewayResponseCode property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -2219,6 +2732,49 @@ From class
 </div>
 
 
+<A NAME="setSubscriptionId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setSubscriptionId</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the subscriptionId property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="setSuccess(java.lang.Boolean)"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2252,6 +2808,92 @@ From class
           <th>value</td>
           <td>Allowed object is
      Boolean
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTotalDeltaMrr(java.math.BigDecimal)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setTotalDeltaMrr</span>
+      <span class="normal">(BigDecimal value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the totalDeltaMrr property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     BigDecimal
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTotalDeltaTcv(java.math.BigDecimal)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setTotalDeltaTcv</span>
+      <span class="normal">(BigDecimal value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the totalDeltaTcv property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     BigDecimal
      
 </td>
         </tr>
