@@ -32,6 +32,7 @@ import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.ValidateConnection;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
+import org.mule.api.annotations.licensing.RequiresEnterpriseLicense;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
@@ -62,6 +63,7 @@ import com.zuora.api.object.ZObject;
  * @author MuleSoft, Inc.
  */
 @Connector(name = "zuora", friendlyName = "Zuora", minMuleVersion="3.4")
+@RequiresEnterpriseLicense
 public class ZuoraModule implements MuleContextAware {
 
     private static final String API_URL = "/apps/services/a/43.0";
