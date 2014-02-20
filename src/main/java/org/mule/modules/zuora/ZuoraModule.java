@@ -273,7 +273,7 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> create(@MetaDataKeyParam String type, List<Map<String,Object>> zobjects)
+    public List<SaveResult> create(@MetaDataKeyParam String type, @Optional @Default("#[payload]") List<Map<String,Object>> zobjects)
             throws Exception {
         return client.create(toPojos(type, zobjects));
     }
@@ -320,7 +320,7 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> generate(@MetaDataKeyParam String type, List<Map<String,Object>> zobjects)
+    public List<SaveResult> generate(@MetaDataKeyParam String type, @Optional @Default("#[payload]") List<Map<String,Object>> zobjects)
             throws Exception {
         return client.generate(toPojos(type, zobjects));
     }
@@ -339,7 +339,7 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SaveResult> update(@MetaDataKeyParam String type, List<Map<String,Object>> zobjects)
+    public List<SaveResult> update(@MetaDataKeyParam String type, @Optional @Default("#[payload]") List<Map<String,Object>> zobjects)
             throws Exception {
         return client.update(toPojos(type, zobjects));
     }
