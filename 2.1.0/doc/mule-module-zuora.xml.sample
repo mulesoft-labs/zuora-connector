@@ -1,0 +1,54 @@
+<!-- BEGIN_INCLUDE(zuora:subscribe) -->
+    <zuora:subscribe>
+        <zuora:subscriptions ref="#[variable:subscriptions]"/>
+    </zuora:subscribe>
+<!-- END_INCLUDE(zuora:subscribe) -->
+<!-- BEGIN_INCLUDE(zuora:create) -->
+ <zuora:create type="Account">
+    <zuora:zobjects ref="#[variable:zobjects]"/>
+</zuora:create>
+<!-- END_INCLUDE(zuora:create) -->
+<!-- BEGIN_INCLUDE(zuora:generate) -->
+<zuora:generate type="Account">
+    <zuora:zobjects ref="#[variable:zobjects]"/>
+</zuora:generate>
+<!-- END_INCLUDE(zuora:generate) -->
+<!-- BEGIN_INCLUDE(zuora:update) -->
+<zuora:update type="Account">
+    <zuora:zobjects ref="#[variable:zobjects]"/>
+</zuora:update>
+<!-- END_INCLUDE(zuora:update) -->
+<!-- BEGIN_INCLUDE(zuora:delete) -->
+<zuora:delete type="Account">
+    <zuora:ids ref="#[variable:ids]"/>
+</zuora:delete>
+<!-- END_INCLUDE(zuora:delete) -->
+<!-- BEGIN_INCLUDE(zuora:find) -->
+<zuora:find query="#[header:queryString]" />
+<!-- END_INCLUDE(zuora:find) -->
+<!-- BEGIN_INCLUDE(zuora:product-profile) -->
+<zuora:product-profile productId="001..."/>
+<!-- END_INCLUDE(zuora:product-profile) -->
+<!-- BEGIN_INCLUDE(zuora:get-user-info) -->
+<zuora:get-user-info />
+<!-- END_INCLUDE(zuora:get-user-info) -->
+<!-- BEGIN_INCLUDE(zuora:amend) -->
+<zuora:amend>
+    <zuora:amendaments ref="#[header:amendamentsList]"/>
+</zuora:amend>
+<!-- END_INCLUDE(zuora:amend) -->
+<!-- BEGIN_INCLUDE(zuora:account-profile) -->
+<zuora:account-profile accountId="12"/>
+<!-- END_INCLUDE(zuora:account-profile) -->
+<!-- BEGIN_INCLUDE(zuora:get-invoice) -->
+<zuora:get-invoice invoiceId="0012..."/>
+<!-- END_INCLUDE(zuora:get-invoice) -->
+<!-- BEGIN_INCLUDE(zuora:batch-process-export-file) -->
+<zuora:batch-process-export-file exportId="SOMEID" batchSize="100" callbackFlow="some-flow-name" />
+<!-- END_INCLUDE(zuora:batch-process-export-file) -->
+<!-- BEGIN_INCLUDE(zuora:get-export-file-stream) -->
+<zuora:get-export-file-stream exportId="SOMEID" />
+<!-- END_INCLUDE(zuora:get-export-file-stream) -->
+<!-- BEGIN_INCLUDE(zuora:get-export-file-content) -->
+<zuora:get-export-file-content exportId="SOMEID" />
+<!-- END_INCLUDE(zuora:get-export-file-content) -->
