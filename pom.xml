@@ -36,10 +36,9 @@
                          <id>generate-sources</id>
                          <phase>validate</phase>
                          <configuration>
-                             <extension>true</extension>
                              <wsdlOptions>
                                  <wsdlOption>
-                                     <wsdl>${basedir}/src/main/resources/zuora-48.modified.wsdl</wsdl>
+                                     <wsdl>${basedir}/src/main/resources/zuora.a.53.0.modified.wsdl</wsdl>
                                      <bindingFiles>
                                          <bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
                                      </bindingFiles>
