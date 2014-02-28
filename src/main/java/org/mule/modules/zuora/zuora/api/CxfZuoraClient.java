@@ -67,7 +67,7 @@ public class CxfZuoraClient implements ZuoraClient<Exception> {
         }
 
         ZuoraService serviceLocator = new ZuoraService(getClass().getResource(
-                "/zuora.a.43.0-modified.wsdl"));
+                "/zuora.a.53.0-modified.wsdl"));
         this.soap = serviceLocator.getPort(Soap.class);
 
         BindingProvider bindingProvider = ((BindingProvider) this.soap);

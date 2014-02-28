@@ -16,6 +16,7 @@ import com.zuora.api.object.Amendment;
 import com.zuora.api.object.CommunicationProfile;
 import com.zuora.api.object.Contact;
 import com.zuora.api.object.Export;
+import com.zuora.api.object.GatewayOption;
 import com.zuora.api.object.Import;
 import com.zuora.api.object.Invoice;
 import com.zuora.api.object.InvoiceAdjustment;
@@ -33,6 +34,7 @@ import com.zuora.api.object.RatePlan;
 import com.zuora.api.object.RatePlanCharge;
 import com.zuora.api.object.RatePlanChargeTier;
 import com.zuora.api.object.Refund;
+import com.zuora.api.object.CreditBalanceAdjustment;
 import com.zuora.api.object.RefundInvoicePayment;
 import com.zuora.api.object.RefundTransactionLog;
 import com.zuora.api.object.Subscription;
@@ -66,13 +68,13 @@ public enum ZObjectType
     Usage(Usage.class),
     Refund(Refund.class),
     RefundInvoicePayment(RefundInvoicePayment.class),
+    CreditBalanceAdjustment(CreditBalanceAdjustment.class),
     Export(Export.class),
     InvoiceItemAdjustment(InvoiceItemAdjustment.class),
     CommunicationProfile(CommunicationProfile.class),
     RefundTransactionLog(RefundTransactionLog.class),
     PaymentTransactionLog(PaymentTransactionLog.class),
-//TODO: This type is Dynamic...The connector need to be analyzed and take into account this type. Mayor refactor possibly.
-//    GatewayOption(GatewayOptionData.class), 
+    GatewayOption(GatewayOption.class),
     Contact(Contact.class),
     PaymentMethod(PaymentMethod.class),
     Subscription(Subscription.class);

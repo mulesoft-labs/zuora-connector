@@ -16,6 +16,7 @@ package org.mule.modules.zuora;
 import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.*;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -42,6 +43,7 @@ import org.mule.common.metadata.datatype.DataType;
 import org.mule.common.query.DefaultOperatorVisitor;
 import org.mule.common.query.DsqlQueryVisitor;
 import org.mule.common.query.DsqlQuery;
+import org.mule.modules.zuora.zobject.ZObjectType;
 import org.mule.modules.zuora.zuora.api.CxfZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClient;
 import org.mule.modules.zuora.zuora.api.RestZuoraClientImpl;
@@ -122,36 +124,20 @@ public class ZuoraModule implements MuleContextAware {
     @MetaDataKeyRetriever
     public List<MetaDataKey> getMetadataKeys() {
         List<MetaDataKey> keys = new ArrayList<MetaDataKey>();
-        
-        keys.add(createKey(InvoicePayment.class));
-        keys.add(createKey(Import.class));
-//        keys.add(createKey(TaxationItem.class));
-        keys.add(createKey(Account.class));
-        keys.add(createKey(InvoiceItem.class));
-        keys.add(createKey(InvoiceItemAdjustment.class));
-        keys.add(createKey(InvoiceAdjustment.class));
-        keys.add(createKey(RefundInvoicePayment.class));
-        keys.add(createKey(Payment.class));
-        keys.add(createKey(Usage.class));
-        keys.add(createKey(RefundTransactionLog.class));
-        keys.add(createKey(ProductRatePlanCharge.class));
-        keys.add(createKey(Amendment.class));
-        keys.add(createKey(CommunicationProfile.class));
-        keys.add(createKey(PaymentTransactionLog.class));
-        keys.add(createKey(GatewayOption.class));
-        keys.add(createKey(ProductRatePlan.class));
-        keys.add(createKey(ProductRatePlanChargeTier.class));
-        keys.add(createKey(RatePlan.class));
-        keys.add(createKey(RatePlanCharge.class));
-        keys.add(createKey(Product.class));
-//        keys.add(createKey(CreditBalanceAdjustment.class));
-        keys.add(createKey(Contact.class));
-        keys.add(createKey(Invoice.class));
-        keys.add(createKey(PaymentMethod.class));
-        keys.add(createKey(Export.class));
-        keys.add(createKey(Subscription.class));
-        keys.add(createKey(RatePlanChargeTier.class));
-        keys.add(createKey(Refund.class));
+        Class<?> c = ZObjectType.class;
+
+        Field[] flds = c.getDeclaredFields();
+        for (Field f : flds) {
+            if (f.isEnumConstant()) {
+                Object value = null;
+                try {
+                    value = f.get(c);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException("Error while retrieving keys.",e);
+                }
+                keys.add(createKey(((ZObjectType)value).getZObjectClass()));
+            }
+        }
         
         return keys;
     }
@@ -214,6 +200,8 @@ public class ZuoraModule implements MuleContextAware {
             restClient = new RestZuoraClientImpl(this.endpoint + REST_API_URL);
             this.username = username;
             this.password = password;
+            //Dummy call to make sure credentials are ok.
+            getUserInfo();
         } catch (UnexpectedErrorFault e) {
             throw new ConnectionException(ConnectionExceptionCode.UNKNOWN, e.getFaultInfo().getFaultCode().value(), e.getFaultInfo().getFaultMessage());
         } catch (LoginFault e) {
@@ -222,6 +210,8 @@ public class ZuoraModule implements MuleContextAware {
             } else {
                 throw new ConnectionException(ConnectionExceptionCode.UNKNOWN, e.getFaultInfo().getFaultCode().value(), e.getFaultInfo().getFaultMessage());
             }
+        } catch (Exception e) {
+            throw new ConnectionException(ConnectionExceptionCode.UNKNOWN, ConnectionExceptionCode.UNKNOWN.toString(), e.getMessage());
         }
     }
 
