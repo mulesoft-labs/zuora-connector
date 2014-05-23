@@ -402,8 +402,11 @@ public class ZuoraModule implements MuleContextAware {
 
                     List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
                     for (ZObject o : result.getRecords()) {
-                        maps.add(new ZuoraBeanMap(o));
+                        if (o != null) {
+                            maps.add(new ZuoraBeanMap(o));
+                        }
                     }
+
                     return maps;
 
                 } catch (Exception e) {
