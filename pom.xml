@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.5.1</version>
+        <version>3.5.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -14,8 +14,8 @@
     <name>Mule Zuora Connector</name>
 
     <properties>
-        <cxf.version>2.5.1</cxf.version>
-        <mule.module.cxf.version>3.4.0</mule.module.cxf.version>
+        <cxf.version>2.5.9</cxf.version>
+        <mule.module.cxf.version>3.5.0</mule.module.cxf.version>
         <mule.modules.utils.version>1.1.2</mule.modules.utils.version>
         <jersey.version>1.16</jersey.version>
         <category>Standard</category>
@@ -43,6 +43,10 @@
                                          <bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
                                      </bindingFiles>
                                      <autoNameResolution>true</autoNameResolution>
+                                     <extraargs>
+                                         <extraarg>-xjc-Xcollection-setter-injector</extraarg>
+                                         <extraarg>-xjc-Xbg</extraarg>
+                                     </extraargs>
                                  </wsdlOption>
                              </wsdlOptions>
                          </configuration>
@@ -51,11 +55,31 @@
                          </goals>
                      </execution>
                  </executions>
+                 <dependencies>
+                     <!-- Boolean getters -->
+                     <dependency>
+                         <groupId>org.apache.cxf.xjcplugins</groupId>
+                         <artifactId>cxf-xjc-boolean</artifactId>
+                         <version>2.6.0</version>
+                     </dependency>
+                     <!-- Collection Setters -->
+                     <dependency>
+                         <groupId>net.java.dev.vcc.thirdparty</groupId>
+                         <artifactId>collection-setter-injector</artifactId>
+                         <version>0.5.0-1</version>
+                     </dependency>
+                 </dependencies>
              </plugin>
          </plugins>
+
      </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jdto</groupId>
+            <artifactId>jdto</artifactId>
+            <version>1.4</version>
+        </dependency>
         <dependency>
             <groupId>com.mulesoft.licm</groupId>
             <artifactId>licm</artifactId>
@@ -128,7 +152,7 @@
     
     <repositories>
         <repository>
-            <id>mule</id>
+            <id>mule-ee</id>
             <name>EE Repository Releases</name>
             <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <layout>default</layout>
@@ -140,16 +164,16 @@
             <layout>default</layout>
         </repository>
         <repository>
-            <id>mule-ee</id>
+            <id>dev.ee</id>
             <name>EE Repository Releases</name>
-            <url>http://repository-master.mulesoft.org/nexus/content/repositories/private/</url>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
             <layout>default</layout>
        </repository>
     </repositories>
     
     <pluginRepositories>
         <pluginRepository>
-            <id>mule</id>
+            <id>mule-ee</id>
             <name>EE Repository Releases</name>
             <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <layout>default</layout>
@@ -160,12 +184,6 @@
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </pluginRepository>
-        <pluginRepository>
-            <id>mule-ee</id>
-            <name>EE Repository Releases</name>
-            <url>http://repository-master.mulesoft.org/nexus/content/repositories/private/</url>
-            <layout>default</layout>
-       </pluginRepository>
     </pluginRepositories>
 
     <scm>
