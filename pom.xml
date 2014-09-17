@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.5.0-cascade</version>
+        <version>3.5.1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -128,7 +128,7 @@
     
     <repositories>
         <repository>
-            <id>mule-ee</id>
+            <id>mule</id>
             <name>EE Repository Releases</name>
             <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <layout>default</layout>
@@ -140,16 +140,16 @@
             <layout>default</layout>
         </repository>
         <repository>
-            <id>dev.ee</id>
+            <id>mule-ee</id>
             <name>EE Repository Releases</name>
-            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+            <url>http://repository-master.mulesoft.org/nexus/content/repositories/private/</url>
             <layout>default</layout>
        </repository>
     </repositories>
     
     <pluginRepositories>
         <pluginRepository>
-            <id>mule-ee</id>
+            <id>mule</id>
             <name>EE Repository Releases</name>
             <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <layout>default</layout>
@@ -161,9 +161,9 @@
             <layout>default</layout>
         </pluginRepository>
         <pluginRepository>
-            <id>dev.ee</id>
+            <id>mule-ee</id>
             <name>EE Repository Releases</name>
-            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+            <url>http://repository-master.mulesoft.org/nexus/content/repositories/private/</url>
             <layout>default</layout>
        </pluginRepository>
     </pluginRepositories>
