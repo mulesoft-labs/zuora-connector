@@ -13,7 +13,6 @@
  */
 package org.mule.modules.zuora;
 
-import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -22,14 +21,12 @@ import java.util.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.zuora.api.*;
-import net.sf.staccatocommons.collections.Lists;
 import org.apache.commons.io.IOUtils;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleException;
 import org.mule.api.annotations.*;
-import org.mule.api.annotations.Query;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.licensing.RequiresEnterpriseLicense;
@@ -39,6 +36,8 @@ import org.mule.api.annotations.param.MetaDataKeyParam;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.MuleContextAware;
 import org.mule.common.metadata.*;
+import org.mule.common.metadata.builder.DefaultMetaDataBuilder;
+import org.mule.common.metadata.builder.PojoMetaDataBuilder;
 import org.mule.common.metadata.datatype.DataType;
 import org.mule.common.query.DefaultOperatorVisitor;
 import org.mule.common.query.DsqlQueryVisitor;
@@ -51,37 +50,8 @@ import org.mule.modules.zuora.zuora.api.SessionTimedOutException;
 import org.mule.modules.zuora.zuora.api.ZuoraClient;
 import org.mule.modules.zuora.zuora.api.ZuoraException;
 import org.mule.streaming.PagingConfiguration;
-import org.mule.streaming.PagingDelegate;
-import org.mule.streaming.PagingDelegateWrapper;
-import org.springframework.beans.BeanUtils;
+import org.mule.streaming.ProviderAwarePagingDelegate;
 
-import com.zuora.api.object.Account;
-import com.zuora.api.object.Amendment;
-import com.zuora.api.object.CommunicationProfile;
-import com.zuora.api.object.Contact;
-import com.zuora.api.object.Export;
-import com.zuora.api.object.GatewayOption;
-import com.zuora.api.object.Import;
-import com.zuora.api.object.Invoice;
-import com.zuora.api.object.InvoiceAdjustment;
-import com.zuora.api.object.InvoiceItem;
-import com.zuora.api.object.InvoiceItemAdjustment;
-import com.zuora.api.object.InvoicePayment;
-import com.zuora.api.object.Payment;
-import com.zuora.api.object.PaymentMethod;
-import com.zuora.api.object.PaymentTransactionLog;
-import com.zuora.api.object.Product;
-import com.zuora.api.object.ProductRatePlan;
-import com.zuora.api.object.ProductRatePlanCharge;
-import com.zuora.api.object.ProductRatePlanChargeTier;
-import com.zuora.api.object.RatePlan;
-import com.zuora.api.object.RatePlanCharge;
-import com.zuora.api.object.RatePlanChargeTier;
-import com.zuora.api.object.Refund;
-import com.zuora.api.object.RefundInvoicePayment;
-import com.zuora.api.object.RefundTransactionLog;
-import com.zuora.api.object.Subscription;
-import com.zuora.api.object.Usage;
 import com.zuora.api.object.ZObject;
 import com.zuora.api.object.ZuoraBeanMap;
 
@@ -149,19 +119,8 @@ public class ZuoraModule implements MuleContextAware {
     @MetaDataRetriever 
     public MetaData getMetadata(MetaDataKey key) throws Exception {
 		Class<?> cls = getClassForType(key.getId());
-		
-		PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(cls);
-		
-		Map<String, MetaDataModel> fieldMap = new HashMap<String, MetaDataModel>();
-		for (PropertyDescriptor pd : pds) {
-			if (pd.getReadMethod() != null && pd.getWriteMethod() != null) {
-				fieldMap.put(pd.getName(), getFieldMetadata(pd.getPropertyType()));
-			}
-		}
-		
-		DefaultDefinedMapMetaDataModel mapModel = new DefaultDefinedMapMetaDataModel(fieldMap, key.getId());
-		
-        return new DefaultMetaData(mapModel);
+		PojoMetaDataBuilder<?> dynamicObject = new DefaultMetaDataBuilder().createPojo(cls);
+        return new DefaultMetaData(new DefaultDefinedMapMetaDataModel(dynamicObject.build().getFields()));
     }
 
 	private MetaDataModel getFieldMetadata(Class<?> propertyType) {
@@ -245,7 +204,7 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<SubscribeResult> subscribe(List<com.zuora.api.SubscribeRequest> subscriptions)
+    public List<SubscribeResult> subscribe(@Default("#[payload]") List<com.zuora.api.SubscribeRequest> subscriptions)
             throws Exception {
         return client.subscribe(subscriptions);
     }
@@ -373,8 +332,8 @@ public class ZuoraModule implements MuleContextAware {
     @Paged
 	@Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public PagingDelegate<Map<String,Object>> find(@org.mule.api.annotations.Query final String query, final PagingConfiguration pagingConfiguration) {
-        PagingDelegate<Map<String, Object>> pagingDelegate = new PagingDelegate<Map<String, Object>>() {
+    public ProviderAwarePagingDelegate<Map<String,Object>, ZuoraModule> find(@org.mule.api.annotations.Query final String query, final PagingConfiguration pagingConfiguration) {
+        return new ProviderAwarePagingDelegate<Map<String, Object>, ZuoraModule>() {
 
             private int pageNumber = 0;
             private boolean isDone;
@@ -382,19 +341,19 @@ public class ZuoraModule implements MuleContextAware {
             private int count = -1;
 
             @Override
-            public List<Map<String, Object>> getPage() {
+            public List<Map<String, Object>> getPage(ZuoraModule provider) {
                 try {
                     QueryResult result = null;
                     if (this.pageNumber == 0) {
-                        result = client.query(query);
+                        result = provider.getClient().query(query);
                         pageNumber++;
                         count = result.getSize();
-                        isDone = result.isDone();
+                        isDone = result.getDone();
                         queryLocator = result.getQueryLocator();
                     } else if(!isDone) {
-                        result = client.queryMore(queryLocator);
+                        result = provider.getClient().queryMore(queryLocator);
                         pageNumber++;
-                        isDone = result.isDone();
+                        isDone = result.getDone();
                         queryLocator = result.getQueryLocator();
                     } else {
                         return Collections.emptyList();
@@ -416,17 +375,16 @@ public class ZuoraModule implements MuleContextAware {
             }
 
             @Override
-            public int getTotalResults() {
-                return count;
-            }
-
-            @Override
             public void close() throws MuleException {
 
             }
-        };
 
-        return new PagingDelegateWrapper<Map<String, Object>>(pagingDelegate);
+            @Override
+            public int getTotalResults(ZuoraModule provider) throws Exception {
+                return 0;
+            }
+
+        };
     }
 
     @QueryTranslator
@@ -462,7 +420,7 @@ public class ZuoraModule implements MuleContextAware {
      */
     @Processor
     @InvalidateConnectionOn(exception=SessionTimedOutException.class)
-    public List<AmendResult> amend(List<com.zuora.api.AmendRequest> amendaments)
+    public List<AmendResult> amend(@Default("#[payload]")  List<com.zuora.api.AmendRequest> amendaments)
             throws Exception {
         return client.amend(amendaments);
     }

@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -59,11 +58,11 @@ import com.zuora.api.object.RatePlan;
 import com.zuora.api.object.Subscription;
 import com.zuora.api.object.ZuoraBeanMap;
 import org.mule.streaming.PagingConfiguration;
-import org.mule.streaming.PagingDelegate;
+import org.mule.streaming.ProviderAwarePagingDelegate;
 
 public class ZuoraModuleTestDriver {
     private ZuoraModule module;
-    private final String username = "mule@muletax.com";
+    private final String username = "albin.kjellin@mulesoft.com";
     private final String password = "Mule2012";
 
     @Before
@@ -106,11 +105,11 @@ public class ZuoraModuleTestDriver {
     @Test
     public void createAndDelete() throws Exception {
         SaveResult result = module.create("Account", Collections.singletonList(testAccount())).get(0);
-        assertTrue(result.isSuccess());
+        assertTrue(result.getSuccess());
 
 
         DeleteResult deleteResult = module.delete("Account", Arrays.asList(result.getId())).get(0);
-        assertTrue(deleteResult.isSuccess());
+        assertTrue(deleteResult.getSuccess());
     }
 
     /**
@@ -120,7 +119,7 @@ public class ZuoraModuleTestDriver {
     @SuppressWarnings("serial")
     public void createAndDeleteRelated() throws Exception {
         SaveResult saveResult = module.create("Account", Collections.singletonList(testAccount())).get(0);
-        assertTrue(saveResult.isSuccess());
+        assertTrue(saveResult.getSuccess());
 
         final String accountId = saveResult.getId();
         try {
@@ -133,10 +132,10 @@ public class ZuoraModuleTestDriver {
                             put("AccountId", accountId);
                         }
                     })).get(0);
-            assertTrue(result.isSuccess());
+            assertTrue(result.getSuccess());
 
             DeleteResult deleteResult = module.delete("Contact", Arrays.asList(result.getId())).get(0);
-            assertTrue(deleteResult.isSuccess());
+            assertTrue(deleteResult.getSuccess());
         } finally {
             module.delete("Account", Arrays.asList(accountId)).get(0);
         }
@@ -148,8 +147,9 @@ public class ZuoraModuleTestDriver {
     @Test
     public void findNoResult() throws Exception {
 
-        PagingDelegate<Map<String,Object>> pagingDelegate = module.find("SELECT Id FROM Account where id ='not here!'", new PagingConfiguration(0));
-        List<Map<String, Object>> page = pagingDelegate.getPage();
+        ProviderAwarePagingDelegate<Map<String,Object>, ZuoraModule> pagingDelegate =
+                module.find("SELECT Id FROM Account where id ='not here!'", new PagingConfiguration(0));
+        List<Map<String, Object>> page = pagingDelegate.getPage(module);
         assertTrue(page.isEmpty());
     }
 
@@ -161,7 +161,8 @@ public class ZuoraModuleTestDriver {
     public void findOneResult() throws Exception {
         String id = module.create("Account", Collections.singletonList(testAccount())).get(0).getId();
         try {
-            PagingDelegate<Map<String, Object>> pagingDelegate = module.find("SELECT Id, Name, AccountNumber FROM Account WHERE AccountNumber = '7891'", new PagingConfiguration(0));
+            ProviderAwarePagingDelegate<Map<String, Object>, ZuoraModule> pagingDelegate =
+                    module.find("SELECT Id, Name, AccountNumber FROM Account WHERE AccountNumber = '7891'", new PagingConfiguration(0));
 //            assertTrue(result.hasNext());
 //            Map<String,Object> next = result.next();
 //            assertNotNull(next.get("id"));
@@ -190,7 +191,7 @@ public class ZuoraModuleTestDriver {
     @SuppressWarnings("serial")
     public void createRetrieveAnAccountProfileAndDeleteRelatedAccount() throws Exception {
         SaveResult accountResult = module.create("Account", Collections.singletonList(testAccount())).get(0);
-        assertTrue(accountResult.isSuccess());
+        assertTrue(accountResult.getSuccess());
 
         final String accountId = accountResult.getId();
         try {
@@ -204,7 +205,7 @@ public class ZuoraModuleTestDriver {
                         }
                     })).get(0);
 
-            assertTrue(contactResult.isSuccess());
+            assertTrue(contactResult.getSuccess());
 
             Map<String, Object> accountMap = testAccount();
             accountMap.put("Id", accountId);
@@ -212,7 +213,7 @@ public class ZuoraModuleTestDriver {
 
             SaveResult accountUpdateResult = module.update("Account", Collections.singletonList(accountMap)).get(0);
 
-            assertTrue(accountUpdateResult.isSuccess());
+            assertTrue(accountUpdateResult.getSuccess());
         } finally {
             module.delete("Account", Arrays.asList(accountId)).get(0);
         }
@@ -302,14 +303,14 @@ public class ZuoraModuleTestDriver {
         subscribeReq.setPaymentMethod(paymentMethod);
         subscribeReq.setSubscriptionData(subscriptionData);
         SubscribeResult subscribeResult = module.subscribe(Collections.singletonList(subscribeReq)).get(0);
-        assertTrue(subscribeResult.isSuccess());
+        assertTrue(subscribeResult.getSuccess());
         assertEquals(0,subscribeResult.getErrors().size());
 
         DeleteResult deleteResultAccount = module.delete("Account", Collections.singletonList(subscribeResult.getAccountId())).get(0);
-        assertTrue(deleteResultAccount.isSuccess());
+        assertTrue(deleteResultAccount.getSuccess());
 
         DeleteResult deleteResultProduct = module.delete("Product", Collections.singletonList(productId)).get(0);
-        assertTrue(deleteResultProduct.isSuccess());
+        assertTrue(deleteResultProduct.getSuccess());
     }
 
     @SuppressWarnings("serial")
