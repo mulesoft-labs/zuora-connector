@@ -13,6 +13,7 @@
  */
 package org.mule.modules.zuora;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -54,6 +55,7 @@ import org.mule.streaming.ProviderAwarePagingDelegate;
 
 import com.zuora.api.object.ZObject;
 import com.zuora.api.object.ZuoraBeanMap;
+import org.springframework.beans.BeanUtils;
 
 /**
  * Zuora is the leader in online recurring billing and payment solutions for SaaS and subscription businesses.
@@ -118,9 +120,21 @@ public class ZuoraModule implements MuleContextAware {
 
     @MetaDataRetriever 
     public MetaData getMetadata(MetaDataKey key) throws Exception {
-		Class<?> cls = getClassForType(key.getId());
-		PojoMetaDataBuilder<?> dynamicObject = new DefaultMetaDataBuilder().createPojo(cls);
-        return new DefaultMetaData(new DefaultDefinedMapMetaDataModel(dynamicObject.build().getFields()));
+
+        Class<?> cls = getClassForType(key.getId());
+
+        PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(cls);
+
+        Map<String, MetaDataModel> fieldMap = new HashMap<String, MetaDataModel>();
+        for (PropertyDescriptor pd : pds) {
+            if (pd.getReadMethod() != null && pd.getWriteMethod() != null) {
+                fieldMap.put(pd.getName(), getFieldMetadata(pd.getPropertyType()));
+            }
+        }
+
+        DefaultDefinedMapMetaDataModel mapModel = new DefaultDefinedMapMetaDataModel(fieldMap, key.getId());
+
+        return new DefaultMetaData(mapModel);
     }
 
 	private MetaDataModel getFieldMetadata(Class<?> propertyType) {
