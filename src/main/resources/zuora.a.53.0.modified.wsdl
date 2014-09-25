@@ -17,6 +17,7 @@
 				<sequence>
 					<element minOccurs="0" maxOccurs="unbounded" name="fieldsToNull" nillable="true" type="string" />
 					<element minOccurs="0" maxOccurs="1" name="Id" nillable="true" type="zns:ID" />
+                    <!-- Manually Added - Refer to CLDCONNECT-2091 -->
                     <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
                 </sequence>
 			</complexType>
