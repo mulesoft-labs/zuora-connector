@@ -169,6 +169,7 @@
 							<element minOccurs="0" name="InitialTerm" nillable="true" type="long" />
 							<element minOccurs="0" name="Name" nillable="true" type="string" />
 							<element minOccurs="0" name="RatePlanData" nillable="true" type="zns:RatePlanData" />
+               				<element minOccurs="0" name="RenewalSetting" nillable="true" type="string" />
 							<element minOccurs="0" name="RenewalTerm" nillable="true" type="long" />
 							<element minOccurs="0" name="ServiceActivationDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="Status" nillable="true" type="string" />
@@ -224,10 +225,12 @@
 							<element minOccurs="0" name="Amount" nillable="true" type="decimal" />
 							<element minOccurs="0" name="AmountWithoutTax" nillable="true" type="decimal" />
 							<element minOccurs="0" name="Balance" nillable="true" type="decimal" />
+							<element minOccurs="0" name="BillRunId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="Body" nillable="true" type="string" />
 							<element minOccurs="0" name="Comments" nillable="true" type="string" />
 							<element minOccurs="0" name="CreatedById" nillable="true" type="zns:ID"  />
 							<element minOccurs="0" name="CreatedDate" nillable="true" type="dateTime"  />
+							<element minOccurs="0" name="CreditBalanceAdjustmentAmount" nillable="true" type="decimal"   />
 							<element minOccurs="0" name="DueDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="IncludesOneTime" nillable="true" type="boolean" />
 							<element minOccurs="0" name="IncludesRecurring" nillable="true" type="boolean" />
@@ -251,7 +254,22 @@
 					</extension>
 				</complexContent>
 			</complexType>
-			<complexType name="Refund">
+			<complexType name="InvoiceFile">
+				<complexContent>
+					<extension base="ons:zObject">
+						<sequence>
+							<element minOccurs="0" name="CreatedById" nillable="true" type="zns:ID" />
+							<element minOccurs="0" name="CreatedDate" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="InvoiceId" nillable="true" type="string" />
+							<element minOccurs="0" name="PdfFileUrl" nillable="true" type="string" />
+							<element minOccurs="0" name="UpdatedById" nillable="true" type="zns:ID" />
+							<element minOccurs="0" name="UpdatedDate" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="VersionNumber" nillable="true" type="long" />
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="Refund" >
 				<complexContent>
 					<extension base="ons:zObject">
 						<sequence>
@@ -271,13 +289,17 @@
 							<element minOccurs="0" name="MethodType" nillable="true" type="string" />
 							<element minOccurs="0" name="PaymentId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="PaymentMethodId" nillable="true" type="zns:ID" />
+							<element minOccurs="0" name="PaymentMethodSnapshotId" nillable="true" type="zns:ID"  />
 							<element minOccurs="0" name="ReasonCode" nillable="true" type="string" />
 							<element minOccurs="0" name="ReferenceID" nillable="true" type="string" />
 							<element minOccurs="0" name="RefundDate" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="RefundInvoicePaymentData" nillable="true" type="zns:RefundInvoicePaymentData" />
 							<element minOccurs="0" name="RefundNumber" nillable="true" type="string" />
 							<element minOccurs="0" name="RefundTransactionTime" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="SecondRefundReferenceId" nillable="true" type="string" />
 							<element minOccurs="0" name="SettledOn" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="SoftDescriptor" nillable="true" type="string" />
+							<element minOccurs="0" name="SoftDescriptorPhone" nillable="true" type="string" />
 							<element minOccurs="0" name="SourceType" nillable="true" type="string" />
 							<element minOccurs="0" name="Status" nillable="true" type="string" />
 							<element minOccurs="0" name="SubmittedOn" nillable="true" type="dateTime" />
@@ -295,6 +317,7 @@
 						<sequence>
                				<element minOccurs="0" name="CreatedById" nillable="true" type="zns:ID"  />
                				<element minOccurs="0" name="CreatedDate" nillable="true" type="dateTime"  />
+							<element minOccurs="0" name="InvoiceId" nillable="true" type="zns:ID"  />
 							<element minOccurs="0" name="InvoicePaymentId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="RefundAmount" nillable="true" type="decimal" />
 							<element minOccurs="0" name="RefundId" nillable="true" type="zns:ID" />
@@ -309,6 +332,7 @@
 					<extension base="ons:zObject">
 						<sequence>
 							<element minOccurs="0" name="BatchId" nillable="true" type="string" />
+							<element minOccurs="0" name="Gateway" nillable="true" type="string" />
 							<element minOccurs="0" name="GatewayReasonCode" nillable="true" type="string"/>
 							<element minOccurs="0" name="GatewayReasonCodeDescription" nillable="true" type="string"/>
 							<element minOccurs="0" name="GatewayState" nillable="true" type="string" />
@@ -331,8 +355,10 @@
 							<element minOccurs="0" name="ChargeAmount" nillable="true" type="decimal" />
 							<element minOccurs="0" name="ChargeDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="ChargeDescription" nillable="true" type="string" />
+							<element minOccurs="0" name="ChargeId" nillable="true" type="string" />
 							<element minOccurs="0" name="ChargeName" nillable="true" type="string" />
 							<element minOccurs="0" name="ChargeNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="ChargeType" nillable="true" type="string" />
                				<element minOccurs="0" name="CreatedById" nillable="true" type="zns:ID"  />
 							<element minOccurs="0" name="CreatedDate" nillable="true" type="dateTime"  />
 							<element minOccurs="0" name="InvoiceId" nillable="true" type="zns:ID" />
@@ -340,6 +366,7 @@
 							<element minOccurs="0" name="ProductDescription" nillable="true" type="string" />
 							<element minOccurs="0" name="ProductId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="ProductName" nillable="true" type="string" />
+							<element minOccurs="0" name="ProductRatePlanChargeId" nillable="true" type="string" />
 							<element minOccurs="0" name="Quantity" nillable="true" type="decimal" />
 							<element minOccurs="0" name="RatePlanChargeId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="RevRecCode" nillable="true" type="string" />
@@ -393,6 +420,7 @@
                				<element minOccurs="0" name="CreatedById" nillable="true" type="zns:ID"  />
                				<element minOccurs="0" name="CreatedDate" nillable="true" type="dateTime"  />
 							<element minOccurs="0" name="EffectiveDate" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="Gateway" nillable="true" type="string"  />
 							<element minOccurs="0" name="GatewayOptionData" nillable="true" type="zns:GatewayOptionData" />
 							<element minOccurs="0" name="GatewayOrderId" nillable="true" type="string" />
 							<element minOccurs="0" name="GatewayResponse" nillable="true" type="string" />
@@ -400,13 +428,19 @@
 							<element minOccurs="0" name="GatewayState" nillable="true" type="string" />
 							<element minOccurs="0" name="InvoiceId" nillable="true" type="zns:ID" />
 							<element minOccurs="0" name="InvoiceNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="InvoicePaymentData" nillable="true" type="zns:InvoicePaymentData" />
 							<element minOccurs="0" name="MarkedForSubmissionOn" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="PaymentMethodId" nillable="true" type="zns:ID" />
+							<element minOccurs="0" name="PaymentMethodSnapshotId" nillable="true" type="zns:ID"  />
 							<element minOccurs="0" name="PaymentNumber" nillable="true" type="string" />
 							<element minOccurs="0" name="ReferenceId" nillable="true" type="string" />
 							<element minOccurs="0" name="RefundAmount" nillable="true" type="decimal" />
 							<element minOccurs="0" name="SecondPaymentReferenceId" nillable="true" type="string" />
 							<element minOccurs="0" name="SettledOn" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="SoftDescriptor" nillable="true" type="string" />
+							<element minOccurs="0" name="SoftDescriptorPhone" nillable="true" type="string" />
+							<element minOccurs="0" name="Source" nillable="true" type="string" />
+							<element minOccurs="0" name="SourceName" nillable="true" type="string" />
 							<element minOccurs="0" name="Status" nillable="true" type="string" />
 							<element minOccurs="0" name="SubmittedOn" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="TransferredToAccounting" nillable="true" type="string" />
@@ -424,6 +458,7 @@
 							<element minOccurs="0" name="AVSResponseCode" nillable="true" type="string"/>
 							<element minOccurs="0" name="BatchId" nillable="true" type="string" />
 							<element minOccurs="0" name="CVVResponseCode" nillable="true" type="string"/>
+                            <element minOccurs="0" name="Gateway" nillable="true" type="string" />
 							<element minOccurs="0" name="GatewayReasonCode" nillable="true" type="string"/>
 							<element minOccurs="0" name="GatewayReasonCodeDescription" nillable="true" type="string"/>
 							<element minOccurs="0" name="GatewayState" nillable="true" type="string" />
@@ -447,9 +482,27 @@
 							<element minOccurs="0" name="AchAccountNumber" nillable="true" type="string" />
 							<element minOccurs="0" name="AchAccountNumberMask" nillable="true" type="string" />
 							<element minOccurs="0" name="AchAccountType" nillable="true" type="string" />
+							<element minOccurs="0" name="AchAddress1" nillable="true" type="string"/>
+							<element minOccurs="0" name="AchAddress2" nillable="true" type="string"/>
 							<element minOccurs="0" name="AchBankName" nillable="true" type="string" />
 							<element minOccurs="0" name="Active" nillable="true" type="boolean" />
+               				<element minOccurs="0" name="BankBranchCode" nillable="true" type="string" />	
+               				<element minOccurs="0" name="BankCheckDigit" nillable="true" type="string" />
+               				<element minOccurs="0" name="BankCity" nillable="true" type="string" />
+							<element minOccurs="0" name="BankCode" nillable="true" type="string" />
 							<element minOccurs="0" name="BankIdentificationNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="BankName" nillable="true" type="string" />
+							<element minOccurs="0" name="BankPostalCode" nillable="true" type="string" />
+							<element minOccurs="0" name="BankStreetName" nillable="true" type="string" />
+							<element minOccurs="0" name="BankStreetNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="BankTransferAccountName" nillable="true" type="string" />
+               				<element minOccurs="0" name="BankTransferAccountNumber" nillable="true" type="string" />
+               				<element minOccurs="0" name="BankTransferAccountNumberMask" nillable="true" type="string" />
+			               	<element minOccurs="0" name="BankTransferAccountType" nillable="true" type="string" />
+			               	<element minOccurs="0" name="BankTransferType" nillable="true" type="string" />
+							<element minOccurs="0" name="BusinessIdentificationCode" nillable="true" type="string"  />
+               				<element minOccurs="0" name="City" nillable="true" type="string" />
+               				<element minOccurs="0" name="Country" nillable="true" type="string" />
                				<element minOccurs="0" name="CreatedById" nillable="true" type="zns:ID"  />
                				<element minOccurs="0" name="CreatedDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="CreditCardAddress1" nillable="true" type="string" />
@@ -467,11 +520,19 @@
 							<element minOccurs="0" name="CreditCardType" nillable="true" type="string" />
 							<element minOccurs="0" name="DeviceSessionId" nillable="true" type="string" />
 							<element minOccurs="0" name="Email" nillable="true" type="string" />
+							<element minOccurs="0" name="ExistingMandate" nillable="true" type="string" />
+							<element minOccurs="0" name="FirstName" nillable="true" type="string"/>
 							<element minOccurs="0" name="GatewayOptionData" nillable="true" type="zns:GatewayOptionData" />
+							<element minOccurs="0" name="IBAN" nillable="true" type="string"/>
 							<element minOccurs="0" name="IPAddress" nillable="true" type="string" />
 							<element minOccurs="0" name="LastFailedSaleTransactionDate" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="LastName" nillable="true" type="string"/>
 							<element minOccurs="0" name="LastTransactionDateTime" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="LastTransactionStatus" nillable="true" type="string" />
+        					<element minOccurs="0" name="MandateCreationDate" nillable="true" type="dateTime" />
+        					<element minOccurs="0" name="MandateID" nillable="true" type="string"/>
+        					<element minOccurs="0" name="MandateReceived" nillable="true" type="string"/>
+        					<element minOccurs="0" name="MandateUpdateDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="MaxConsecutivePaymentFailures" nillable="true" type="int" />
 							<element minOccurs="0" name="Name" nillable="true" type="string" />
 							<element minOccurs="0" name="NumConsecutiveFailures" nillable="true" type="int" />
@@ -482,7 +543,12 @@
 							<element minOccurs="0" name="PaypalPreapprovalKey" nillable="true" type="string" />
 							<element minOccurs="0" name="PaypalType" nillable="true" type="string" />
 							<element minOccurs="0" name="Phone" nillable="true" type="string" />
+							<element minOccurs="0" name="PostalCode" nillable="true" type="string"/>
+							<element minOccurs="0" name="SecondTokenId" nillable="true" type="string" />
 							<element minOccurs="0" name="SkipValidation" nillable="true" type="boolean" />
+							<element minOccurs="0" name="State" nillable="true" type="string"/>
+							<element minOccurs="0" name="StreetName" nillable="true" type="string"/>
+							<element minOccurs="0" name="StreetNumber" nillable="true" type="string"/>
 							<element minOccurs="0" name="TokenId" nillable="true" type="string" />
 							<element minOccurs="0" name="TotalNumberOfErrorPayments" nillable="true" type="int"/>
 							<element minOccurs="0" name="TotalNumberOfProcessedPayments" nillable="true" type="int"/>
@@ -494,7 +560,104 @@
 					</extension>
 				</complexContent>
 			</complexType>
-			<complexType name="Product">
+            <complexType name="PaymentMethodTransactionLog">
+				<complexContent>
+					<extension base="ons:zObject">
+						<sequence>							    
+						    <element minOccurs="0" name="Gateway" nillable="true" type="string" />								   						
+							<element minOccurs="0" name="GatewayReasonCode" nillable="true" type="string"/>
+							<element minOccurs="0" name="GatewayReasonCodeDescription" nillable="true" type="string"/>	
+							<element minOccurs="0" name="GatewayTransactionType" nillable="true" type="string"/>													
+							<element minOccurs="0" name="PaymentMethodId" nillable="true" type="string"/>	
+							<element minOccurs="0" name="PaymentMethodType" nillable="true" type="string"/>												
+							<element minOccurs="0" name="RequestString" nillable="true" type="string"/>
+							<element minOccurs="0" name="ResponseString" nillable="true" type="string"/>
+							<element minOccurs="0" name="TransactionDate" nillable="true" type="string" />	
+               				<element minOccurs="0" name="TransactionId" nillable="true" type="string"/>              				
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+		<complexType name="PaymentMethodSnapshot">
+				<complexContent>
+					<extension base="ons:zObject">
+						<sequence>
+							<element minOccurs="0" name="AccountId" nillable="true" type="zns:ID" />
+							<element minOccurs="0" name="AchAbaCode" nillable="true" type="string" />
+							<element minOccurs="0" name="AchAccountName" nillable="true" type="string" />
+							<element minOccurs="0" name="AchAccountNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="AchAccountNumberMask" nillable="true" type="string" />
+							<element minOccurs="0" name="AchAccountType" nillable="true" type="string" />
+							<element minOccurs="0" name="AchBankName" nillable="true" type="string" />
+							<element minOccurs="0" name="BankBranchCode" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankCheckDigit" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankCity" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankCode" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankIdentificationNumber" nillable="true" type="string"/>
+			               	<element minOccurs="0" name="BankName" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="BankPostalCode" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="BankStreetName" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="BankStreetNumber" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="BankTransferAccountName" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankTransferAccountNumber" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankTransferAccountNumberMask" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BankTransferAccountType" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="BankTransferType" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="BusinessIdentificationCode" nillable="true" type="string"/> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="City" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+			               	<element minOccurs="0" name="Country" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="CreditCardAddress1" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardAddress2" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardCity" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardCountry" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardExpirationMonth" nillable="true" type="int" />
+							<element minOccurs="0" name="CreditCardExpirationYear" nillable="true" type="int" />
+							<element minOccurs="0" name="CreditCardHolderName" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardMaskNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardNumber" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardPostalCode" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardState" nillable="true" type="string" />
+							<element minOccurs="0" name="CreditCardType" nillable="true" type="string" />
+							<element minOccurs="0" name="DeviceSessionId" nillable="true" type="string" />
+							<element minOccurs="0" name="Email" nillable="true" type="string"/>
+							<element minOccurs="0" name="ExistingMandate" nillable="true" type="string"/> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="FirstName" nillable="true" type="string"/> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="IBAN" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="IPAddress" nillable="true" type="string"/>
+							<element minOccurs="0" name="LastFailedSaleTransactionDate" nillable="true" type="dateTime"/>
+							<element minOccurs="0" name="LastName" nillable="true" type="string"/> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="LastTransactionDateTime" nillable="true" type="dateTime" />
+							<element minOccurs="0" name="LastTransactionStatus" nillable="true" type="string" />
+							<element minOccurs="0" name="MandateCreationDate" nillable="true" type="dateTime" /> <!-- this field use for bank transfer payment method -->
+        					<element minOccurs="0" name="MandateID" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+        					<element minOccurs="0" name="MandateReceived" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+        					<element minOccurs="0" name="MandateUpdateDate" nillable="true" type="dateTime" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="MaxConsecutivePaymentFailures" nillable="true" type="short" />
+							<element minOccurs="0" name="Name" nillable="true" type="string" />
+							<element minOccurs="0" name="NumConsecutiveFailures" nillable="true" type="int"/>
+							<element minOccurs="0" name="PaymentMethodId" nillable="true" type="zns:ID"/>
+							<element minOccurs="0" name="PaymentMethodStatus" nillable="true" type="string"/>
+							<element minOccurs="0" name="PaymentRetryWindow" nillable="true" type="short"/>
+							<element minOccurs="0" name="PaypalBaid" nillable="true" type="string" /> 
+							<element minOccurs="0" name="PaypalEmail" nillable="true" type="string" />
+							<element minOccurs="0" name="PaypalPreapprovalKey" nillable="true" type="string" />
+							<element minOccurs="0" name="PaypalType" nillable="true" type="string" />
+							<element minOccurs="0" name="Phone" nillable="true" type="string" />
+							<element minOccurs="0" name="PostalCode" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="SecondTokenId" nillable="true" type="string"/>
+							<element minOccurs="0" name="State" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="StreetName" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="StreetNumber" nillable="true" type="string" /> <!-- this field use for bank transfer payment method -->
+							<element minOccurs="0" name="TokenId" nillable="true" type="string"/>
+							<element minOccurs="0" name="TotalNumberOfErrorPayments" nillable="true" type="int"/>
+							<element minOccurs="0" name="TotalNumberOfProcessedPayments" nillable="true" type="int"/>
+							<element minOccurs="0" name="Type" nillable="true" type="string" />
+			               	<element minOccurs="0" name="UseDefaultRetryRule" nillable="true" type="boolean" />
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="Product" >
 				<complexContent>
 					<extension base="ons:zObject">
 						<sequence>
@@ -549,6 +712,7 @@
 							<element minOccurs="0" name="DiscountLevel" nillable="true" type="string" />
 							<element minOccurs="0" name="IncludedUnits" nillable="true" type="decimal" />
 							<element minOccurs="0" name="LegacyRevenueReporting" nillable="true" type="boolean" />
+							<element minOccurs="0" name="ListPriceBase" nillable="true" type="string"  />
 							<element minOccurs="0" name="MaxQuantity" nillable="true" type="decimal"  />
 							<element minOccurs="0" name="MinQuantity" nillable="true" type="decimal"  />
 							<element minOccurs="0" name="Name" nillable="true" type="string" />
@@ -571,6 +735,7 @@
 			               	<element minOccurs="0" name="UpdatedById" nillable="true" type="zns:ID"  />
 			               	<element minOccurs="0" name="UpdatedDate" nillable="true" type="dateTime"  />
 			               	<element minOccurs="0" name="UpToPeriods" nillable="true" type="long"  />
+			               	<element minOccurs="0" name="UsageRecordRatingOption" nillable="true" type="string"  />
  	                        <element minOccurs="0" name="UseDiscountSpecificAccountingCode" nillable="true" type="boolean" />
 							<element minOccurs="0" name="UseTenantDefaultForPriceChange" nillable="true" type="boolean" />
 
@@ -654,6 +819,7 @@
 							<element minOccurs="0" name="EffectiveStartDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="IncludedUnits" nillable="true" type="decimal" />
 							<element minOccurs="0" name="IsLastSegment" nillable="true" type="boolean"  />
+							<element minOccurs="0" name="ListPriceBase" nillable="true" type="string" />
 							<element minOccurs="0" name="MRR" nillable="true" type="decimal"  />
 							<element minOccurs="0" name="Name" nillable="true" type="string" />
 							<element minOccurs="0" name="NumberOfPeriods" nillable="true" type="long" />
@@ -725,6 +891,7 @@
                      		<element minOccurs="0" name="OriginalCreatedDate" nillable="true" type="dateTime"  />
 							<element minOccurs="0" name="OriginalId" nillable="true" type="zns:ID"  />
 							<element minOccurs="0" name="PreviousSubscriptionId" nillable="true" type="zns:ID"  />
+							<element minOccurs="0" name="RenewalSetting" nillable="true" type="string" />
 							<element minOccurs="0" name="RenewalTerm" nillable="true" type="int" />
 							<element minOccurs="0" name="ServiceActivationDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="Status" nillable="true" type="string" />
@@ -909,6 +1076,7 @@
 			</complexType>
 			<complexType name="SubscribeOptions">
 				<sequence>
+					<element minOccurs="0" name="ApplyCreditBalance" nillable="true" type="xs:boolean" />
 					<element minOccurs="0" name="ExternalPaymentOptions" nillable="true" type="zns:ExternalPaymentOptions" />
 					<element minOccurs="0" name="GenerateInvoice" nillable="true" type="xs:boolean" />
 					<element minOccurs="0" name="ProcessPayments" nillable="true" type="xs:boolean" />
@@ -945,6 +1113,16 @@
 						<element maxOccurs="unbounded" minOccurs="0" name="ProductRatePlanChargeTier" nillable="true" type="ons:ProductRatePlanChargeTier" />
 					</sequence>
 				</complexType>
+				<complexType name="InvoicePaymentData">
+					<sequence>
+						<element maxOccurs="unbounded" minOccurs="0" name="InvoicePayment" nillable="true" type="ons:InvoicePayment" />
+					</sequence>
+				</complexType>
+				<complexType name="RefundInvoicePaymentData">
+					<sequence>
+						<element maxOccurs="unbounded" minOccurs="0" name="RefundInvoicePayment" nillable="true" type="ons:RefundInvoicePayment" />
+					</sequence>
+				</complexType>
 			<complexType name="GatewayOptionData">
 				<sequence>
 					<element maxOccurs="200" minOccurs="0" name="GatewayOption" nillable="true" type="ons:GatewayOption" />
@@ -961,11 +1139,30 @@
 						<element minOccurs="0" maxOccurs="unbounded" name="Invoice" nillable="true" type="ons:Invoice" />
 					</sequence>
 				</complexType>
+				<complexType name="ChargeMetricsData">
+					<sequence>
+						<element name="ChargeMetrics" minOccurs="0" maxOccurs="unbounded" type="zns:NewChargeMetrics" />
+					</sequence>
+				</complexType>
+				<complexType name="NewChargeMetrics">
+					<sequence>
+						<element minOccurs="0" name="ChargeNumber" nillable="true" type="string" />
+	      				<element minOccurs="0" name="DMRR" nillable="true" type="decimal" />
+	      				<element minOccurs="0" name="DTCV" nillable="true" type="decimal" />
+	      				<element minOccurs="0" name="MRR" nillable="true" type="decimal" />
+	      				<element minOccurs="0" name="OriginalId" nillable="true" type="zns:ID" />
+	      				<element minOccurs="0" name="OriginalRatePlanId" nillable="true" type="zns:ID" />
+	      				<element minOccurs="0" name="ProductRatePlanChargeId" nillable="true" type="zns:ID" />
+	      				<element minOccurs="0" name="ProductRatePlanId" nillable="true" type="zns:ID" />
+	      				<element minOccurs="0" name="TCV" nillable="true" type="decimal" />
+					</sequence>
+				</complexType>
 				<complexType name="PreviewOptions">
 					<sequence>
 						<element minOccurs="0" name="EnablePreviewMode" nillable="true" type="boolean" />
 						<element minOccurs="0" name="NumberOfPeriods" nillable="true" type="int" />
 						<element minOccurs="0" name="PreviewThroughTermEnd" nillable="true" type="boolean" />
+						<element minOccurs="0" name="PreviewType" nillable="true" type="string" />
 					</sequence>
 				</complexType>
 		
@@ -973,6 +1170,7 @@
 				<sequence>
 					<element minOccurs="0" name="AccountId" nillable="true" type="zns:ID" />
 					<element minOccurs="0" name="AccountNumber" nillable="true" type="string" />
+					<element minOccurs="0" name="ChargeMetricsData" nillable="true" type="zns:ChargeMetricsData" />
 					<element minOccurs="0" maxOccurs="unbounded" name="Errors" nillable="true" type="zns:Error" />
 					<element minOccurs="0" maxOccurs="1" name="GatewayResponse" nillable="true" type="string" />
 					<element minOccurs="0" maxOccurs="1" name="GatewayResponseCode" nillable="true" type="string" />
@@ -1041,6 +1239,7 @@
 					<enumeration value="INVALID_ID" />
 					<enumeration value="INVALID_VALUE" />
 					<enumeration value="INVALID_VERSION" />
+					<enumeration value="LOCK_COMPETITION"  />
 					<enumeration value="MALFORMED_QUERY" />
 					<enumeration value="MAX_RECORDS_EXCEEDED" />
 					<enumeration value="MISSING_REQUIRED_VALUE" />
@@ -1052,6 +1251,12 @@
 					<enumeration value="ACCOUNTING_PERIOD_CLOSED" />
 					<enumeration value="BATCH_FAIL_ERROR"/>
 					<enumeration value="PDF_QUERY_ERROR" />
+					<enumeration value="REQUEST_EXCEEDED_LIMIT" />
+					<enumeration value="REQUEST_EXCEEDED_RATE" />
+					<enumeration value="REQUEST_REJECTED" />
+					<enumeration value="TEMPORARY_ERROR"  />
+					<enumeration value="TRANSACTION_TERMINATED"  />
+					<enumeration value="TRANSACTION_TIMEOUT"  />
 				</restriction>
 			</simpleType>
 			<element name="login">
@@ -1228,6 +1433,7 @@
 						<element minOccurs="0" name="InvoicePayment" nillable="true" type="ons:InvoicePayment" />
 						<element minOccurs="0" name="Import" nillable="true" type="ons:Import" />
 						<element minOccurs="0" name="Payment" nillable="true" type="ons:Payment" />
+						<element minOccurs="0" name="PaymentMethodSnapshot" nillable="true" type="ons:PaymentMethodSnapshot" />
 						<element minOccurs="0" name="Product" nillable="true" type="ons:Product" />
 						<element minOccurs="0" name="ProductRatePlan" nillable="true" type="ons:ProductRatePlan" />
 						<element minOccurs="0" name="ProductRatePlanCharge" nillable="true" type="ons:ProductRatePlanCharge" />
@@ -1243,6 +1449,7 @@
                         <element minOccurs="0" name="Export" nillable="true" type="ons:Export"  />
 						<element minOccurs="0" name="InvoiceItemAdjustment" nillable="true" type="ons:InvoiceItemAdjustment" />			
 						<element minOccurs="0" name="CommunicationProfile" nillable="true" type="ons:CommunicationProfile" />
+						<element minOccurs="0" name="InvoiceFile" nillable="true" type="ons:InvoiceFile" />	
 					</sequence>
 				</complexType>
 			</element>
@@ -1261,6 +1468,7 @@
 				</complexType>
 				<complexType name="AmendOptions" >
 					<sequence>
+						<element minOccurs="0" name="ApplyCreditBalance" nillable="true" type="xs:boolean" />
 						<element minOccurs="0" name="ExternalPaymentOptions" nillable="true" type="zns:ExternalPaymentOptions" />
 						<element minOccurs="0" name="GenerateInvoice" nillable="true" type="xs:boolean" />
 				        <element minOccurs="0" name="InvoiceProcessingOptions" nillable="true" type="zns:InvoiceProcessingOptions" />
@@ -1284,6 +1492,7 @@
 				<complexType name="AmendResult">
 					<sequence>
 						<element minOccurs="0" maxOccurs="unbounded" name="AmendmentIds" nillable="true" type="zns:ID" />
+						<element minOccurs="0" name="ChargeMetricsData" nillable="true" type="zns:ChargeMetricsData" />
 						<element minOccurs="0" maxOccurs="unbounded" name="Errors" nillable="true" type="zns:Error" />
 	                    <element minOccurs="0" maxOccurs="1" name="GatewayResponse" nillable="true" type="string" />
     					<element minOccurs="0" maxOccurs="1" name="GatewayResponseCode" nillable="true" type="string" />
@@ -1706,7 +1915,7 @@
 	</binding>
 	<service name="ZuoraService">
 		<port name="Soap" binding="zns:SoapBinding">
-			<soap:address location="https://apisandbox.zuora.com/apps/services/a/53.0" />
+			<soap:address location="https://apisandbox.zuora.com/apps/services/a/68.0" />
 		</port>
 	</service>
 </definitions>
